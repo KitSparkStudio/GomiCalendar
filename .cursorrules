@@ -1,0 +1,47 @@
+# GomiCalendar — 强制开发规范
+
+后续所有代码生成必须严格遵守以下规范，不得违反或弱化。
+
+## 1. 工作室与标识
+
+- 本应用由 **KitSpark Studio** 开发。
+- Bundle ID 前缀必须为：`com.kitsparkstudio`
+- 所有数据共享必须使用 App Group：`group.com.kitsparkstudio.gomicalendar`
+- 跨设备同步必须结合 `NSUbiquitousKeyValueStore`，实现无需登录的轻量级 iCloud 同步。
+
+## 2. 纯原生技术栈
+
+仅允许使用以下 Apple 原生技术：
+
+- Swift 6
+- SwiftUI
+- SwiftData
+- WidgetKit
+- UserNotifications
+- StoreKit 2
+
+**严禁**引入任何第三方库（包括 SPM、CocoaPods、Carthage 及手动嵌入的第三方代码）。
+
+## 3. 目标语言规范
+
+严格支持在日外国人需求最高的 5 种语言：
+
+| 语言     | 代码      |
+|----------|-----------|
+| 日语     | `ja`      |
+| 英语     | `en`      |
+| 简体中文 | `zh-Hans` |
+| 越南语   | `vi`      |
+| 韩语     | `ko`      |
+
+若系统语言不在上述 5 种之内，必须自动回退显示英语 (`en`) 或日语 (`ja`)。
+
+## 4. 视觉设计风格
+
+- 采用极简高对比度卡片设计。
+- 必须完美适配深色模式与浅色模式：
+  - **深色模式**：背景 `#0B0E11`，卡片表面 `#161A1E`
+  - **浅色模式**：背景 `#F7F8FA`
+- 每种垃圾分类必须拥有：
+  - 固定主题色
+  - 指定垃圾袋颜色徽章

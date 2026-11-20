@@ -1,0 +1,3296 @@
+{
+  "schemaVersion": 1,
+  "itemDictionary": [
+    {
+      "id": "pet_bottle",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "ペットボトル",
+        "kana": "ペットボトル",
+        "en": "PET bottle",
+        "zh-Hans": "PET塑料瓶",
+        "vi": "Chai PET",
+        "ko": "PET병"
+      },
+      "keywords": {
+        "ja": [
+          "ペット",
+          "ボトル"
+        ],
+        "en": [
+          "PET",
+          "bottle"
+        ],
+        "zh-Hans": [
+          "饮料瓶",
+          "PET"
+        ],
+        "vi": [
+          "chai PET",
+          "chai nhựa"
+        ],
+        "ko": [
+          "페트",
+          "병"
+        ]
+      },
+      "tips": {
+        "ja": "中をすすぎキャップ・ラベルを外す。自治体によりプラ扱いに注意。",
+        "kana": "すすぐ",
+        "en": "Rinse; remove cap/label. Rules vary.",
+        "zh-Hans": "冲洗并去盖去标；各地规则不同。",
+        "vi": "Tráng, tháo nắp/nhãn. Quy tắc khác nhau.",
+        "ko": "헹구고 뚜껑·라벨 분리. 지자체별 주의."
+      }
+    },
+    {
+      "id": "pet_cap",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ペットボトルキャップ",
+        "kana": "キャップ",
+        "en": "Bottle cap",
+        "zh-Hans": "瓶盖",
+        "vi": "Nắp chai",
+        "ko": "병뚜껑"
+      },
+      "keywords": {
+        "ja": [
+          "キャップ",
+          "フタ"
+        ],
+        "en": [
+          "cap",
+          "lid"
+        ],
+        "zh-Hans": [
+          "瓶盖"
+        ],
+        "vi": [
+          "nắp"
+        ],
+        "ko": [
+          "뚜껑"
+        ]
+      },
+      "tips": {
+        "ja": "本体と分けて可燃/プラへ。秋田市は家庭ごみ。",
+        "kana": "わけて",
+        "en": "Usually burnable/plastic separately.",
+        "zh-Hans": "通常与瓶身分投。",
+        "vi": "Tách khỏi thân chai.",
+        "ko": "본체와 분리."
+      }
+    },
+    {
+      "id": "plastic_tray",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "食品トレー",
+        "kana": "しょくひんトレー",
+        "en": "Food tray",
+        "zh-Hans": "食品托盘",
+        "vi": "Khay thực phẩm",
+        "ko": "식품 트레이"
+      },
+      "keywords": {
+        "ja": [
+          "トレー",
+          "パック"
+        ],
+        "en": [
+          "tray",
+          "pack"
+        ],
+        "zh-Hans": [
+          "托盘",
+          "塑料盒"
+        ],
+        "vi": [
+          "khay"
+        ],
+        "ko": [
+          "트레이"
+        ]
+      },
+      "tips": {
+        "ja": "洗って資源（プラ）の日へ。汚れが落ちない場合は可燃。",
+        "kana": "あらう",
+        "en": "Wash for plastics day; else burnable.",
+        "zh-Hans": "洗净后投塑料日；洗不净则投可燃。",
+        "vi": "Rửa ngày nhựa; bẩn thì đốt.",
+        "ko": "씻어 플라스틱일, 안 되면 가연."
+      }
+    },
+    {
+      "id": "newspaper",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "新聞",
+        "kana": "しんぶん",
+        "en": "Newspaper",
+        "zh-Hans": "报纸",
+        "vi": "Báo",
+        "ko": "신문"
+      },
+      "keywords": {
+        "ja": [
+          "新聞",
+          "チラシ"
+        ],
+        "en": [
+          "newspaper",
+          "flyer"
+        ],
+        "zh-Hans": [
+          "报纸",
+          "传单"
+        ],
+        "vi": [
+          "báo",
+          "tờ rơi"
+        ],
+        "ko": [
+          "신문",
+          "전단지"
+        ]
+      },
+      "tips": {
+        "ja": "ひもでしばって古紙へ。",
+        "kana": "しばる",
+        "en": "Bundle for paper recycling.",
+        "zh-Hans": "捆扎投废纸。",
+        "vi": "Buộc ngày giấy.",
+        "ko": "묶어 고지."
+      }
+    },
+    {
+      "id": "cardboard",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "ダンボール",
+        "kana": "ダンボール",
+        "en": "Cardboard",
+        "zh-Hans": "纸箱",
+        "vi": "Thùng carton",
+        "ko": "골판지"
+      },
+      "keywords": {
+        "ja": [
+          "段ボール",
+          "宅配"
+        ],
+        "en": [
+          "cardboard",
+          "box"
+        ],
+        "zh-Hans": [
+          "纸箱",
+          "快递箱"
+        ],
+        "vi": [
+          "carton",
+          "hộp"
+        ],
+        "ko": [
+          "박스",
+          "골판지"
+        ]
+      },
+      "tips": {
+        "ja": "開いてテープを外し束ねる。",
+        "kana": "ひらく",
+        "en": "Flatten, remove tape, bundle.",
+        "zh-Hans": "拆开去胶带捆扎。",
+        "vi": "Mở dẹt, gỡ băng.",
+        "ko": "펴서 테이프 제거 후 묶기."
+      }
+    },
+    {
+      "id": "aluminum_can",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "空き缶",
+        "kana": "あきかん",
+        "en": "Empty can",
+        "zh-Hans": "空罐",
+        "vi": "Lon trống",
+        "ko": "빈 캔"
+      },
+      "keywords": {
+        "ja": [
+          "アルミ",
+          "スチール"
+        ],
+        "en": [
+          "can",
+          "aluminum"
+        ],
+        "zh-Hans": [
+          "易拉罐",
+          "铝罐"
+        ],
+        "vi": [
+          "lon"
+        ],
+        "ko": [
+          "캔"
+        ]
+      },
+      "tips": {
+        "ja": "軽くすすいで資源へ。",
+        "kana": "すすぐ",
+        "en": "Light rinse for cans day.",
+        "zh-Hans": "简单冲洗后投。",
+        "vi": "Tráng nhẹ.",
+        "ko": "가볍게 헹굼."
+      }
+    },
+    {
+      "id": "glass_bottle",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "空きびん",
+        "kana": "あきびん",
+        "en": "Glass bottle",
+        "zh-Hans": "空瓶",
+        "vi": "Chai thủy tinh",
+        "ko": "빈 병"
+      },
+      "keywords": {
+        "ja": [
+          "びん",
+          "瓶"
+        ],
+        "en": [
+          "bottle",
+          "glass"
+        ],
+        "zh-Hans": [
+          "玻璃瓶"
+        ],
+        "vi": [
+          "chai thủy tinh"
+        ],
+        "ko": [
+          "병",
+          "유리"
+        ]
+      },
+      "tips": {
+        "ja": "キャップを外し洗う。割れたびんは不燃/可燃の自治体差あり。",
+        "kana": "キャップ",
+        "en": "Remove cap & wash. Broken glass rules vary.",
+        "zh-Hans": "去盖洗净；碎玻璃因城市而异。",
+        "vi": "Tháo nắp, rửa. Chai vỡ khác TP.",
+        "ko": "뚜껑 제거·세척. 깨진 병은 지자체별."
+      }
+    },
+    {
+      "id": "spray_can",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "スプレー缶",
+        "kana": "スプレーかん",
+        "en": "Spray can",
+        "zh-Hans": "喷雾罐",
+        "vi": "Bình xịt",
+        "ko": "스프레이캔"
+      },
+      "keywords": {
+        "ja": [
+          "エアゾール",
+          "殺虫"
+        ],
+        "en": [
+          "aerosol",
+          "spray"
+        ],
+        "zh-Hans": [
+          "喷雾",
+          "杀虫剂"
+        ],
+        "vi": [
+          "bình xịt",
+          "aerosol"
+        ],
+        "ko": [
+          "스프레이",
+          "에어로졸"
+        ]
+      },
+      "tips": {
+        "ja": "使い切り・ガス抜き必須。穴あけは自治体指示に従う。",
+        "kana": "がすぬき",
+        "en": "Empty & vent. Follow hole rules.",
+        "zh-Hans": "用尽放气；打孔按市规定。",
+        "vi": "Xả khí. Đục lỗ theo TP.",
+        "ko": "가스 제거. 구멍은 시 안내."
+      }
+    },
+    {
+      "id": "gas_cartridge",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "カセットボンベ",
+        "kana": "カセットボンベ",
+        "en": "Cassette gas",
+        "zh-Hans": "卡式瓦斯罐",
+        "vi": "Bình gas cassette",
+        "ko": "카세트가스"
+      },
+      "keywords": {
+        "ja": [
+          "ガス缶",
+          "CB缶"
+        ],
+        "en": [
+          "butane",
+          "gas"
+        ],
+        "zh-Hans": [
+          "瓦斯罐"
+        ],
+        "vi": [
+          "bình gas"
+        ],
+        "ko": [
+          "가스통"
+        ]
+      },
+      "tips": {
+        "ja": "使い切り後に資源へ。火気厳禁。",
+        "kana": "つかいきり",
+        "en": "Fully empty before recycling.",
+        "zh-Hans": "用尽后投资源。",
+        "vi": "Dùng hết rồi tái chế.",
+        "ko": "비운 뒤 자원."
+      }
+    },
+    {
+      "id": "dry_battery",
+      "categoryId": "hazardous",
+      "names": {
+        "ja": "乾電池",
+        "kana": "かんでんち",
+        "en": "Dry battery",
+        "zh-Hans": "干电池",
+        "vi": "Pin khô",
+        "ko": "건전지"
+      },
+      "keywords": {
+        "ja": [
+          "電池",
+          "単三"
+        ],
+        "en": [
+          "battery",
+          "AA"
+        ],
+        "zh-Hans": [
+          "电池",
+          "5号"
+        ],
+        "vi": [
+          "pin AA"
+        ],
+        "ko": [
+          "건전지"
+        ]
+      },
+      "tips": {
+        "ja": "指定回収・協力店へ。燃えるごみに入れない。",
+        "kana": "かいしゅう",
+        "en": "Shop/city battery collection. Never burnable.",
+        "zh-Hans": "交回收点；禁止投可燃。",
+        "vi": "Điểm thu pin. Không đốt.",
+        "ko": "회수함. 가연 금지."
+      }
+    },
+    {
+      "id": "lithium",
+      "categoryId": "hazardous",
+      "names": {
+        "ja": "リチウム電池・モバイルバッテリー",
+        "kana": "リチウム",
+        "en": "Lithium / power bank",
+        "zh-Hans": "锂电池/充电宝",
+        "vi": "Pin lithium / sạc dự phòng",
+        "ko": "리튬·보조배터리"
+      },
+      "keywords": {
+        "ja": [
+          "充電池",
+          "モバイルバッテリー"
+        ],
+        "en": [
+          "lithium",
+          "power bank"
+        ],
+        "zh-Hans": [
+          "充电宝",
+          "锂电池"
+        ],
+        "vi": [
+          "sạc dự phòng",
+          "lithium"
+        ],
+        "ko": [
+          "보조배터리",
+          "리튬"
+        ]
+      },
+      "tips": {
+        "ja": "端子をテープ絶縁し回収協力店へ。発火注意。",
+        "kana": "ぜつえん",
+        "en": "Tape terminals; take-back shops. Fire risk.",
+        "zh-Hans": "绝缘电极送回收店；防火。",
+        "vi": "Băng cực; cửa hàng thu.",
+        "ko": "단자 절연 후 회수."
+      }
+    },
+    {
+      "id": "fluorescent",
+      "categoryId": "hazardous",
+      "names": {
+        "ja": "蛍光灯",
+        "kana": "けいこうとう",
+        "en": "Fluorescent lamp",
+        "zh-Hans": "荧光灯",
+        "vi": "Đèn huỳnh quang",
+        "ko": "형광등"
+      },
+      "keywords": {
+        "ja": [
+          "蛍光管",
+          "蛍光"
+        ],
+        "en": [
+          "fluorescent",
+          "CFL"
+        ],
+        "zh-Hans": [
+          "灯管",
+          "节能灯"
+        ],
+        "vi": [
+          "huỳnh quang"
+        ],
+        "ko": [
+          "형광"
+        ]
+      },
+      "tips": {
+        "ja": "割れないよう包み水銀含有ごみ/拠点回収へ。",
+        "kana": "つつむ",
+        "en": "Wrap; mercury waste / drop-off.",
+        "zh-Hans": "包好投含水银/回收点。",
+        "vi": "Bọc; điểm thủy ngân.",
+        "ko": "포장 후 수은 회수."
+      }
+    },
+    {
+      "id": "cooking_oil",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "食用油",
+        "kana": "しょくようあぶら",
+        "en": "Cooking oil",
+        "zh-Hans": "食用油",
+        "vi": "Dầu ăn",
+        "ko": "식용유"
+      },
+      "keywords": {
+        "ja": [
+          "天ぷら油",
+          "廃油"
+        ],
+        "en": [
+          "oil",
+          "fryer"
+        ],
+        "zh-Hans": [
+          "废油",
+          "炸油"
+        ],
+        "vi": [
+          "dầu ăn",
+          "dầu chiên"
+        ],
+        "ko": [
+          "식용유",
+          "폐유"
+        ]
+      },
+      "tips": {
+        "ja": "紙や布にしみこませて可燃へ。流しに流さない。",
+        "kana": "しみこませ",
+        "en": "Soak into paper/cloth. No drain.",
+        "zh-Hans": "吸进纸布投可燃；勿倒下水道。",
+        "vi": "Thấm giấy/vải. Không đổ ống.",
+        "ko": "종이에 스며들게. 하수구 금지."
+      }
+    },
+    {
+      "id": "food_scraps",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "生ごみ",
+        "kana": "なまごみ",
+        "en": "Food scraps",
+        "zh-Hans": "厨余",
+        "vi": "Thức ăn thừa",
+        "ko": "음식물"
+      },
+      "keywords": {
+        "ja": [
+          "食べ残し",
+          "生ゴミ"
+        ],
+        "en": [
+          "food",
+          "leftovers"
+        ],
+        "zh-Hans": [
+          "厨余",
+          "剩饭"
+        ],
+        "vi": [
+          "thức ăn thừa"
+        ],
+        "ko": [
+          "음식물",
+          "남은밥"
+        ]
+      },
+      "tips": {
+        "ja": "水気を切って可燃へ。",
+        "kana": "みずけ",
+        "en": "Drain well before bagging.",
+        "zh-Hans": "沥干后投可燃。",
+        "vi": "Ráo nước.",
+        "ko": "물기 제거."
+      }
+    },
+    {
+      "id": "clothes",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "衣類",
+        "kana": "いるい",
+        "en": "Clothing",
+        "zh-Hans": "衣物",
+        "vi": "Quần áo",
+        "ko": "의류"
+      },
+      "keywords": {
+        "ja": [
+          "服",
+          "タオル"
+        ],
+        "en": [
+          "clothes",
+          "fabric"
+        ],
+        "zh-Hans": [
+          "衣服",
+          "毛巾"
+        ],
+        "vi": [
+          "quần áo"
+        ],
+        "ko": [
+          "옷",
+          "수건"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。リサイクル回収を優先できる場合あり。",
+        "kana": "かねん",
+        "en": "Burnable; donation/recycle if available.",
+        "zh-Hans": "可燃；可优先回收捐赠。",
+        "vi": "Đốt; ưu tiên tái chế.",
+        "ko": "가연. 기부·재활용 가능."
+      }
+    },
+    {
+      "id": "umbrella",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "傘",
+        "kana": "かさ",
+        "en": "Umbrella",
+        "zh-Hans": "雨伞",
+        "vi": "Ô",
+        "ko": "우산"
+      },
+      "keywords": {
+        "ja": [
+          "かさ",
+          "折りたたみ"
+        ],
+        "en": [
+          "umbrella"
+        ],
+        "zh-Hans": [
+          "雨伞",
+          "折叠伞"
+        ],
+        "vi": [
+          "ô",
+          "dù"
+        ],
+        "ko": [
+          "우산"
+        ]
+      },
+      "tips": {
+        "ja": "芯が金属なら資源/不燃の場合あり。自治体差大。",
+        "kana": "しん",
+        "en": "Metal shaft may be metal/non-burnable.",
+        "zh-Hans": "金属伞骨或为资源/不燃。",
+        "vi": "Trục kim loại khác TP.",
+        "ko": "금속심은 지자체별."
+      }
+    },
+    {
+      "id": "ceramic",
+      "categoryId": "nonCombustible",
+      "names": {
+        "ja": "陶器・グラス",
+        "kana": "とうき",
+        "en": "Ceramics / glassware",
+        "zh-Hans": "陶瓷/玻璃杯",
+        "vi": "Gốm / cốc",
+        "ko": "도자기·컵"
+      },
+      "keywords": {
+        "ja": [
+          "茶碗",
+          "皿",
+          "コップ"
+        ],
+        "en": [
+          "ceramic",
+          "plate",
+          "cup"
+        ],
+        "zh-Hans": [
+          "碗",
+          "碟子",
+          "陶瓷"
+        ],
+        "vi": [
+          "bát",
+          "đĩa",
+          "cốc"
+        ],
+        "ko": [
+          "그릇",
+          "접시"
+        ]
+      },
+      "tips": {
+        "ja": "割れたら包む。秋田市などは可燃扱いの場合あり。",
+        "kana": "つつむ",
+        "en": "Wrap if broken. Some cities: burnable.",
+        "zh-Hans": "碎了包好；部分城市投可燃。",
+        "vi": "Bọc nếu vỡ. Một số TP đốt.",
+        "ko": "깨지면 포장. 일부 시는 가연."
+      }
+    },
+    {
+      "id": "frying_pan",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "フライパン",
+        "kana": "フライパン",
+        "en": "Frying pan",
+        "zh-Hans": "平底锅",
+        "vi": "Chảo",
+        "ko": "프라이팬"
+      },
+      "keywords": {
+        "ja": [
+          "鍋",
+          "なべ"
+        ],
+        "en": [
+          "pan",
+          "pot"
+        ],
+        "zh-Hans": [
+          "锅",
+          "煎锅"
+        ],
+        "vi": [
+          "chảo",
+          "nồi"
+        ],
+        "ko": [
+          "냄비",
+          "팬"
+        ]
+      },
+      "tips": {
+        "ja": "金属資源へ。大きい場合は粗大。",
+        "kana": "きんぞく",
+        "en": "Metal recyclables or bulky if large.",
+        "zh-Hans": "金属资源；过大则粗大。",
+        "vi": "Kim loại hoặc cồng kềnh.",
+        "ko": "금속 또는 대형."
+      }
+    },
+    {
+      "id": "diaper",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "紙おむつ",
+        "kana": "かみおむつ",
+        "en": "Diapers",
+        "zh-Hans": "纸尿裤",
+        "vi": "Tã giấy",
+        "ko": "기저귀"
+      },
+      "keywords": {
+        "ja": [
+          "おむつ"
+        ],
+        "en": [
+          "diaper",
+          "nappy"
+        ],
+        "zh-Hans": [
+          "纸尿裤",
+          "尿不湿"
+        ],
+        "vi": [
+          "tã",
+          "bỉm"
+        ],
+        "ko": [
+          "기저귀"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。中身をトイレに流さない。",
+        "kana": "かねん",
+        "en": "Burnable. Don't flush contents.",
+        "zh-Hans": "可燃；勿冲入马桶。",
+        "vi": "Đốt. Không xả bồn cầu.",
+        "ko": "가연. 변기에 버리지 말 것."
+      }
+    },
+    {
+      "id": "styrofoam",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "発泡スチロール",
+        "kana": "はっぽうスチロール",
+        "en": "Styrofoam",
+        "zh-Hans": "泡沫塑料",
+        "vi": "Xốp",
+        "ko": "스티로폼"
+      },
+      "keywords": {
+        "ja": [
+          "スチロール",
+          "緩衝材"
+        ],
+        "en": [
+          "styrofoam",
+          "EPS"
+        ],
+        "zh-Hans": [
+          "泡沫",
+          "保丽龙"
+        ],
+        "vi": [
+          "xốp"
+        ],
+        "ko": [
+          "스티로폼"
+        ]
+      },
+      "tips": {
+        "ja": "可燃が多い。白いトレーは資源の自治体も。",
+        "kana": "かねん",
+        "en": "Often burnable; trays may recycle.",
+        "zh-Hans": "多为可燃；白托盘或可资源。",
+        "vi": "Thường đốt; khay trắng tái chế.",
+        "ko": "대개 가연. 흰 트레이는 자원 가능."
+      }
+    },
+    {
+      "id": "plastic_wrap",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ラップ",
+        "kana": "ラップ",
+        "en": "Plastic wrap",
+        "zh-Hans": "保鲜膜",
+        "vi": "Màng bọc",
+        "ko": "랩"
+      },
+      "keywords": {
+        "ja": [
+          "サランラップ"
+        ],
+        "en": [
+          "cling film",
+          "wrap"
+        ],
+        "zh-Hans": [
+          "保鲜膜"
+        ],
+        "vi": [
+          "màng bọc"
+        ],
+        "ko": [
+          "랩"
+        ]
+      },
+      "tips": {
+        "ja": "汚れていても可燃へ。",
+        "kana": "かねん",
+        "en": "Burnable even if soiled.",
+        "zh-Hans": "脏污也投可燃。",
+        "vi": "Đốt dù bẩn.",
+        "ko": "더러워도 가연."
+      }
+    },
+    {
+      "id": "shampoo",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "シャンプー容器",
+        "kana": "シャンプー",
+        "en": "Shampoo bottle",
+        "zh-Hans": "洗发水瓶",
+        "vi": "Chai dầu gội",
+        "ko": "샴푸통"
+      },
+      "keywords": {
+        "ja": [
+          "洗剤",
+          "ボトル"
+        ],
+        "en": [
+          "shampoo",
+          "detergent"
+        ],
+        "zh-Hans": [
+          "洗发水",
+          "洗衣液"
+        ],
+        "vi": [
+          "dầu gội",
+          "giặt"
+        ],
+        "ko": [
+          "샴푸",
+          "세제"
+        ]
+      },
+      "tips": {
+        "ja": "中身を使い切り軽く洗う。プラ資源の日の自治体も。",
+        "kana": "つかいきり",
+        "en": "Empty & rinse; plastics day in some cities.",
+        "zh-Hans": "用尽冲洗；部分城市投塑料。",
+        "vi": "Dùng hết, tráng.",
+        "ko": "비우고 헹굼."
+      }
+    },
+    {
+      "id": "lighter",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ライター",
+        "kana": "ライター",
+        "en": "Lighter",
+        "zh-Hans": "打火机",
+        "vi": "Bật lửa",
+        "ko": "라이터"
+      },
+      "keywords": {
+        "ja": [
+          "使い捨てライター"
+        ],
+        "en": [
+          "lighter"
+        ],
+        "zh-Hans": [
+          "打火机"
+        ],
+        "vi": [
+          "bật lửa"
+        ],
+        "ko": [
+          "라이터"
+        ]
+      },
+      "tips": {
+        "ja": "ガスを使い切ってから可燃へ。",
+        "kana": "がす",
+        "en": "Empty gas first.",
+        "zh-Hans": "用尽气体后投可燃。",
+        "vi": "Xả hết gas.",
+        "ko": "가스 소진 후."
+      }
+    },
+    {
+      "id": "led_bulb",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "LED電球",
+        "kana": "エルイーディー",
+        "en": "LED bulb",
+        "zh-Hans": "LED灯泡",
+        "vi": "Bóng LED",
+        "ko": "LED전구"
+      },
+      "keywords": {
+        "ja": [
+          "電球",
+          "LED"
+        ],
+        "en": [
+          "LED",
+          "bulb"
+        ],
+        "zh-Hans": [
+          "灯泡",
+          "LED"
+        ],
+        "vi": [
+          "bóng đèn"
+        ],
+        "ko": [
+          "전구"
+        ]
+      },
+      "tips": {
+        "ja": "可燃が多い。蛍光灯と分けて。",
+        "kana": "かねん",
+        "en": "Usually burnable; not fluorescent.",
+        "zh-Hans": "多为可燃；勿与荧光灯混。",
+        "vi": "Thường đốt; tách huỳnh quang.",
+        "ko": "대개 가연. 형광등과 분리."
+      }
+    },
+    {
+      "id": "broken_glass",
+      "categoryId": "nonCombustible",
+      "names": {
+        "ja": "割れたガラス",
+        "kana": "われたガラス",
+        "en": "Broken glass",
+        "zh-Hans": "碎玻璃",
+        "vi": "Thủy tinh vỡ",
+        "ko": "깨진 유리"
+      },
+      "keywords": {
+        "ja": [
+          "ガラス",
+          "破片"
+        ],
+        "en": [
+          "broken glass"
+        ],
+        "zh-Hans": [
+          "碎玻璃"
+        ],
+        "vi": [
+          "thủy tinh vỡ"
+        ],
+        "ko": [
+          "깨진유리"
+        ]
+      },
+      "tips": {
+        "ja": "厚く包む。可燃扱いの市もある。",
+        "kana": "つつむ",
+        "en": "Wrap thickly. Some cities: burnable.",
+        "zh-Hans": "厚包；部分城市可燃。",
+        "vi": "Bọc dày.",
+        "ko": "두껍게 포장."
+      }
+    },
+    {
+      "id": "small_appliance",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "小型家電",
+        "kana": "こがたかでん",
+        "en": "Small appliance",
+        "zh-Hans": "小家电",
+        "vi": "Đồ điện nhỏ",
+        "ko": "소형가전"
+      },
+      "keywords": {
+        "ja": [
+          "ドライヤー",
+          "電卓"
+        ],
+        "en": [
+          "hair dryer",
+          "appliance"
+        ],
+        "zh-Hans": [
+          "吹风机",
+          "小家电"
+        ],
+        "vi": [
+          "máy sấy",
+          "đồ điện"
+        ],
+        "ko": [
+          "드라이기",
+          "소형가전"
+        ]
+      },
+      "tips": {
+        "ja": "回収ボックス優先。電池を外す。",
+        "kana": "かいしゅう",
+        "en": "Prefer drop boxes; remove batteries.",
+        "zh-Hans": "优先回收箱；取出电池。",
+        "vi": "Thùng thu; tháo pin.",
+        "ko": "회수함. 전지 제거."
+      }
+    },
+    {
+      "id": "rice_cooker",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "炊飯器",
+        "kana": "すいはんき",
+        "en": "Rice cooker",
+        "zh-Hans": "电饭煲",
+        "vi": "Nồi cơm điện",
+        "ko": "전기밥솥"
+      },
+      "keywords": {
+        "ja": [
+          "ジャー"
+        ],
+        "en": [
+          "rice cooker"
+        ],
+        "zh-Hans": [
+          "电饭煲",
+          "电饭锅"
+        ],
+        "vi": [
+          "nồi cơm"
+        ],
+        "ko": [
+          "밥솥"
+        ]
+      },
+      "tips": {
+        "ja": "小型家電/金属。大きい場合は粗大。",
+        "kana": "そだい",
+        "en": "Small-appliance or bulky if large.",
+        "zh-Hans": "小家电或粗大。",
+        "vi": "Đồ điện nhỏ hoặc cồng kềnh.",
+        "ko": "소형가전 또는 대형."
+      }
+    },
+    {
+      "id": "vacuum",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "掃除機",
+        "kana": "そうじき",
+        "en": "Vacuum cleaner",
+        "zh-Hans": "吸尘器",
+        "vi": "Máy hút bụi",
+        "ko": "청소기"
+      },
+      "keywords": {
+        "ja": [
+          "クリーナー"
+        ],
+        "en": [
+          "vacuum"
+        ],
+        "zh-Hans": [
+          "吸尘器"
+        ],
+        "vi": [
+          "máy hút bụi"
+        ],
+        "ko": [
+          "청소기"
+        ]
+      },
+      "tips": {
+        "ja": "多くの市で粗大または金属。ホースは可燃の場合あり。",
+        "kana": "そだい",
+        "en": "Often bulky/metal; hose may be burnable.",
+        "zh-Hans": "多为粗大/金属；软管或可燃。",
+        "vi": "Thường cồng kềnh.",
+        "ko": "대개 대형/금속."
+      }
+    },
+    {
+      "id": "microwave",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "電子レンジ",
+        "kana": "でんしレンジ",
+        "en": "Microwave",
+        "zh-Hans": "微波炉",
+        "vi": "Lò vi sóng",
+        "ko": "전자레인지"
+      },
+      "keywords": {
+        "ja": [
+          "レンジ"
+        ],
+        "en": [
+          "microwave"
+        ],
+        "zh-Hans": [
+          "微波炉"
+        ],
+        "vi": [
+          "lò vi sóng"
+        ],
+        "ko": [
+          "전자레인지"
+        ]
+      },
+      "tips": {
+        "ja": "家電リサイクル法対象外だが粗大扱いが多い。",
+        "kana": "そだい",
+        "en": "Usually bulky (not 4-item law).",
+        "zh-Hans": "一般按粗大（非四品目）。",
+        "vi": "Thường cồng kềnh.",
+        "ko": "대개 대형."
+      }
+    },
+    {
+      "id": "fridge",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "冷蔵庫",
+        "kana": "れいぞうこ",
+        "en": "Refrigerator",
+        "zh-Hans": "冰箱",
+        "vi": "Tủ lạnh",
+        "ko": "냉장고"
+      },
+      "keywords": {
+        "ja": [
+          "冷凍庫"
+        ],
+        "en": [
+          "fridge",
+          "freezer"
+        ],
+        "zh-Hans": [
+          "冰箱",
+          "冰柜"
+        ],
+        "vi": [
+          "tủ lạnh"
+        ],
+        "ko": [
+          "냉장고"
+        ]
+      },
+      "tips": {
+        "ja": "家電リサイクル法：指定引取場所へ。",
+        "kana": "かでんリサイクル",
+        "en": "Home Appliance Recycling Law.",
+        "zh-Hans": "家电回收法：指定回收点。",
+        "vi": "Luật tái chế đồ điện.",
+        "ko": "가전 재활용법."
+      }
+    },
+    {
+      "id": "washer",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "洗濯機",
+        "kana": "せんたくき",
+        "en": "Washing machine",
+        "zh-Hans": "洗衣机",
+        "vi": "Máy giặt",
+        "ko": "세탁기"
+      },
+      "keywords": {
+        "ja": [
+          "洗濯乾燥機"
+        ],
+        "en": [
+          "washer"
+        ],
+        "zh-Hans": [
+          "洗衣机"
+        ],
+        "vi": [
+          "máy giặt"
+        ],
+        "ko": [
+          "세탁기"
+        ]
+      },
+      "tips": {
+        "ja": "家電リサイクル法対象。",
+        "kana": "かでんリサイクル",
+        "en": "Home Appliance Recycling Law.",
+        "zh-Hans": "家电回收法对象。",
+        "vi": "Luật tái chế đồ điện.",
+        "ko": "가전 재활용법."
+      }
+    },
+    {
+      "id": "tv",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "テレビ",
+        "kana": "テレビ",
+        "en": "Television",
+        "zh-Hans": "电视机",
+        "vi": "TV",
+        "ko": "TV"
+      },
+      "keywords": {
+        "ja": [
+          "液晶テレビ",
+          "ブラウン管"
+        ],
+        "en": [
+          "TV",
+          "television"
+        ],
+        "zh-Hans": [
+          "电视",
+          "液晶电视"
+        ],
+        "vi": [
+          "tivi",
+          "TV"
+        ],
+        "ko": [
+          "텔레비전"
+        ]
+      },
+      "tips": {
+        "ja": "家電リサイクル法対象。",
+        "kana": "かでんリサイクル",
+        "en": "Home Appliance Recycling Law.",
+        "zh-Hans": "家电回收法对象。",
+        "vi": "Luật tái chế đồ điện.",
+        "ko": "가전 재활용법."
+      }
+    },
+    {
+      "id": "ac",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "エアコン",
+        "kana": "エアコン",
+        "en": "Air conditioner",
+        "zh-Hans": "空调",
+        "vi": "Máy lạnh",
+        "ko": "에어컨"
+      },
+      "keywords": {
+        "ja": [
+          "クーラー"
+        ],
+        "en": [
+          "AC",
+          "aircon"
+        ],
+        "zh-Hans": [
+          "空调",
+          "冷气"
+        ],
+        "vi": [
+          "máy lạnh",
+          "điều hòa"
+        ],
+        "ko": [
+          "에어컨"
+        ]
+      },
+      "tips": {
+        "ja": "家電リサイクル法対象。",
+        "kana": "かでんリサイクル",
+        "en": "Home Appliance Recycling Law.",
+        "zh-Hans": "家电回收法对象。",
+        "vi": "Luật tái chế đồ điện.",
+        "ko": "가전 재활용법."
+      }
+    },
+    {
+      "id": "bicycle",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "自転車",
+        "kana": "じてんしゃ",
+        "en": "Bicycle",
+        "zh-Hans": "自行车",
+        "vi": "Xe đạp",
+        "ko": "자전거"
+      },
+      "keywords": {
+        "ja": [
+          "チャリ"
+        ],
+        "en": [
+          "bike",
+          "bicycle"
+        ],
+        "zh-Hans": [
+          "自行车",
+          "单车"
+        ],
+        "vi": [
+          "xe đạp"
+        ],
+        "ko": [
+          "자전거"
+        ]
+      },
+      "tips": {
+        "ja": "粗大予約。バッテリーは外す。",
+        "kana": "そだい",
+        "en": "Bulky booking; remove batteries.",
+        "zh-Hans": "粗大预约；拆电池。",
+        "vi": "Đặt lịch; tháo pin.",
+        "ko": "대형 예약. 배터리 분리."
+      }
+    },
+    {
+      "id": "futon",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "布団",
+        "kana": "ふとん",
+        "en": "Futon",
+        "zh-Hans": "被褥",
+        "vi": "Chăn futon",
+        "ko": "이불"
+      },
+      "keywords": {
+        "ja": [
+          "掛け布団",
+          "敷き布団"
+        ],
+        "en": [
+          "futon",
+          "duvet"
+        ],
+        "zh-Hans": [
+          "被子",
+          "褥子"
+        ],
+        "vi": [
+          "chăn"
+        ],
+        "ko": [
+          "이불"
+        ]
+      },
+      "tips": {
+        "ja": "粗大。サイズで料金が変わる市が多い。",
+        "kana": "そだい",
+        "en": "Bulky; fee by size.",
+        "zh-Hans": "粗大；费用因尺寸而异。",
+        "vi": "Cồng kềnh; phí theo size.",
+        "ko": "대형. 요금은 크기별."
+      }
+    },
+    {
+      "id": "mattress",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "マットレス",
+        "kana": "マットレス",
+        "en": "Mattress",
+        "zh-Hans": "床垫",
+        "vi": "Nệm",
+        "ko": "매트리스"
+      },
+      "keywords": {
+        "ja": [
+          "ベッドマット"
+        ],
+        "en": [
+          "mattress"
+        ],
+        "zh-Hans": [
+          "床垫",
+          "弹簧床垫"
+        ],
+        "vi": [
+          "nệm"
+        ],
+        "ko": [
+          "매트리스"
+        ]
+      },
+      "tips": {
+        "ja": "粗大。スプリング入りは高額になりがち。",
+        "kana": "そだい",
+        "en": "Bulky; coils cost more.",
+        "zh-Hans": "粗大；弹簧款较贵。",
+        "vi": "Cồng kềnh; lò xo đắt.",
+        "ko": "대형. 코일형은 고가."
+      }
+    },
+    {
+      "id": "sofa",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "ソファ",
+        "kana": "ソファ",
+        "en": "Sofa",
+        "zh-Hans": "沙发",
+        "vi": "Sofa",
+        "ko": "소파"
+      },
+      "keywords": {
+        "ja": [
+          "ソファー",
+          "椅子"
+        ],
+        "en": [
+          "sofa",
+          "couch"
+        ],
+        "zh-Hans": [
+          "沙发",
+          "沙发椅"
+        ],
+        "vi": [
+          "sofa",
+          "ghế"
+        ],
+        "ko": [
+          "소파",
+          "의자"
+        ]
+      },
+      "tips": {
+        "ja": "粗大予約必須。",
+        "kana": "そだい",
+        "en": "Bulky appointment required.",
+        "zh-Hans": "必须预约粗大。",
+        "vi": "Bắt buộc đặt lịch.",
+        "ko": "대형 예약 필수."
+      }
+    },
+    {
+      "id": "desk",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "机・テーブル",
+        "kana": "つくえ",
+        "en": "Desk / table",
+        "zh-Hans": "桌子",
+        "vi": "Bàn",
+        "ko": "책상"
+      },
+      "keywords": {
+        "ja": [
+          "テーブル",
+          "学習机"
+        ],
+        "en": [
+          "desk",
+          "table"
+        ],
+        "zh-Hans": [
+          "桌子",
+          "书桌"
+        ],
+        "vi": [
+          "bàn"
+        ],
+        "ko": [
+          "책상",
+          "테이블"
+        ]
+      },
+      "tips": {
+        "ja": "三辺合計で粗大料金が決まる市が多い。",
+        "kana": "そだい",
+        "en": "Bulky fee often by perimeter.",
+        "zh-Hans": "粗大费常按三边合计。",
+        "vi": "Phí theo chu vi.",
+        "ko": "대형 요금은 세 변 합."
+      }
+    },
+    {
+      "id": "chair",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "椅子",
+        "kana": "いす",
+        "en": "Chair",
+        "zh-Hans": "椅子",
+        "vi": "Ghế",
+        "ko": "의자"
+      },
+      "keywords": {
+        "ja": [
+          "チェア"
+        ],
+        "en": [
+          "chair"
+        ],
+        "zh-Hans": [
+          "椅子",
+          "座椅"
+        ],
+        "vi": [
+          "ghế"
+        ],
+        "ko": [
+          "의자"
+        ]
+      },
+      "tips": {
+        "ja": "一人用でも粗大の市が多い。",
+        "kana": "そだい",
+        "en": "Often bulky even for single chairs.",
+        "zh-Hans": "单人椅也常属粗大。",
+        "vi": "Ghế đơn cũng thường cồng kềnh.",
+        "ko": "1인용도 대개 대형."
+      }
+    },
+    {
+      "id": "pc",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "パソコン",
+        "kana": "パソコン",
+        "en": "PC / laptop",
+        "zh-Hans": "电脑",
+        "vi": "Máy tính",
+        "ko": "컴퓨터"
+      },
+      "keywords": {
+        "ja": [
+          "ノートPC",
+          "デスクトップ"
+        ],
+        "en": [
+          "laptop",
+          "computer"
+        ],
+        "zh-Hans": [
+          "笔记本",
+          "电脑"
+        ],
+        "vi": [
+          "laptop",
+          "máy tính"
+        ],
+        "ko": [
+          "노트북",
+          "PC"
+        ]
+      },
+      "tips": {
+        "ja": "メーカー回収・小型家電。燃えるごみ禁止。",
+        "kana": "かいしゅう",
+        "en": "Maker take-back / small appliance.",
+        "zh-Hans": "厂商回收/小家电；禁止可燃。",
+        "vi": "Thu hãng / đồ điện nhỏ.",
+        "ko": "제조사 회수·소형가전."
+      }
+    },
+    {
+      "id": "phone",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "スマートフォン",
+        "kana": "スマートフォン",
+        "en": "Smartphone",
+        "zh-Hans": "手机",
+        "vi": "Điện thoại",
+        "ko": "스마트폰"
+      },
+      "keywords": {
+        "ja": [
+          "携帯",
+          "スマホ"
+        ],
+        "en": [
+          "phone",
+          "smartphone"
+        ],
+        "zh-Hans": [
+          "手机",
+          "智能手机"
+        ],
+        "vi": [
+          "điện thoại",
+          "smartphone"
+        ],
+        "ko": [
+          "휴대폰",
+          "스마트폰"
+        ]
+      },
+      "tips": {
+        "ja": "回収ボックスへ。個人情報を消去。",
+        "kana": "かいしゅう",
+        "en": "Drop box; wipe personal data.",
+        "zh-Hans": "投回收箱；清除个人信息。",
+        "vi": "Thùng thu; xóa dữ liệu.",
+        "ko": "회수함. 개인정보 삭제."
+      }
+    },
+    {
+      "id": "cd",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "CD・DVD",
+        "kana": "シーディー",
+        "en": "CD / DVD",
+        "zh-Hans": "光盘",
+        "vi": "Đĩa CD/DVD",
+        "ko": "CD·DVD"
+      },
+      "keywords": {
+        "ja": [
+          "ブルーレイ",
+          "ディスク"
+        ],
+        "en": [
+          "CD",
+          "DVD",
+          "Blu-ray"
+        ],
+        "zh-Hans": [
+          "光盘",
+          "碟片"
+        ],
+        "vi": [
+          "đĩa",
+          "CD"
+        ],
+        "ko": [
+          "디스크",
+          "블루레이"
+        ]
+      },
+      "tips": {
+        "ja": "可燃が多い。ケースも同様。",
+        "kana": "かねん",
+        "en": "Usually burnable including cases.",
+        "zh-Hans": "多为可燃（含盒）。",
+        "vi": "Thường đốt cả hộp.",
+        "ko": "대개 가연(케이스 포함)."
+      }
+    },
+    {
+      "id": "paper_pack",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "紙パック",
+        "kana": "かみパック",
+        "en": "Paper carton",
+        "zh-Hans": "纸盒",
+        "vi": "Hộp giấy sữa",
+        "ko": "종이팩"
+      },
+      "keywords": {
+        "ja": [
+          "牛乳パック"
+        ],
+        "en": [
+          "milk carton"
+        ],
+        "zh-Hans": [
+          "牛奶盒",
+          "饮料纸盒"
+        ],
+        "vi": [
+          "hộp sữa"
+        ],
+        "ko": [
+          "우유팩"
+        ]
+      },
+      "tips": {
+        "ja": "洗って開いて乾かしてから。内側アルミは可燃の市も。",
+        "kana": "あらう",
+        "en": "Rinse, open, dry. Alu-lined may be burnable.",
+        "zh-Hans": "洗净展开晾干；铝箔内衬或可燃。",
+        "vi": "Rửa, mở, phơi.",
+        "ko": "씻어 펴서 말리기."
+      }
+    },
+    {
+      "id": "magazines",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "雑誌・雑がみ",
+        "kana": "ざっし",
+        "en": "Magazines / mixed paper",
+        "zh-Hans": "杂志/杂纸",
+        "vi": "Tạp chí",
+        "ko": "잡지"
+      },
+      "keywords": {
+        "ja": [
+          "雑紙",
+          "包装紙"
+        ],
+        "en": [
+          "magazine",
+          "paper"
+        ],
+        "zh-Hans": [
+          "杂志",
+          "包装纸"
+        ],
+        "vi": [
+          "tạp chí",
+          "giấy"
+        ],
+        "ko": [
+          "잡지",
+          "잡카미"
+        ]
+      },
+      "tips": {
+        "ja": "金属クリップを外して古紙へ。",
+        "kana": "とりのぞく",
+        "en": "Remove metal clips for paper day.",
+        "zh-Hans": "去掉金属夹投废纸。",
+        "vi": "Gỡ kẹp kim loại.",
+        "ko": "금속 클립 제거."
+      }
+    },
+    {
+      "id": "photo_paper",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "写真",
+        "kana": "しゃしん",
+        "en": "Photos",
+        "zh-Hans": "照片",
+        "vi": "Ảnh",
+        "ko": "사진"
+      },
+      "keywords": {
+        "ja": [
+          "印画紙"
+        ],
+        "en": [
+          "photo"
+        ],
+        "zh-Hans": [
+          "照片",
+          "相纸"
+        ],
+        "vi": [
+          "ảnh"
+        ],
+        "ko": [
+          "사진",
+          "인화지"
+        ]
+      },
+      "tips": {
+        "ja": "古紙不可。可燃へ。",
+        "kana": "かねん",
+        "en": "Not scrap paper; burnable.",
+        "zh-Hans": "不可入废纸；投可燃。",
+        "vi": "Không giấy vụn; đốt.",
+        "ko": "고지 불가. 가연."
+      }
+    },
+    {
+      "id": "rubber",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ゴム製品",
+        "kana": "ゴム",
+        "en": "Rubber goods",
+        "zh-Hans": "橡胶制品",
+        "vi": "Đồ cao su",
+        "ko": "고무 제품"
+      },
+      "keywords": {
+        "ja": [
+          "長靴",
+          "ホース"
+        ],
+        "en": [
+          "rubber",
+          "boots"
+        ],
+        "zh-Hans": [
+          "橡胶",
+          "雨靴"
+        ],
+        "vi": [
+          "cao su",
+          "ủng"
+        ],
+        "ko": [
+          "고무",
+          "장화"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。長いホースは短く切る。",
+        "kana": "かねん",
+        "en": "Burnable; cut long hoses.",
+        "zh-Hans": "可燃；长管剪短。",
+        "vi": "Đốt; cắt ống dài.",
+        "ko": "가연. 긴 호스 절단."
+      }
+    },
+    {
+      "id": "leather",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "皮革製品",
+        "kana": "ひかく",
+        "en": "Leather goods",
+        "zh-Hans": "皮革制品",
+        "vi": "Đồ da",
+        "ko": "가죽 제품"
+      },
+      "keywords": {
+        "ja": [
+          "革靴",
+          "ベルト",
+          "バッグ"
+        ],
+        "en": [
+          "leather",
+          "belt",
+          "bag"
+        ],
+        "zh-Hans": [
+          "皮包",
+          "皮带",
+          "皮鞋"
+        ],
+        "vi": [
+          "da",
+          "thắt lưng"
+        ],
+        "ko": [
+          "가죽",
+          "벨트",
+          "구두"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。大きい鞄は粗大の市も。",
+        "kana": "かねん",
+        "en": "Burnable; large bags may be bulky.",
+        "zh-Hans": "可燃；大包或粗大。",
+        "vi": "Đốt; túi lớn có thể cồng kềnh.",
+        "ko": "가연. 큰 가방은 대형 가능."
+      }
+    },
+    {
+      "id": "paint_can",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ペンキ空き缶",
+        "kana": "ペンキ",
+        "en": "Empty paint can",
+        "zh-Hans": "油漆空罐",
+        "vi": "Lon sơn trống",
+        "ko": "페인트 빈캔"
+      },
+      "keywords": {
+        "ja": [
+          "塗料",
+          "ボンド"
+        ],
+        "en": [
+          "paint",
+          "glue"
+        ],
+        "zh-Hans": [
+          "油漆",
+          "胶水"
+        ],
+        "vi": [
+          "sơn",
+          "keo"
+        ],
+        "ko": [
+          "페인트",
+          "본드"
+        ]
+      },
+      "tips": {
+        "ja": "乾かしてから。残液は適正処理。",
+        "kana": "かわかす",
+        "en": "Dry first; leftover liquid special disposal.",
+        "zh-Hans": "干后投；残液按规定。",
+        "vi": "Để khô; dịch còn lại xử lý.",
+        "ko": "말린 뒤. 잔액 적정 처리."
+      }
+    },
+    {
+      "id": "kerosene",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ポリタンク",
+        "kana": "ポリタンク",
+        "en": "Plastic kerosene tank",
+        "zh-Hans": "煤油桶",
+        "vi": "Can dầu",
+        "ko": "등유통"
+      },
+      "keywords": {
+        "ja": [
+          "灯油",
+          "ポリ缶"
+        ],
+        "en": [
+          "kerosene",
+          "jerry can"
+        ],
+        "zh-Hans": [
+          "煤油桶"
+        ],
+        "vi": [
+          "can dầu"
+        ],
+        "ko": [
+          "등유",
+          "폴리탱크"
+        ]
+      },
+      "tips": {
+        "ja": "残油を使い切り洗う。",
+        "kana": "あらう",
+        "en": "Empty oil & rinse.",
+        "zh-Hans": "用尽残油并洗净。",
+        "vi": "Hết dầu, rửa.",
+        "ko": "잔유 비우고 세척."
+      }
+    },
+    {
+      "id": "branches",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "剪定枝",
+        "kana": "せんていし",
+        "en": "Pruned branches",
+        "zh-Hans": "修剪枝条",
+        "vi": "Cành cắt",
+        "ko": "전지 가지"
+      },
+      "keywords": {
+        "ja": [
+          "枝",
+          "木の枝"
+        ],
+        "en": [
+          "branches"
+        ],
+        "zh-Hans": [
+          "树枝",
+          "剪枝"
+        ],
+        "vi": [
+          "cành"
+        ],
+        "ko": [
+          "나뭇가지"
+        ]
+      },
+      "tips": {
+        "ja": "長さ制限・束ね方は自治体確認。",
+        "kana": "たばねる",
+        "en": "Length/bundle rules vary.",
+        "zh-Hans": "长度捆扎按市规定。",
+        "vi": "Chiều dài/bó theo TP.",
+        "ko": "길이·묶음은 시 확인."
+      }
+    },
+    {
+      "id": "leaves",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "落ち葉・草",
+        "kana": "おちば",
+        "en": "Leaves / grass",
+        "zh-Hans": "落叶/杂草",
+        "vi": "Lá / cỏ",
+        "ko": "낙엽·잡초"
+      },
+      "keywords": {
+        "ja": [
+          "落葉",
+          "刈草"
+        ],
+        "en": [
+          "leaves",
+          "grass"
+        ],
+        "zh-Hans": [
+          "落叶",
+          "杂草"
+        ],
+        "vi": [
+          "lá",
+          "cỏ"
+        ],
+        "ko": [
+          "낙엽",
+          "잡초"
+        ]
+      },
+      "tips": {
+        "ja": "資源袋可の市と可燃のみの市あり。",
+        "kana": "しげん",
+        "en": "Recycle bag or burnable depending on city.",
+        "zh-Hans": "有的市资源袋，有的仅可燃。",
+        "vi": "Tái chế hoặc đốt tùy TP.",
+        "ko": "자원 또는 가연 지자체별."
+      }
+    },
+    {
+      "id": "pet_litter",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ペットトイレ砂",
+        "kana": "トイレすな",
+        "en": "Pet litter",
+        "zh-Hans": "猫砂",
+        "vi": "Cát vệ sinh",
+        "ko": "배변모래"
+      },
+      "keywords": {
+        "ja": [
+          "猫砂",
+          "ペットシーツ"
+        ],
+        "en": [
+          "litter",
+          "cat litter"
+        ],
+        "zh-Hans": [
+          "猫砂",
+          "宠物尿垫"
+        ],
+        "vi": [
+          "cát mèo",
+          "tấm lót"
+        ],
+        "ko": [
+          "고양이모래",
+          "배변패드"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。二重袋推奨。",
+        "kana": "かねん",
+        "en": "Burnable; double-bag recommended.",
+        "zh-Hans": "可燃；建议双层袋。",
+        "vi": "Đốt; nên hai lớp túi.",
+        "ko": "가연. 이중 봉투 권장."
+      }
+    },
+    {
+      "id": "medicine",
+      "categoryId": "hazardous",
+      "names": {
+        "ja": "不要な薬",
+        "kana": "くすり",
+        "en": "Unused medicine",
+        "zh-Hans": "废药",
+        "vi": "Thuốc bỏ",
+        "ko": "불용 약"
+      },
+      "keywords": {
+        "ja": [
+          "医薬品",
+          "錠剤"
+        ],
+        "en": [
+          "medicine",
+          "pills"
+        ],
+        "zh-Hans": [
+          "药品",
+          "过期药"
+        ],
+        "vi": [
+          "thuốc"
+        ],
+        "ko": [
+          "약",
+          "의약품"
+        ]
+      },
+      "tips": {
+        "ja": "薬局の回収を優先。燃やすな。",
+        "kana": "やっきょく",
+        "en": "Prefer pharmacy take-back.",
+        "zh-Hans": "优先药店回收；勿投可燃。",
+        "vi": "Ưu tiên nhà thuốc.",
+        "ko": "약국 회수 우선."
+      }
+    },
+    {
+      "id": "thermometer",
+      "categoryId": "hazardous",
+      "names": {
+        "ja": "水銀体温計",
+        "kana": "すいぎんたいおんけい",
+        "en": "Mercury thermometer",
+        "zh-Hans": "水银体温计",
+        "vi": "Nhiệt kế thủy ngân",
+        "ko": "수은체온계"
+      },
+      "keywords": {
+        "ja": [
+          "水銀",
+          "体温計"
+        ],
+        "en": [
+          "mercury",
+          "thermometer"
+        ],
+        "zh-Hans": [
+          "水银体温计"
+        ],
+        "vi": [
+          "nhiệt kế thủy ngân"
+        ],
+        "ko": [
+          "수은",
+          "체온계"
+        ]
+      },
+      "tips": {
+        "ja": "絶対に可燃へ入れない。拠点回収。",
+        "kana": "すいぎん",
+        "en": "Never burnable; special drop-off.",
+        "zh-Hans": "严禁可燃；专项回收。",
+        "vi": "Tuyệt đối không đốt.",
+        "ko": "절대 가연 금지."
+      }
+    },
+    {
+      "id": "ink_cartridge",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "インクカートリッジ",
+        "kana": "インク",
+        "en": "Ink cartridge",
+        "zh-Hans": "墨盒",
+        "vi": "Hộp mực",
+        "ko": "잉크 카트리지"
+      },
+      "keywords": {
+        "ja": [
+          "トナー",
+          "プリンターインク"
+        ],
+        "en": [
+          "ink",
+          "toner"
+        ],
+        "zh-Hans": [
+          "墨盒",
+          "硒鼓"
+        ],
+        "vi": [
+          "mực",
+          "hộp mực"
+        ],
+        "ko": [
+          "잉크",
+          "토너"
+        ]
+      },
+      "tips": {
+        "ja": "メーカー・店舗回収。",
+        "kana": "かいしゅう",
+        "en": "Maker/store take-back.",
+        "zh-Hans": "厂商/门店回收。",
+        "vi": "Thu hãng/cửa hàng.",
+        "ko": "제조사·매장 회수."
+      }
+    },
+    {
+      "id": "fire_extinguisher",
+      "categoryId": "hazardous",
+      "names": {
+        "ja": "消火器",
+        "kana": "しょうかき",
+        "en": "Fire extinguisher",
+        "zh-Hans": "灭火器",
+        "vi": "Bình chữa cháy",
+        "ko": "소화기"
+      },
+      "keywords": {
+        "ja": [
+          "消火"
+        ],
+        "en": [
+          "extinguisher"
+        ],
+        "zh-Hans": [
+          "灭火器"
+        ],
+        "vi": [
+          "chữa cháy"
+        ],
+        "ko": [
+          "소화기"
+        ]
+      },
+      "tips": {
+        "ja": "専門回収。粗大でも可燃でもない。",
+        "kana": "せんもん",
+        "en": "Specialist collection only.",
+        "zh-Hans": "专业回收；非粗大/可燃。",
+        "vi": "Thu chuyên dụng.",
+        "ko": "전문 회수."
+      }
+    },
+    {
+      "id": "futon_dryer",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "ふとん乾燥機",
+        "kana": "ふとんかんそうき",
+        "en": "Futon dryer",
+        "zh-Hans": "被褥烘干机",
+        "vi": "Máy sấy chăn",
+        "ko": "이불건조기"
+      },
+      "keywords": {
+        "ja": [
+          "乾燥機"
+        ],
+        "en": [
+          "dryer"
+        ],
+        "zh-Hans": [
+          "烘干机"
+        ],
+        "vi": [
+          "máy sấy"
+        ],
+        "ko": [
+          "건조기"
+        ]
+      },
+      "tips": {
+        "ja": "大きさにより粗大。",
+        "kana": "そだい",
+        "en": "Bulky by size.",
+        "zh-Hans": "按尺寸属粗大。",
+        "vi": "Cồng kềnh theo size.",
+        "ko": "크기에 따라 대형."
+      }
+    },
+    {
+      "id": "stroller",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "ベビーカー",
+        "kana": "ベビーカー",
+        "en": "Stroller",
+        "zh-Hans": "婴儿车",
+        "vi": "Xe đẩy em bé",
+        "ko": "유모차"
+      },
+      "keywords": {
+        "ja": [
+          "乳母車"
+        ],
+        "en": [
+          "stroller",
+          "pram"
+        ],
+        "zh-Hans": [
+          "婴儿车",
+          "推车"
+        ],
+        "vi": [
+          "xe đẩy"
+        ],
+        "ko": [
+          "유모차"
+        ]
+      },
+      "tips": {
+        "ja": "粗大予約。",
+        "kana": "そだい",
+        "en": "Bulky booking.",
+        "zh-Hans": "粗大预约。",
+        "vi": "Đặt lịch cồng kềnh.",
+        "ko": "대형 예약."
+      }
+    },
+    {
+      "id": "suitcase",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "スーツケース",
+        "kana": "スーツケース",
+        "en": "Suitcase",
+        "zh-Hans": "行李箱",
+        "vi": "Vali",
+        "ko": "캐리어"
+      },
+      "keywords": {
+        "ja": [
+          "キャリーケース"
+        ],
+        "en": [
+          "suitcase",
+          "luggage"
+        ],
+        "zh-Hans": [
+          "行李箱",
+          "拉杆箱"
+        ],
+        "vi": [
+          "vali"
+        ],
+        "ko": [
+          "캐리어",
+          "여행가방"
+        ]
+      },
+      "tips": {
+        "ja": "一辺が大きいと粗大。",
+        "kana": "そだい",
+        "en": "Bulky if large.",
+        "zh-Hans": "边长大则粗大。",
+        "vi": "Lớn thì cồng kềnh.",
+        "ko": "크면 대형."
+      }
+    },
+    {
+      "id": "mirror",
+      "categoryId": "nonCombustible",
+      "names": {
+        "ja": "鏡",
+        "kana": "かがみ",
+        "en": "Mirror",
+        "zh-Hans": "镜子",
+        "vi": "Gương",
+        "ko": "거울"
+      },
+      "keywords": {
+        "ja": [
+          "姿見"
+        ],
+        "en": [
+          "mirror"
+        ],
+        "zh-Hans": [
+          "镜子",
+          "穿衣镜"
+        ],
+        "vi": [
+          "gương"
+        ],
+        "ko": [
+          "거울"
+        ]
+      },
+      "tips": {
+        "ja": "割れやすいので包む。粗大の場合あり。",
+        "kana": "つつむ",
+        "en": "Wrap carefully; may be bulky.",
+        "zh-Hans": "包好；或属粗大。",
+        "vi": "Bọc kỹ; có thể cồng kềnh.",
+        "ko": "포장. 대형일 수 있음."
+      }
+    },
+    {
+      "id": "wood_board",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "木材端材",
+        "kana": "もくざい",
+        "en": "Wood scraps",
+        "zh-Hans": "木料边角",
+        "vi": "Gỗ vụn",
+        "ko": "목재 자투리"
+      },
+      "keywords": {
+        "ja": [
+          "板",
+          "木材"
+        ],
+        "en": [
+          "wood",
+          "board"
+        ],
+        "zh-Hans": [
+          "木头",
+          "木板"
+        ],
+        "vi": [
+          "gỗ",
+          "ván"
+        ],
+        "ko": [
+          "목재",
+          "판자"
+        ]
+      },
+      "tips": {
+        "ja": "長さ制限内で可燃。超えると粗大。",
+        "kana": "ながさ",
+        "en": "Burnable within length; else bulky.",
+        "zh-Hans": "限长内可燃；超则粗大。",
+        "vi": "Đốt trong giới hạn dài.",
+        "ko": "길이 제한 내 가연."
+      }
+    },
+    {
+      "id": "plastic_toys",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "プラスチック玩具",
+        "kana": "がんぐ",
+        "en": "Plastic toys",
+        "zh-Hans": "塑料玩具",
+        "vi": "Đồ chơi nhựa",
+        "ko": "플라스틱 장난감"
+      },
+      "keywords": {
+        "ja": [
+          "おもちゃ"
+        ],
+        "en": [
+          "toy",
+          "toys"
+        ],
+        "zh-Hans": [
+          "玩具",
+          "玩具"
+        ],
+        "vi": [
+          "đồ chơi"
+        ],
+        "ko": [
+          "장난감"
+        ]
+      },
+      "tips": {
+        "ja": "可燃が多い。電池は外す。",
+        "kana": "かねん",
+        "en": "Usually burnable; remove batteries.",
+        "zh-Hans": "多为可燃；取出电池。",
+        "vi": "Thường đốt; tháo pin.",
+        "ko": "대개 가연. 전지 제거."
+      }
+    },
+    {
+      "id": "metal_umbrella",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "金属製の傘",
+        "kana": "きんぞくがさ",
+        "en": "Metal umbrella",
+        "zh-Hans": "金属伞",
+        "vi": "Ô kim loại",
+        "ko": "금속 우산"
+      },
+      "keywords": {
+        "ja": [
+          "骨が金属"
+        ],
+        "en": [
+          "metal umbrella"
+        ],
+        "zh-Hans": [
+          "铁骨伞"
+        ],
+        "vi": [
+          "ô kim loại"
+        ],
+        "ko": [
+          "금속우산"
+        ]
+      },
+      "tips": {
+        "ja": "金属資源へ。",
+        "kana": "きんぞく",
+        "en": "Metal recyclables.",
+        "zh-Hans": "投金属资源。",
+        "vi": "Kim loại tái chế.",
+        "ko": "금속 자원."
+      }
+    },
+    {
+      "id": "kitchen_knife",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "包丁",
+        "kana": "ほうちょう",
+        "en": "Kitchen knife",
+        "zh-Hans": "菜刀",
+        "vi": "Dao bếp",
+        "ko": "식칼"
+      },
+      "keywords": {
+        "ja": [
+          "ナイフ",
+          "刃物"
+        ],
+        "en": [
+          "knife",
+          "blade"
+        ],
+        "zh-Hans": [
+          "刀",
+          "刀具"
+        ],
+        "vi": [
+          "dao"
+        ],
+        "ko": [
+          "칼",
+          "식칼"
+        ]
+      },
+      "tips": {
+        "ja": "刃を紙で包み金属へ。",
+        "kana": "つつむ",
+        "en": "Wrap blade; metals.",
+        "zh-Hans": "刀刃包好投金属。",
+        "vi": "Bọc lưỡi; kim loại.",
+        "ko": "날 포장 후 금속."
+      }
+    },
+    {
+      "id": "hanger",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "ハンガー",
+        "kana": "ハンガー",
+        "en": "Clothes hanger",
+        "zh-Hans": "衣架",
+        "vi": "Móc áo",
+        "ko": "옷걸이"
+      },
+      "keywords": {
+        "ja": [
+          "衣類ハンガー"
+        ],
+        "en": [
+          "hanger"
+        ],
+        "zh-Hans": [
+          "衣架",
+          "晾衣架"
+        ],
+        "vi": [
+          "móc áo"
+        ],
+        "ko": [
+          "옷걸이"
+        ]
+      },
+      "tips": {
+        "ja": "プラスチックは可燃、金属は資源の市が多い。",
+        "kana": "ざいりょう",
+        "en": "Plastic burnable; metal recycle.",
+        "zh-Hans": "塑料可燃、金属资源居多。",
+        "vi": "Nhựa đốt; kim loại tái chế.",
+        "ko": "플라스틱 가연, 금속 자원."
+      }
+    },
+    {
+      "id": "curtain",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "カーテン",
+        "kana": "カーテン",
+        "en": "Curtains",
+        "zh-Hans": "窗帘",
+        "vi": "Rèm",
+        "ko": "커튼"
+      },
+      "keywords": {
+        "ja": [
+          "カーテン生地"
+        ],
+        "en": [
+          "curtain"
+        ],
+        "zh-Hans": [
+          "窗帘",
+          "帘子"
+        ],
+        "vi": [
+          "rèm cửa"
+        ],
+        "ko": [
+          "커튼"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。レールは金属/粗大の場合あり。",
+        "kana": "かねん",
+        "en": "Fabric burnable; rail may be metal/bulky.",
+        "zh-Hans": "布可燃；轨道或金属/粗大。",
+        "vi": "Vải đốt; ray kim loại/cồng kềnh.",
+        "ko": "원단 가연. 레일은 금속/대형."
+      }
+    },
+    {
+      "id": "carpet",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "カーペット",
+        "kana": "カーペット",
+        "en": "Carpet",
+        "zh-Hans": "地毯",
+        "vi": "Thảm",
+        "ko": "카펫"
+      },
+      "keywords": {
+        "ja": [
+          "絨毯",
+          "ラグ"
+        ],
+        "en": [
+          "carpet",
+          "rug"
+        ],
+        "zh-Hans": [
+          "地毯",
+          "地垫"
+        ],
+        "vi": [
+          "thảm"
+        ],
+        "ko": [
+          "카펫",
+          "러그"
+        ]
+      },
+      "tips": {
+        "ja": "畳数で粗大料金。",
+        "kana": "そだい",
+        "en": "Bulky fee by size (tatami).",
+        "zh-Hans": "按面积粗大收费。",
+        "vi": "Phí theo diện tích.",
+        "ko": "크기(조)별 대형 요금."
+      }
+    },
+    {
+      "id": "tatami",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "畳",
+        "kana": "たたみ",
+        "en": "Tatami mat",
+        "zh-Hans": "榻榻米",
+        "vi": "Chiếu tatami",
+        "ko": "다다미"
+      },
+      "keywords": {
+        "ja": [
+          "畳表"
+        ],
+        "en": [
+          "tatami"
+        ],
+        "zh-Hans": [
+          "榻榻米",
+          "畳"
+        ],
+        "vi": [
+          "tatami"
+        ],
+        "ko": [
+          "다다미"
+        ]
+      },
+      "tips": {
+        "ja": "粗大。枚数で料金。",
+        "kana": "そだい",
+        "en": "Bulky; fee per mat.",
+        "zh-Hans": "粗大；按张收费。",
+        "vi": "Cồng kềnh; phí/tấm.",
+        "ko": "대형. 장당 요금."
+      }
+    },
+    {
+      "id": "bookshelf",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "本棚",
+        "kana": "ほんだな",
+        "en": "Bookshelf",
+        "zh-Hans": "书架",
+        "vi": "Kệ sách",
+        "ko": "책장"
+      },
+      "keywords": {
+        "ja": [
+          "シェルフ",
+          "収納棚"
+        ],
+        "en": [
+          "bookshelf",
+          "shelf"
+        ],
+        "zh-Hans": [
+          "书架",
+          "置物架"
+        ],
+        "vi": [
+          "kệ sách"
+        ],
+        "ko": [
+          "책장",
+          "선반"
+        ]
+      },
+      "tips": {
+        "ja": "分解して出すと安い市も。",
+        "kana": "そだい",
+        "en": "Bulky; disassembly may reduce fee.",
+        "zh-Hans": "粗大；拆解或更便宜。",
+        "vi": "Cồng kềnh; tháo có thể rẻ.",
+        "ko": "대형. 분해 시 요금 인하 가능."
+      }
+    },
+    {
+      "id": "wardrobe",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "タンス",
+        "kana": "タンス",
+        "en": "Wardrobe / dresser",
+        "zh-Hans": "衣柜",
+        "vi": "Tủ quần áo",
+        "ko": "장롱"
+      },
+      "keywords": {
+        "ja": [
+          "衣装ダンス",
+          "チェスト"
+        ],
+        "en": [
+          "wardrobe",
+          "dresser"
+        ],
+        "zh-Hans": [
+          "衣柜",
+          "抽屉柜"
+        ],
+        "vi": [
+          "tủ",
+          "tủ quần áo"
+        ],
+        "ko": [
+          "장롱",
+          "서랍장"
+        ]
+      },
+      "tips": {
+        "ja": "三辺合計で料金帯が決まる。",
+        "kana": "そだい",
+        "en": "Fee bands by perimeter sum.",
+        "zh-Hans": "按三边合计定档。",
+        "vi": "Phí theo tổng 3 cạnh.",
+        "ko": "세 변 합으로 요금."
+      }
+    },
+    {
+      "id": "fan",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "扇風機",
+        "kana": "せんぷうき",
+        "en": "Electric fan",
+        "zh-Hans": "电风扇",
+        "vi": "Quạt điện",
+        "ko": "선풍기"
+      },
+      "keywords": {
+        "ja": [
+          "サーキュレー터"
+        ],
+        "en": [
+          "fan"
+        ],
+        "zh-Hans": [
+          "风扇",
+          "电扇"
+        ],
+        "vi": [
+          "quạt"
+        ],
+        "ko": [
+          "선풍기"
+        ]
+      },
+      "tips": {
+        "ja": "小型家電/金属。大きければ粗大。",
+        "kana": "こがた",
+        "en": "Small appliance/metal or bulky.",
+        "zh-Hans": "小家电/金属或粗大。",
+        "vi": "Đồ điện nhỏ/kim loại.",
+        "ko": "소형가전/금속 또는 대형."
+      }
+    },
+    {
+      "id": "heater",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "石油ストーブ",
+        "kana": "せきゆストーブ",
+        "en": "Oil heater",
+        "zh-Hans": "煤油取暖器",
+        "vi": "Lò sưởi dầu",
+        "ko": "석유스토브"
+      },
+      "keywords": {
+        "ja": [
+          "ファンヒーター",
+          "ストーブ"
+        ],
+        "en": [
+          "heater",
+          "stove"
+        ],
+        "zh-Hans": [
+          "取暖器",
+          "暖风机"
+        ],
+        "vi": [
+          "lò sưởi",
+          "quạt sưởi"
+        ],
+        "ko": [
+          "히터",
+          "스토브"
+        ]
+      },
+      "tips": {
+        "ja": "灯油を抜き粗大予約。",
+        "kana": "とうゆ",
+        "en": "Drain fuel; bulky booking.",
+        "zh-Hans": "排空煤油后粗大预约。",
+        "vi": "Xả dầu; đặt lịch.",
+        "ko": "등유 비우고 대형."
+      }
+    },
+    {
+      "id": "kotatsu",
+      "categoryId": "oversized",
+      "names": {
+        "ja": "こたつ",
+        "kana": "こたつ",
+        "en": "Kotatsu",
+        "zh-Hans": "被炉",
+        "vi": "Bàn sưởi kotatsu",
+        "ko": "코타츠"
+      },
+      "keywords": {
+        "ja": [
+          "炬燵"
+        ],
+        "en": [
+          "kotatsu"
+        ],
+        "zh-Hans": [
+          "被炉",
+          "暖桌"
+        ],
+        "vi": [
+          "kotatsu"
+        ],
+        "ko": [
+          "코타츠"
+        ]
+      },
+      "tips": {
+        "ja": "本体は粗大。布団部分は別途。",
+        "kana": "そだい",
+        "en": "Body bulky; futon separate.",
+        "zh-Hans": "本体粗大；被褥另投。",
+        "vi": "Thân cồng kềnh; chăn riêng.",
+        "ko": "본체 대형. 이불 별도."
+      }
+    },
+    {
+      "id": "printer",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "プリンター",
+        "kana": "プリンター",
+        "en": "Printer",
+        "zh-Hans": "打印机",
+        "vi": "Máy in",
+        "ko": "프린터"
+      },
+      "keywords": {
+        "ja": [
+          "複合機",
+          "ファクス"
+        ],
+        "en": [
+          "printer",
+          "fax"
+        ],
+        "zh-Hans": [
+          "打印机",
+          "传真"
+        ],
+        "vi": [
+          "máy in",
+          "fax"
+        ],
+        "ko": [
+          "프린터",
+          "팩스"
+        ]
+      },
+      "tips": {
+        "ja": "小型家電回収。トナーは別途。",
+        "kana": "こがた",
+        "en": "Small-appliance box; toner separate.",
+        "zh-Hans": "小家电回收；墨粉另处理。",
+        "vi": "Thùng đồ điện; mực riêng.",
+        "ko": "소형가전. 토너 별도."
+      }
+    },
+    {
+      "id": "water_bottle",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "水筒・魔法瓶",
+        "kana": "すいとう",
+        "en": "Thermos / bottle",
+        "zh-Hans": "保温杯",
+        "vi": "Bình giữ nhiệt",
+        "ko": "보온병"
+      },
+      "keywords": {
+        "ja": [
+          "マグボトル",
+          "ポット"
+        ],
+        "en": [
+          "thermos",
+          "flask"
+        ],
+        "zh-Hans": [
+          "保温杯",
+          "热水壶"
+        ],
+        "vi": [
+          "bình giữ nhiệt"
+        ],
+        "ko": [
+          "보온병",
+          "물병"
+        ]
+      },
+      "tips": {
+        "ja": "金属資源。電気ポットは電池確認。",
+        "kana": "きんぞく",
+        "en": "Metal recyclables.",
+        "zh-Hans": "金属资源。",
+        "vi": "Kim loại tái chế.",
+        "ko": "금속 자원."
+      }
+    },
+    {
+      "id": "scale",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "体重計",
+        "kana": "たいじゅうけい",
+        "en": "Scale",
+        "zh-Hans": "体重秤",
+        "vi": "Cân",
+        "ko": "체중계"
+      },
+      "keywords": {
+        "ja": [
+          "ヘルスメーター",
+          "はかり"
+        ],
+        "en": [
+          "scale"
+        ],
+        "zh-Hans": [
+          "体重秤",
+          "电子秤"
+        ],
+        "vi": [
+          "cân"
+        ],
+        "ko": [
+          "체중계",
+          "저울"
+        ]
+      },
+      "tips": {
+        "ja": "電池を外して金属/小型家電。",
+        "kana": "でんち",
+        "en": "Remove battery; metal/small appliance.",
+        "zh-Hans": "取出电池投金属/小家电。",
+        "vi": "Tháo pin.",
+        "ko": "전지 제거."
+      }
+    },
+    {
+      "id": "extension_cord",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "延長コード",
+        "kana": "えんちょうコード",
+        "en": "Extension cord",
+        "zh-Hans": "延长线",
+        "vi": "Dây nối dài",
+        "ko": "연장선"
+      },
+      "keywords": {
+        "ja": [
+          "電源コード"
+        ],
+        "en": [
+          "cord",
+          "cable"
+        ],
+        "zh-Hans": [
+          "电线",
+          "延长线"
+        ],
+        "vi": [
+          "dây điện"
+        ],
+        "ko": [
+          "전선",
+          "코드"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。束ねて出す。",
+        "kana": "かねん",
+        "en": "Burnable; bundle.",
+        "zh-Hans": "可燃；捆好投放。",
+        "vi": "Đốt; bó lại.",
+        "ko": "가연. 묶어 배출."
+      }
+    },
+    {
+      "id": "mask",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "マスク",
+        "kana": "マスク",
+        "en": "Face mask",
+        "zh-Hans": "口罩",
+        "vi": "Khẩu trang",
+        "ko": "마스크"
+      },
+      "keywords": {
+        "ja": [
+          "不織布マスク"
+        ],
+        "en": [
+          "mask"
+        ],
+        "zh-Hans": [
+          "口罩",
+          "防护口罩"
+        ],
+        "vi": [
+          "khẩu trang"
+        ],
+        "ko": [
+          "마스크"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。中身を畳んで袋へ。",
+        "kana": "かねん",
+        "en": "Burnable.",
+        "zh-Hans": "可燃。",
+        "vi": "Đốt.",
+        "ko": "가연."
+      }
+    },
+    {
+      "id": "cigarette",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "吸い殻",
+        "kana": "すいがら",
+        "en": "Cigarette butts",
+        "zh-Hans": "烟蒂",
+        "vi": "Đầu lọc thuốc",
+        "ko": "담배꽁초"
+      },
+      "keywords": {
+        "ja": [
+          "タバコ",
+          "吸殻"
+        ],
+        "en": [
+          "cigarette",
+          "butts"
+        ],
+        "zh-Hans": [
+          "烟头",
+          "烟蒂"
+        ],
+        "vi": [
+          "đầu thuốc"
+        ],
+        "ko": [
+          "꽁초",
+          "담배"
+        ]
+      },
+      "tips": {
+        "ja": "消火を確認して可燃へ。",
+        "kana": "しょうか",
+        "en": "Ensure fully extinguished.",
+        "zh-Hans": "确认熄灭后投可燃。",
+        "vi": "Đảm bảo tắt lửa.",
+        "ko": "완전 소화 확인."
+      }
+    },
+    {
+      "id": "chopsticks",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "割りばし",
+        "kana": "わりばし",
+        "en": "Disposable chopsticks",
+        "zh-Hans": "一次性筷子",
+        "vi": "Đũa dùng một lần",
+        "ko": "일회용 젓가락"
+      },
+      "keywords": {
+        "ja": [
+          "箸",
+          "使い捨て"
+        ],
+        "en": [
+          "chopsticks"
+        ],
+        "zh-Hans": [
+          "筷子",
+          "竹筷"
+        ],
+        "vi": [
+          "đũa"
+        ],
+        "ko": [
+          "젓가락"
+        ]
+      },
+      "tips": {
+        "ja": "可燃。",
+        "kana": "かねん",
+        "en": "Burnable.",
+        "zh-Hans": "可燃。",
+        "vi": "Đốt.",
+        "ko": "가연."
+      }
+    },
+    {
+      "id": "bento_box",
+      "categoryId": "combustible",
+      "names": {
+        "ja": "弁当の空き容器",
+        "kana": "べんとう",
+        "en": "Empty bento container",
+        "zh-Hans": "便当空盒",
+        "vi": "Hộp cơm trống",
+        "ko": "도시락 용기"
+      },
+      "keywords": {
+        "ja": [
+          "コンビニ弁当"
+        ],
+        "en": [
+          "bento",
+          "lunch box"
+        ],
+        "zh-Hans": [
+          "便当盒",
+          "外卖盒"
+        ],
+        "vi": [
+          "hộp cơm"
+        ],
+        "ko": [
+          "도시락",
+          "반찬통"
+        ]
+      },
+      "tips": {
+        "ja": "洗ってプラ資源の市と可燃の市あり。",
+        "kana": "あらう",
+        "en": "Wash; plastics or burnable by city.",
+        "zh-Hans": "洗净；塑料或可燃因市而异。",
+        "vi": "Rửa; nhựa hoặc đốt tùy TP.",
+        "ko": "씻기. 플라스틱/가연 지자체별."
+      }
+    },
+    {
+      "id": "egg_carton",
+      "categoryId": "recyclable",
+      "names": {
+        "ja": "卵パック",
+        "kana": "たまごパック",
+        "en": "Egg carton",
+        "zh-Hans": "鸡蛋盒",
+        "vi": "Hộp trứng",
+        "ko": "계란판"
+      },
+      "keywords": {
+        "ja": [
+          "エッグパック"
+        ],
+        "en": [
+          "egg carton"
+        ],
+        "zh-Hans": [
+          "鸡蛋盒",
+          "蛋托"
+        ],
+        "vi": [
+          "hộp trứng"
+        ],
+        "ko": [
+          "계란팩"
+        ]
+      },
+      "tips": {
+        "ja": "紙製は古紙、プラ製はプラ資源が多い。",
+        "kana": "かみ",
+        "en": "Paper→paper day; plastic→plastics.",
+        "zh-Hans": "纸质废纸、塑料投塑料。",
+        "vi": "Giấy→giấy; nhựa→nhựa.",
+        "ko": "종이는 고지, 플라스틱은 자원."
+      }
+    }
+  ]
+}

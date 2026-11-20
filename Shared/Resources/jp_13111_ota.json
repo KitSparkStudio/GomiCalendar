@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "fiscalYear": "2026",
+  "version": "2026.11.2",
+  "lastUpdated": "2026-11-20",
+  "jisCode": "13111",
+  "cityId": "jp_13111_ota",
+  "names": {
+    "ja": "東京都大田区",
+    "kana": "おおたく",
+    "en": "Ota, Tokyo",
+    "zh-Hans": "东京都大田区",
+    "vi": "Quận Ota, Tokyo",
+    "ko": "도쿄도 오타구"
+  },
+  "defaultDropoffDeadline": "08:00",
+  "bulkyWaste": {
+    "phone": "03-5744-1363",
+    "receptionHours": {
+      "ja": "平日 8:30–17:00（自治体により異なる）",
+      "kana": "へいじつ",
+      "en": "Weekdays 8:30–17:00 (varies)",
+      "zh-Hans": "工作日 8:30–17:00（因区而异）",
+      "vi": "Ngày thường 8:30–17:00 (khác nhau)",
+      "ko": "평일 8:30–17:00 (구마다 상이)"
+    },
+    "feeNotes": {
+      "ja": "粗大ごみは予約制です。処理券はコンビニ等で購入できます。詳細は区の公式サイトをご確認ください。",
+      "kana": "そだいごみ",
+      "en": "Bulky waste requires booking. Stickers are sold at convenience stores. Confirm on the ward website.",
+      "zh-Hans": "粗大垃圾需预约。处理券可在便利店等购买。详情请确认区官网。",
+      "vi": "Rác cồng kềnh cần đặt lịch. Tem mua ở convenience. Xem website quận.",
+      "ko": "대형쓰레기는 예약제입니다. 처리권은 편의점 등에서 구매. 구 공식 사이트 확인."
+    },
+    "onlineBookingURL": null
+  },
+  "yearEndSuspensions": [
+    {
+      "start": "12-31",
+      "end": "01-03",
+      "appliesTo": [
+        "all"
+      ],
+      "notes": {
+        "ja": "年末年始は収集休止のことが多いです。自治体の公式発表を確認してください。",
+        "kana": "ねんまつねんし",
+        "en": "Year-end suspension is common; confirm city notice.",
+        "zh-Hans": "年末年始常停收，请确认自治体公告。",
+        "vi": "Cuối năm thường tạm dừng; xem thông báo TP.",
+        "ko": "연말연시 휴지가 흔함. 지자체 공지 확인."
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "combustible",
+      "names": {
+        "ja": "可燃ごみ",
+        "kana": "かねんごみ",
+        "en": "Burnable",
+        "zh-Hans": "可燃垃圾",
+        "vi": "Rác đốt được",
+        "ko": "가연성 쓰레기"
+      },
+      "themeColorHex": "#FF6B4A",
+      "bagBadge": {
+        "style": "yellow",
+        "label": {
+          "ja": "指定可燃袋",
+          "kana": "してい袋",
+          "en": "Designated burnable bag",
+          "zh-Hans": "可燃指定袋",
+          "vi": "Túi đốt chỉ định",
+          "ko": "지정 가연 봉투"
+        }
+      },
+      "requiresAppointment": false,
+      "isActive": true
+    },
+    {
+      "id": "nonCombustible",
+      "names": {
+        "ja": "不燃ごみ",
+        "kana": "ふねんごみ",
+        "en": "Non-burnable",
+        "zh-Hans": "不可燃垃圾",
+        "vi": "Rác không đốt",
+        "ko": "불연성 쓰레기"
+      },
+      "themeColorHex": "#00D2FF",
+      "bagBadge": {
+        "style": "clear",
+        "label": {
+          "ja": "透明・半透明袋",
+          "kana": "とうめい袋",
+          "en": "Clear / semi-clear bag",
+          "zh-Hans": "透明/半透明袋",
+          "vi": "Túi trong",
+          "ko": "투명·반투명 봉투"
+        }
+      },
+      "requiresAppointment": false,
+      "isActive": true
+    },
+    {
+      "id": "recyclable",
+      "names": {
+        "ja": "資源ごみ",
+        "kana": "しげんごみ",
+        "en": "Recyclables",
+        "zh-Hans": "资源垃圾",
+        "vi": "Rác tái chế",
+        "ko": "자원 쓰레기"
+      },
+      "themeColorHex": "#34C759",
+      "bagBadge": {
+        "style": "greenPrint",
+        "label": {
+          "ja": "資源用袋・束ね",
+          "kana": "しげん用",
+          "en": "Recycle bag / bundle",
+          "zh-Hans": "资源袋/捆扎",
+          "vi": "Túi/bó tái chế",
+          "ko": "자원 봉투·묶음"
+        }
+      },
+      "requiresAppointment": false,
+      "isActive": true
+    },
+    {
+      "id": "hazardous",
+      "names": {
+        "ja": "有害ごみ",
+        "kana": "ゆうがいごみ",
+        "en": "Hazardous",
+        "zh-Hans": "有害垃圾",
+        "vi": "Rác độc hại",
+        "ko": "유해 쓰레기"
+      },
+      "themeColorHex": "#FFCC00",
+      "bagBadge": {
+        "style": "clear",
+        "label": {
+          "ja": "指定日・回収箱",
+          "kana": "していび",
+          "en": "Collection day / box",
+          "zh-Hans": "指定日/回收箱",
+          "vi": "Ngày thu / hộp",
+          "ko": "지정일·회수함"
+        }
+      },
+      "requiresAppointment": false,
+      "isActive": true
+    },
+    {
+      "id": "oversized",
+      "names": {
+        "ja": "粗大ごみ",
+        "kana": "そだいごみ",
+        "en": "Bulky waste",
+        "zh-Hans": "粗大垃圾",
+        "vi": "Rác cồng kềnh",
+        "ko": "대형쓰레기"
+      },
+      "themeColorHex": "#AF52DE",
+      "bagBadge": {
+        "style": "none",
+        "label": {
+          "ja": "予約制",
+          "kana": "よやくせい",
+          "en": "Appointment required",
+          "zh-Hans": "需预约",
+          "vi": "Cần đặt lịch",
+          "ko": "예약제"
+        }
+      },
+      "requiresAppointment": true,
+      "isActive": true
+    }
+  ],
+  "districts": [
+    {
+      "id": "home",
+      "names": {
+        "ja": "区内共通（標準）",
+        "kana": "くない",
+        "en": "Ward-wide (standard)",
+        "zh-Hans": "区内通用（标准）",
+        "vi": "Toàn quận (chuẩn)",
+        "ko": "구내 공통(표준)"
+      },
+      "aliases": [
+        "大田区",
+        "自宅",
+        "Home"
+      ],
+      "schedules": [
+        {
+          "categoryId": "combustible",
+          "kind": "weekly",
+          "weekdays": [
+            1,
+            4
+          ]
+        },
+        {
+          "categoryId": "nonCombustible",
+          "kind": "monthlyNthWeekday",
+          "weekday": 2,
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "categoryId": "recyclable",
+          "kind": "biweekly",
+          "weekday": 3,
+          "biweeklyAnchor": "2026-01-07",
+          "biweeklyParity": "odd"
+        },
+        {
+          "categoryId": "hazardous",
+          "kind": "monthlyNthWeekday",
+          "weekday": 5,
+          "weeksOfMonth": [
+            2
+          ]
+        },
+        {
+          "categoryId": "oversized",
+          "kind": "weekly",
+          "weekdays": [
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "itemDictionary": []
+}

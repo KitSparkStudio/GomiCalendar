@@ -1,0 +1,911 @@
+{
+  "schemaVersion": 1,
+  "prefectures": [
+    {
+      "code": "01",
+      "nameJa": "北海道",
+      "cities": [
+        {
+          "jisCode": "01100",
+          "cityId": "jp_01100_sapporo",
+          "nameJa": "札幌市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "01202",
+          "cityId": "jp_01202_template",
+          "nameJa": "旭川市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "01203",
+          "cityId": "jp_01203_template",
+          "nameJa": "函館市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "nameJa": "青森県",
+      "cities": [
+        {
+          "jisCode": "02900",
+          "cityId": "jp_02900_template",
+          "nameJa": "青森市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "nameJa": "岩手県",
+      "cities": [
+        {
+          "jisCode": "03900",
+          "cityId": "jp_03900_template",
+          "nameJa": "盛岡市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "04",
+      "nameJa": "宮城県",
+      "cities": [
+        {
+          "jisCode": "04100",
+          "cityId": "jp_04100_sendai",
+          "nameJa": "仙台市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "04202",
+          "cityId": "jp_04202_template",
+          "nameJa": "石巻市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "05",
+      "nameJa": "秋田県",
+      "cities": [
+        {
+          "jisCode": "05201",
+          "cityId": "jp_05201_akita",
+          "nameJa": "秋田市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "05203",
+          "cityId": "jp_05203_template",
+          "nameJa": "横手市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05212",
+          "cityId": "jp_05212_template",
+          "nameJa": "大仙市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05210",
+          "cityId": "jp_05210_template",
+          "nameJa": "由利本荘市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05204",
+          "cityId": "jp_05204_template",
+          "nameJa": "大館市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05202",
+          "cityId": "jp_05202_template",
+          "nameJa": "能代市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05207",
+          "cityId": "jp_05207_template",
+          "nameJa": "湯沢市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05209",
+          "cityId": "jp_05209_template",
+          "nameJa": "鹿角市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05206",
+          "cityId": "jp_05206_template",
+          "nameJa": "男鹿市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05211",
+          "cityId": "jp_05211_template",
+          "nameJa": "潟上市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05213",
+          "cityId": "jp_05213_template",
+          "nameJa": "北秋田市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05214",
+          "cityId": "jp_05214_template",
+          "nameJa": "にかほ市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "05215",
+          "cityId": "jp_05215_template",
+          "nameJa": "仙北市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "06",
+      "nameJa": "山形県",
+      "cities": [
+        {
+          "jisCode": "06900",
+          "cityId": "jp_06900_template",
+          "nameJa": "山形市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "06203",
+          "cityId": "jp_06203_template",
+          "nameJa": "鶴岡市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "07",
+      "nameJa": "福島県",
+      "cities": [
+        {
+          "jisCode": "07900",
+          "cityId": "jp_07900_template",
+          "nameJa": "福島市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "07901",
+          "cityId": "jp_07901_template",
+          "nameJa": "郡山市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "08",
+      "nameJa": "茨城県",
+      "cities": [
+        {
+          "jisCode": "08900",
+          "cityId": "jp_08900_template",
+          "nameJa": "水戸市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "08203",
+          "cityId": "jp_08203_template",
+          "nameJa": "つくば市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "09",
+      "nameJa": "栃木県",
+      "cities": [
+        {
+          "jisCode": "09900",
+          "cityId": "jp_09900_template",
+          "nameJa": "宇都宮市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "10",
+      "nameJa": "群馬県",
+      "cities": [
+        {
+          "jisCode": "10900",
+          "cityId": "jp_10900_template",
+          "nameJa": "前橋市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "10203",
+          "cityId": "jp_10203_template",
+          "nameJa": "高崎市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "11",
+      "nameJa": "埼玉県",
+      "cities": [
+        {
+          "jisCode": "11900",
+          "cityId": "jp_11900_template",
+          "nameJa": "さいたま市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "11203",
+          "cityId": "jp_11203_template",
+          "nameJa": "川口市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "11201",
+          "cityId": "jp_11201_template",
+          "nameJa": "川越市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "12",
+      "nameJa": "千葉県",
+      "cities": [
+        {
+          "jisCode": "12900",
+          "cityId": "jp_12900_template",
+          "nameJa": "千葉市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "12203",
+          "cityId": "jp_12203_template",
+          "nameJa": "船橋市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "12204",
+          "cityId": "jp_12204_template",
+          "nameJa": "柏市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "13",
+      "nameJa": "東京都",
+      "cities": [
+        {
+          "jisCode": "13101",
+          "cityId": "jp_13101_chiyoda",
+          "nameJa": "千代田区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13102",
+          "cityId": "jp_13102_chuo",
+          "nameJa": "中央区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13103",
+          "cityId": "jp_13103_minato",
+          "nameJa": "港区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13104",
+          "cityId": "jp_13104_shinjuku",
+          "nameJa": "新宿区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13105",
+          "cityId": "jp_13105_bunkyo",
+          "nameJa": "文京区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13106",
+          "cityId": "jp_13106_taito",
+          "nameJa": "台東区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13107",
+          "cityId": "jp_13107_sumida",
+          "nameJa": "墨田区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13108",
+          "cityId": "jp_13108_koto",
+          "nameJa": "江東区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13109",
+          "cityId": "jp_13109_shinagawa",
+          "nameJa": "品川区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13110",
+          "cityId": "jp_13110_meguro",
+          "nameJa": "目黒区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13111",
+          "cityId": "jp_13111_ota",
+          "nameJa": "大田区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13112",
+          "cityId": "jp_13112_setagaya",
+          "nameJa": "世田谷区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13113",
+          "cityId": "jp_13113_shibuya",
+          "nameJa": "渋谷区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13114",
+          "cityId": "jp_13114_nakano",
+          "nameJa": "中野区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13115",
+          "cityId": "jp_13115_suginami",
+          "nameJa": "杉並区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13116",
+          "cityId": "jp_13116_toshima",
+          "nameJa": "豊島区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13117",
+          "cityId": "jp_13117_kita",
+          "nameJa": "北区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13118",
+          "cityId": "jp_13118_arakawa",
+          "nameJa": "荒川区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13119",
+          "cityId": "jp_13119_itabashi",
+          "nameJa": "板橋区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13120",
+          "cityId": "jp_13120_nerima",
+          "nameJa": "練馬区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13121",
+          "cityId": "jp_13121_adachi",
+          "nameJa": "足立区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13122",
+          "cityId": "jp_13122_katsushika",
+          "nameJa": "葛飾区",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "13123",
+          "cityId": "jp_13123_edogawa",
+          "nameJa": "江戸川区",
+          "hasDetailedRules": true
+        }
+      ]
+    },
+    {
+      "code": "14",
+      "nameJa": "神奈川県",
+      "cities": [
+        {
+          "jisCode": "14100",
+          "cityId": "jp_14100_yokohama",
+          "nameJa": "横浜市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "14130",
+          "cityId": "jp_14130_template",
+          "nameJa": "川崎市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "14150",
+          "cityId": "jp_14150_template",
+          "nameJa": "相模原市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "15",
+      "nameJa": "新潟県",
+      "cities": [
+        {
+          "jisCode": "15900",
+          "cityId": "jp_15900_template",
+          "nameJa": "新潟市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "16",
+      "nameJa": "富山県",
+      "cities": [
+        {
+          "jisCode": "16900",
+          "cityId": "jp_16900_template",
+          "nameJa": "富山市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "17",
+      "nameJa": "石川県",
+      "cities": [
+        {
+          "jisCode": "17900",
+          "cityId": "jp_17900_template",
+          "nameJa": "金沢市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "18",
+      "nameJa": "福井県",
+      "cities": [
+        {
+          "jisCode": "18900",
+          "cityId": "jp_18900_template",
+          "nameJa": "福井市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "19",
+      "nameJa": "山梨県",
+      "cities": [
+        {
+          "jisCode": "19900",
+          "cityId": "jp_19900_template",
+          "nameJa": "甲府市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "20",
+      "nameJa": "長野県",
+      "cities": [
+        {
+          "jisCode": "20900",
+          "cityId": "jp_20900_template",
+          "nameJa": "長野市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "20202",
+          "cityId": "jp_20202_template",
+          "nameJa": "松本市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "21",
+      "nameJa": "岐阜県",
+      "cities": [
+        {
+          "jisCode": "21900",
+          "cityId": "jp_21900_template",
+          "nameJa": "岐阜市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "22",
+      "nameJa": "静岡県",
+      "cities": [
+        {
+          "jisCode": "22900",
+          "cityId": "jp_22900_template",
+          "nameJa": "静岡市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "22901",
+          "cityId": "jp_22901_template",
+          "nameJa": "浜松市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "23",
+      "nameJa": "愛知県",
+      "cities": [
+        {
+          "jisCode": "23100",
+          "cityId": "jp_23100_nagoya",
+          "nameJa": "名古屋市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "23202",
+          "cityId": "jp_23202_template",
+          "nameJa": "豊田市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "24",
+      "nameJa": "三重県",
+      "cities": [
+        {
+          "jisCode": "24900",
+          "cityId": "jp_24900_template",
+          "nameJa": "津市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "25",
+      "nameJa": "滋賀県",
+      "cities": [
+        {
+          "jisCode": "25900",
+          "cityId": "jp_25900_template",
+          "nameJa": "大津市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "26",
+      "nameJa": "京都府",
+      "cities": [
+        {
+          "jisCode": "26100",
+          "cityId": "jp_26100_kyoto",
+          "nameJa": "京都市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "26201",
+          "cityId": "jp_26201_template",
+          "nameJa": "宇治市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "27",
+      "nameJa": "大阪府",
+      "cities": [
+        {
+          "jisCode": "27100",
+          "cityId": "jp_27100_osaka",
+          "nameJa": "大阪市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "27140",
+          "cityId": "jp_27140_template",
+          "nameJa": "堺市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "27203",
+          "cityId": "jp_27203_template",
+          "nameJa": "豊中市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "28",
+      "nameJa": "兵庫県",
+      "cities": [
+        {
+          "jisCode": "28100",
+          "cityId": "jp_28100_kobe",
+          "nameJa": "神戸市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "28201",
+          "cityId": "jp_28201_template",
+          "nameJa": "姫路市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "29",
+      "nameJa": "奈良県",
+      "cities": [
+        {
+          "jisCode": "29900",
+          "cityId": "jp_29900_template",
+          "nameJa": "奈良市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "30",
+      "nameJa": "和歌山県",
+      "cities": [
+        {
+          "jisCode": "30900",
+          "cityId": "jp_30900_template",
+          "nameJa": "和歌山市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "31",
+      "nameJa": "鳥取県",
+      "cities": [
+        {
+          "jisCode": "31900",
+          "cityId": "jp_31900_template",
+          "nameJa": "鳥取市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "32",
+      "nameJa": "島根県",
+      "cities": [
+        {
+          "jisCode": "32900",
+          "cityId": "jp_32900_template",
+          "nameJa": "松江市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "33",
+      "nameJa": "岡山県",
+      "cities": [
+        {
+          "jisCode": "33900",
+          "cityId": "jp_33900_template",
+          "nameJa": "岡山市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "33101",
+          "cityId": "jp_33101_template",
+          "nameJa": "倉敷市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "34",
+      "nameJa": "広島県",
+      "cities": [
+        {
+          "jisCode": "34900",
+          "cityId": "jp_34900_template",
+          "nameJa": "広島市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "35",
+      "nameJa": "山口県",
+      "cities": [
+        {
+          "jisCode": "35900",
+          "cityId": "jp_35900_template",
+          "nameJa": "山口市",
+          "hasDetailedRules": false
+        },
+        {
+          "jisCode": "35201",
+          "cityId": "jp_35201_template",
+          "nameJa": "下関市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "36",
+      "nameJa": "徳島県",
+      "cities": [
+        {
+          "jisCode": "36900",
+          "cityId": "jp_36900_template",
+          "nameJa": "徳島市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "37",
+      "nameJa": "香川県",
+      "cities": [
+        {
+          "jisCode": "37900",
+          "cityId": "jp_37900_template",
+          "nameJa": "高松市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "38",
+      "nameJa": "愛媛県",
+      "cities": [
+        {
+          "jisCode": "38900",
+          "cityId": "jp_38900_template",
+          "nameJa": "松山市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "39",
+      "nameJa": "高知県",
+      "cities": [
+        {
+          "jisCode": "39900",
+          "cityId": "jp_39900_template",
+          "nameJa": "高知市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "40",
+      "nameJa": "福岡県",
+      "cities": [
+        {
+          "jisCode": "40130",
+          "cityId": "jp_40130_fukuoka",
+          "nameJa": "福岡市",
+          "hasDetailedRules": true
+        },
+        {
+          "jisCode": "40100",
+          "cityId": "jp_40100_template",
+          "nameJa": "北九州市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "41",
+      "nameJa": "佐賀県",
+      "cities": [
+        {
+          "jisCode": "41900",
+          "cityId": "jp_41900_template",
+          "nameJa": "佐賀市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "42",
+      "nameJa": "長崎県",
+      "cities": [
+        {
+          "jisCode": "42900",
+          "cityId": "jp_42900_template",
+          "nameJa": "長崎市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "43",
+      "nameJa": "熊本県",
+      "cities": [
+        {
+          "jisCode": "43900",
+          "cityId": "jp_43900_template",
+          "nameJa": "熊本市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "44",
+      "nameJa": "大分県",
+      "cities": [
+        {
+          "jisCode": "44900",
+          "cityId": "jp_44900_template",
+          "nameJa": "大分市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "45",
+      "nameJa": "宮崎県",
+      "cities": [
+        {
+          "jisCode": "45900",
+          "cityId": "jp_45900_template",
+          "nameJa": "宮崎市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "46",
+      "nameJa": "鹿児島県",
+      "cities": [
+        {
+          "jisCode": "46900",
+          "cityId": "jp_46900_template",
+          "nameJa": "鹿児島市",
+          "hasDetailedRules": false
+        }
+      ]
+    },
+    {
+      "code": "47",
+      "nameJa": "沖縄県",
+      "cities": [
+        {
+          "jisCode": "47900",
+          "cityId": "jp_47900_template",
+          "nameJa": "那覇市",
+          "hasDetailedRules": false
+        }
+      ]
+    }
+  ]
+}

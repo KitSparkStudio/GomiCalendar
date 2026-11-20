@@ -1,0 +1,88 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "GomiCalendar"
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GomiLog uses your location once to match your Japanese municipality’s collection calendar. Location is not stored or shared."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログは、お住まいの市区町村の収集カレンダーを自動判定するために、現在地を一度だけ使用します。位置情報は保存・共有しません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ는 거주 시구정촌의 수거 캘린더를 자동으로 맞추기 위해 현재 위치를 한 번만 사용합니다. 위치는 저장·공유되지 않습니다."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ dùng vị trí một lần để khớp lịch thu rác của thành phố Nhật Bản. Không lưu hoặc chia sẻ vị trí."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴミログ仅使用一次定位以匹配您所在日本市区町村的垃圾收集日历。位置信息不会被保存或共享。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

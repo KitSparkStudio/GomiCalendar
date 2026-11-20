@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー · ゴミログ · KitSpark Studio</title>
+  <meta name="description" content="ゴミログのプライバシーポリシー — ローカルファースト。位置情報は市区町村マッチングのみに使用し、保存・追跡しません。" />
+  <style>
+    :root {
+      --bg: #0e0f12;
+      --surface: rgba(24, 26, 32, 0.78);
+      --surface-solid: #181a20;
+      --text: #f4f6fa;
+      --muted: #939cad;
+      --cyan: #00d2ff;
+      --orange: #ff6b4a;
+      --border: rgba(255, 255, 255, 0.09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "SF Pro Text", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 25%, black 30%, transparent 85%);
+      pointer-events: none; z-index: -2;
+    }
+    .aura-left, .aura-right {
+      position: fixed; width: 520px; height: 520px; border-radius: 50%;
+      filter: blur(130px); opacity: 0.16; pointer-events: none; z-index: -1;
+    }
+    .aura-left { top: -140px; left: -120px; background: var(--orange); }
+    .aura-right { top: 80px; right: -140px; background: var(--cyan); }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    header {
+      position: sticky; top: 0; z-index: 60;
+      background: rgba(14, 15, 18, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+    .brand:hover { text-decoration: none; }
+    .brand-logo-wrap {
+      width: 34px; height: 34px; border-radius: 10px; overflow: hidden;
+      background: #202124; display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+    .brand-logo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .nav-right a { color: var(--muted); font-size: 14px; }
+    .nav-right a:hover { color: var(--text); text-decoration: none; }
+    main { padding: 48px 0 72px; }
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 10px;
+      background: linear-gradient(120deg, #ffffff 30%, #00d2ff 75%, #ff6b4a 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .updated { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+    .privacy-box {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 28px;
+    }
+    .privacy-box h2 { font-size: 17px; margin: 22px 0 10px; color: var(--text); }
+    .privacy-box h2:first-child { margin-top: 0; }
+    .privacy-box p, .privacy-box li { color: var(--muted); font-size: 15px; }
+    .privacy-box ul { padding-left: 18px; margin-top: 8px; }
+    .privacy-box li { margin-bottom: 8px; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 40px; color: var(--muted); font-size: 13px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="aura-left"></div>
+  <div class="aura-right"></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-logo-wrap"><img src="./studio-logo.jpg" alt="KitSpark Studio" /></span>
+        <span>KitSpark Studio</span>
+      </a>
+      <div class="nav-right">
+        <a href="index.html">ホームへ戻る</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>ゴミログ プライバシーポリシー</h1>
+    <p class="updated">最終更新：2026-11-20 · 対象：iOS / iPadOS（ウィジェット・ライブアクティビティを含む）</p>
+    <div class="privacy-box">
+      <h2>1. 概要</h2>
+      <p>ゴミログ（GomiLog）は KitSpark Studio が開発するローカルファーストのごみ収集カレンダーです。地区設定・カスタム収集日・粗大ごみメモなどのデータは、お客様の端末および個人の iCloud 私有領域にのみ保存されます。当社は外部の業務サーバーを運営せず、個人データを収集・送信・分析しません。</p>
+
+      <h2>2. 位置情報の取り扱い</h2>
+      <p>「現在地から自動設定」機能では、お住まいの都道府県・市区町村の収集ルールをその場でマッチするために、端末の位置情報を一度だけ取得し、日本語ロケール（ja_JP）で行政区画名を解決します。</p>
+      <ul>
+        <li>位置情報は市区町村マッチングの瞬間にのみ使用します。</li>
+        <li>位置の履歴・軌跡・座標を保存・追跡・第三者へ提供することはありません。</li>
+        <li>マッチ結果として残るのは、お客様が選択・保存した市区町村名などの地区設定のみです。</li>
+        <li>位置情報へのアクセスはいつでも iOS の設定から拒否できます（手動で地区を選ぶことも可能です）。</li>
+      </ul>
+
+      <h2>3. 収集しないデータ</h2>
+      <p>当社は次の情報を収集しません。</p>
+      <ul>
+        <li>氏名、メールアドレス、電話番号などの個人識別情報（サポートメールへの任意連絡を除く）</li>
+        <li>位置座標のログ、広告 ID、端末横断トラッキング</li>
+        <li>第三者広告・分析 SDK による行動データ</li>
+      </ul>
+
+      <h2>4. 端末と個人 iCloud に保存されるデータ</h2>
+      <ul>
+        <li>ローカル／App Group：選択中の地区、よく使う地区、カスタム収集日、通知設定、言語、Pro 権利状態など。</li>
+        <li>個人 iCloud（NSUbiquitousKeyValueStore）：上記設定の軽量同期。お客様の Apple ID にのみ可視です。</li>
+        <li>ウィジェット／ライブアクティビティ：同一のローカル・App Group データを参照し、当社サーバーへ送信しません。</li>
+      </ul>
+
+      <h2>5. アプリ内課金</h2>
+      <p>ゴミログ Pro は ¥480 の買い切り（非消耗型）のみです。決済は Apple StoreKit が処理し、クレジットカード等の情報は Apple が管理します。当社は権利検証の結果のみを受け取り、支払明細を保管しません。自動更新サブスクリプションはありません。</p>
+
+      <h2>6. 第三者サービス</h2>
+      <p>Apple のシステム枠組み（StoreKit、iCloud、WidgetKit、ActivityKit、CoreLocation 等）以外に、広告・分析・トラッキング SDK は埋め込みません。</p>
+
+      <h2>7. 児童のプライバシー</h2>
+      <p>ゴミログは 13 歳未満の児童を対象としておらず、意図的に児童の個人データを収集しません。</p>
+
+      <h2>8. お問い合わせ</h2>
+      <p>本ポリシーに関するご質問は、次のメールアドレスまでご連絡ください。</p>
+      <p><a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 KitSpark Studio · ゴミログ · <a href="index.html">Home</a></div>
+  </footer>
+</body>
+</html>

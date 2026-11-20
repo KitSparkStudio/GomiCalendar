@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "jisCode": "XXXXX",
+  "cityId": "jp_XXXXX_slug",
+  "names": {
+    "ja": "都道府県市区町村",
+    "kana": "とどうふけんしちょうそん",
+    "en": "City Name",
+    "zh-Hans": "城市名",
+    "vi": "Tên thành phố",
+    "ko": "도시명"
+  },
+  "defaultDropoffDeadline": "08:00",
+  "bulkyWaste": {
+    "phone": "000-000-0000",
+    "receptionHours": {
+      "ja": "受付時間",
+      "kana": "うけつけじかん",
+      "en": "Reception hours",
+      "zh-Hans": "受理时间",
+      "vi": "Giờ tiếp nhận",
+      "ko": "접수 시간"
+    },
+    "feeNotes": {
+      "ja": "料金説明",
+      "kana": "りょうきんせつめい",
+      "en": "Fee notes",
+      "zh-Hans": "费用说明",
+      "vi": "Ghi chú phí",
+      "ko": "요금 안내"
+    },
+    "onlineBookingURL": null
+  },
+  "yearEndSuspensions": [
+    {
+      "start": "12-31",
+      "end": "01-03",
+      "appliesTo": ["all"],
+      "notes": {
+        "ja": "年末年始休止",
+        "kana": "ねんまつねんしきゅうし",
+        "en": "Year-end suspension",
+        "zh-Hans": "年末年始停收",
+        "vi": "Tạm dừng cuối năm",
+        "ko": "연말연시 휴지"
+      }
+    }
+  ],
+  "categories": [],
+  "districts": [
+    {
+      "id": "sample",
+      "names": {
+        "ja": "サンプル町",
+        "kana": "サンプルちょう",
+        "en": "Sample",
+        "zh-Hans": "样例町",
+        "vi": "Sample",
+        "ko": "샘플"
+      },
+      "aliases": ["Sample", "サンプル"],
+      "schedules": [
+        { "categoryId": "combustible", "kind": "weekly", "weekdays": [1, 4] },
+        { "categoryId": "recyclable", "kind": "monthlyNthWeekday", "weekday": 3, "weeksOfMonth": [1, 3] },
+        { "categoryId": "hazardous", "kind": "biweekly", "weekday": 2, "biweeklyAnchor": "2026-01-06", "biweeklyParity": "odd" }
+      ]
+    }
+  ],
+  "itemDictionary": []
+}

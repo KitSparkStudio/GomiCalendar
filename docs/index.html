@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ゴミログ · KitSpark Studio</title>
+  <meta name="description" content="ゴミログ — 日本全国のごみ収集カレンダー。市区町村の自動判定、カスタム収集日、ウィジェット＆ライブアクティビティ対応。" />
+  <style>
+    :root {
+      --bg: #0e0f12;
+      --surface: rgba(24, 26, 32, 0.78);
+      --surface-solid: #181a20;
+      --text: #f4f6fa;
+      --muted: #939cad;
+      --cyan: #00d2ff;
+      --orange: #ff6b4a;
+      --border: rgba(255, 255, 255, 0.09);
+      --ok: #34d399;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "SF Pro Text", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 25%, black 30%, transparent 85%);
+      pointer-events: none;
+      z-index: -2;
+    }
+    .aura-left, .aura-right {
+      position: fixed;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.16;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .aura-left { top: -140px; left: -120px; background: var(--orange); }
+    .aura-right { top: 80px; right: -140px; background: var(--cyan); }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      position: sticky; top: 0; z-index: 60;
+      background: rgba(14, 15, 18, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; letter-spacing: 0.4px; color: var(--text); text-decoration: none; }
+    .brand:hover { text-decoration: none; }
+    .brand-logo-wrap {
+      width: 34px; height: 34px; border-radius: 10px; overflow: hidden;
+      background: #202124; display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+    .brand-logo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .hero { padding: 72px 0 44px; text-align: center; }
+    .hero-emblem {
+      width: 82px; height: 82px; margin: 0 auto 22px;
+      border-radius: 22px; background: #202124;
+      display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 45px rgba(0, 210, 255, 0.16), 0 0 45px rgba(255, 107, 74, 0.14);
+      overflow: hidden;
+    }
+    .hero-emblem img { width: 100%; height: 100%; object-fit: cover; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      font-size: 12px; font-weight: 600; color: var(--cyan);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      background: linear-gradient(120deg, #ffffff 30%, #00d2ff 75%, #ff6b4a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 17px; max-width: 720px; margin: 0 auto 28px; }
+    .hero-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), #38b6ff);
+      color: #0b0d10; font-weight: 700; font-size: 14px;
+      padding: 11px 22px; border-radius: 11px; border: none; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,210,255,0.28); text-decoration: none; }
+    .btn-ghost {
+      background: rgba(255,255,255,0.05); color: var(--text);
+      border: 1px solid var(--border); font-weight: 600; font-size: 14px;
+      padding: 11px 22px; border-radius: 11px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
+
+    .demo-section { padding: 20px 0 64px; }
+    .mac-frame {
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+    }
+    .mac-menubar {
+      height: 38px; padding: 0 16px;
+      background: rgba(10, 11, 14, 0.92);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: var(--muted); gap: 12px;
+    }
+    .mac-dots { display: flex; gap: 7px; flex-shrink: 0; }
+    .mac-dots span { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+    .mac-dots span:nth-child(1) { background: #ff5f56; }
+    .mac-dots span:nth-child(2) { background: #ffbd2e; }
+    .mac-dots span:nth-child(3) { background: #27c93f; }
+    .demo-stage {
+      padding: 22px 20px 18px;
+      background: radial-gradient(circle at 50% 20%, #1d222c 0%, #111318 100%);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+    @media (max-width: 820px) {
+      .demo-stage { grid-template-columns: 1fr; }
+      .nav-links { gap: 12px; font-size: 13px; }
+      .brand span.brand-text { display: none; }
+    }
+    .cal-card, .ctrl-card {
+      background: rgba(18, 20, 26, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .cal-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .cal-head h3 { font-size: 15px; font-weight: 700; }
+    .cal-head span { font-size: 12px; color: var(--muted); }
+    .weekday, .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+    }
+    .weekday span {
+      text-align: center; font-size: 10px; color: var(--muted); font-weight: 600;
+      padding-bottom: 4px;
+    }
+    .day-cell {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid transparent;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 3px; font-size: 11px; color: var(--muted);
+      cursor: pointer; transition: 0.15s ease;
+      min-height: 44px;
+    }
+    .day-cell.empty { background: transparent; cursor: default; }
+    .day-cell:not(.empty):hover { border-color: rgba(255,107,74,0.45); }
+    .day-cell.today { border-color: rgba(0,210,255,0.55); }
+    .day-cell.lit { color: var(--text); }
+    .day-cell .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: transparent;
+    }
+    .day-cell.lit .dot { background: var(--cell-dot, var(--orange)); box-shadow: 0 0 8px var(--cell-dot, var(--orange)); }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+      margin-top: 14px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px;
+      text-align: center;
+    }
+    .stat .label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+    .stat .value { font-size: 15px; font-weight: 700; }
+    .stat .value.accent { color: var(--cyan); }
+    .stat .value.orange { color: var(--orange); }
+
+    .ctrl-card h4 { font-size: 12px; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.04em; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .chip-btn, .cat-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: 0.15s ease;
+    }
+    .cat-btn { border-radius: 12px; }
+    .chip-btn:hover, .cat-btn:hover { background: rgba(255,255,255,0.1); }
+    .cat-btn.active {
+      border-color: color-mix(in srgb, var(--chip, var(--cyan)) 70%, transparent);
+      background: color-mix(in srgb, var(--chip, var(--cyan)) 18%, transparent);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--chip, var(--cyan)) 25%, transparent);
+    }
+    .demo-note { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    section { padding: 28px 0 56px; }
+    section h2 {
+      font-size: 24px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .dot-cyan, .dot-orange {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+    }
+    .dot-cyan { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+    .dot-orange { background: var(--orange); box-shadow: 0 0 12px var(--orange); }
+    .grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px;
+    }
+    .card h3 { font-size: 16px; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 14px; }
+    .price-tag {
+      display: inline-block; margin-top: 8px;
+      font-size: 13px; font-weight: 700; color: var(--orange);
+    }
+    .faq-item { margin-bottom: 16px; }
+    .faq-item:last-child { margin-bottom: 0; }
+    .faq-item h4 { font-size: 14px; margin-bottom: 6px; }
+    .faq-item p { color: var(--muted); font-size: 14px; }
+    .privacy-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px;
+    }
+    .privacy-box p { color: var(--muted); margin-bottom: 14px; }
+    .privacy-box ul { padding-left: 18px; color: var(--muted); }
+    .privacy-box li { margin-bottom: 10px; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 40px;
+      color: var(--muted); font-size: 13px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="aura-left"></div>
+  <div class="aura-right"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <span class="brand-logo-wrap"><img src="./studio-logo.jpg" alt="KitSpark Studio" /></span>
+        <span class="brand-text">KitSpark Studio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#demo">デモ</a>
+        <a href="#features">機能</a>
+        <a href="#guide">使い方</a>
+        <a href="#support">サポート</a>
+        <a href="privacy.html">プライバシー</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero">
+      <div class="hero-emblem"><img src="logo.png" alt="ゴミログ Logo" /></div>
+      <div class="pill">iOS · iPadOS · Widget · Live Activity</div>
+      <h1>ゴミログ</h1>
+      <p>KitSpark Studio が届ける、在日外国人にもわかりやすい日本のごみ収集カレンダー。全国 1,400 以上の市区町村に対応し、現在地からエリアを自動判定。カスタム収集日・ウィジェット・ダイナミックアイランドまで、無料ダウンロード＋¥480 の買い切りで完成します。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#demo">デモを見る</a>
+        <a class="btn-ghost" href="#support">サポートとプライバシー</a>
+      </div>
+    </section>
+
+    <div id="demo" class="demo-section">
+      <div class="mac-frame">
+        <div class="mac-menubar">
+          <div class="mac-dots"><span></span><span></span><span></span></div>
+          <span>ゴミログ デモ — 曜日をタップして収集区分をプレビュー</span>
+          <span style="width:54px"></span>
+        </div>
+        <div class="demo-stage">
+          <div class="cal-card">
+            <div class="cal-head">
+              <h3 id="calMonthLabel">今週の収集</h3>
+              <span>タップで区分を切替</span>
+            </div>
+            <div class="weekday" id="weekdayRow"></div>
+            <div class="cal-grid" id="calGrid"></div>
+            <div class="stats-row">
+              <div class="stat">
+                <div class="label">選択中</div>
+                <div class="value orange" id="statCat">可燃ごみ</div>
+              </div>
+              <div class="stat">
+                <div class="label">指定袋</div>
+                <div class="value accent" id="statBag">黄色</div>
+              </div>
+              <div class="stat">
+                <div class="label">締切目安</div>
+                <div class="value" id="statDeadline">08:00</div>
+              </div>
+            </div>
+          </div>
+          <div class="ctrl-card">
+            <h4>ごみの区分</h4>
+            <div class="chip-row" id="catRow"></div>
+            <button class="chip-btn" id="resetBtn">デモをリセット</button>
+            <p class="demo-note">デモはページ内のプレビューのみです。正式アプリでは端末と個人 iCloud にのみ保存され、位置情報は市区町村マッチング以外に使いません。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="features">
+      <h2><span class="dot-cyan"></span><span>コア機能</span></h2>
+      <div class="grid">
+        <div class="card">
+          <h3>全国 1,400+ 市区町村</h3>
+          <p>47 都道府県・全市区町村カタログから検索。主要都市は詳細カレンダー、その他は標準テンプレートで曜日を調整できます。</p>
+        </div>
+        <div class="card">
+          <h3>現在地から即カレンダー</h3>
+          <p>GPS＋日本語住所解析（ja_JP）で都道府県・市区町村を自動マッチ。IP ずれに頼らない、ワンタップ設定。</p>
+        </div>
+        <div class="card">
+          <h3>収集日カスタム</h3>
+          <p>町丁目やマンション規定と違う場合も、「収集日カスタム」で周期・臨時日を自由に上書き。ホームとウィジェットへ即反映。</p>
+        </div>
+        <div class="card">
+          <h3>ウィジェット＆ライブアクティビティ</h3>
+          <p>ホーム／ロック画面ウィジェットと、ダイナミックアイランドの締切カウントダウン。多地区（自宅＋会社／家族）は Pro で解放。</p>
+          <span class="price-tag">無料ダウンロード ＋ Pro ¥480 買い切り</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide">
+      <h2><span class="dot-orange"></span><span>使い方（かんたん 3 ステップ）</span></h2>
+      <div class="grid">
+        <div class="card">
+          <h3>1. 地区を決める</h3>
+          <p>「現在地から自動設定」を押すか、都道府県 → 市区町村を検索。見つからない場合は手動入力も可能です。</p>
+        </div>
+        <div class="card">
+          <h3>2. 収集日を合わせる</h3>
+          <p>掲示板や自治体案内と違う日があれば「収集日カスタム」で修正。テンプレート地区は可燃曜日の調整も無料です。</p>
+        </div>
+        <div class="card">
+          <h3>3. リマインドを置く</h3>
+          <p>通知・ウィジェット・（対応機種では）ダイナミックアイランドで出し忘れを防止。粗大ごみの予約電話メモも同梱。</p>
+        </div>
+        <div class="card">
+          <h3>Pro で広がる使い方</h3>
+          <p>自宅と会社など複数エリアの切替、中サイズ／ロック画面ウィジェット、テーマ拡張。¥480 の一度きりで永久利用。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="support">
+      <h2><span class="dot-cyan"></span><span>サポートとよくある質問</span></h2>
+      <div class="card">
+        <p style="margin-bottom:18px;">
+          <strong>お問い合わせ：</strong>
+          <a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a>
+        </p>
+        <div class="faq-item">
+          <h4>1. 位置情報はどのように使われますか？</h4>
+          <p>市区町村の収集ルールをその場でマッチするためだけに、現在地を一度取得します。位置の履歴保存・追跡・第三者提供はありません。</p>
+        </div>
+        <div class="faq-item">
+          <h4>2. 無料と Pro の違いは？</h4>
+          <p>収集カレンダー・カスタム収集日・粗大ごみツールは無料。Pro（¥480 買い切り）は多地区管理、中／ロック画面ウィジェットなどを永久解放します。サブスクリプションはありません。</p>
+        </div>
+        <div class="faq-item">
+          <h4>3. 購入を復元するには？</h4>
+          <p>アプリ内の Pro 画面で「購入を復元」をタップしてください。Apple StoreKit が Apple ID の権利を確認します。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <h2><span class="dot-orange"></span><span>プライバシー（概要）</span></h2>
+      <div class="privacy-box">
+        <p>ゴミログはローカルファーストです。地区設定・カスタム収集日・メモは端末と個人の iCloud にのみ保存され、業務サーバーへのアップロードはありません。</p>
+        <ul>
+          <li>位置情報は市区町村マッチングの一瞬のみ。保存・追跡しません。</li>
+          <li>広告・分析・トラッキング SDK は一切埋め込みません。</li>
+          <li>アプリ内課金は Apple StoreKit が処理し、決済情報は Apple が管理します。</li>
+        </ul>
+        <p style="margin-top:14px;"><a href="privacy.html">プライバシーポリシー全文を見る →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 KitSpark Studio · ゴミログ · <a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a></div>
+  </footer>
+
+  <script>
+    const cats = [
+      { id: "burn", name: "可燃ごみ", bag: "黄色指定袋", color: "#ff6b4a", days: [1, 4] },
+      { id: "plastic", name: "プラスチック", bag: "透明袋", color: "#00d2ff", days: [2] },
+      { id: "resource", name: "資源ごみ", bag: "透明・紙類", color: "#34d399", days: [3] },
+      { id: "nonburn", name: "不燃ごみ", bag: "透明袋", color: "#a78bfa", days: [6] }
+    ];
+    const weekdays = ["月", "火", "水", "木", "金", "土", "日"];
+    let active = cats[0];
+    const map = {};
+
+    function paint() {
+      document.getElementById("statCat").textContent = active.name;
+      document.getElementById("statBag").textContent = active.bag;
+      document.querySelectorAll(".cat-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.id === active.id);
+      });
+      document.querySelectorAll(".day-cell").forEach(cell => {
+        const d = Number(cell.dataset.day);
+        if (!d) return;
+        const hit = active.days.includes(d);
+        cell.classList.toggle("lit", hit);
+        cell.style.setProperty("--cell-dot", active.color);
+        map[d] = hit ? active.id : map[d];
+      });
+    }
+
+    const weekdayRow = document.getElementById("weekdayRow");
+    weekdays.forEach(w => {
+      const s = document.createElement("span");
+      s.textContent = w;
+      weekdayRow.appendChild(s);
+    });
+
+    const grid = document.getElementById("calGrid");
+    for (let d = 1; d <= 7; d++) {
+      const cell = document.createElement("div");
+      cell.className = "day-cell" + (d === ((new Date().getDay() + 6) % 7) + 1 ? " today" : "");
+      cell.dataset.day = String(d);
+      cell.innerHTML = `<span>${weekdays[d - 1]}</span><span class="dot"></span>`;
+      cell.addEventListener("click", () => {
+        if (active.days.includes(d)) {
+          active.days = active.days.filter(x => x !== d);
+        } else {
+          active.days = [...active.days, d].sort();
+        }
+        paint();
+      });
+      grid.appendChild(cell);
+    }
+
+    const catRow = document.getElementById("catRow");
+    cats.forEach(c => {
+      const btn = document.createElement("button");
+      btn.className = "cat-btn";
+      btn.dataset.id = c.id;
+      btn.style.setProperty("--chip", c.color);
+      btn.textContent = c.name;
+      btn.addEventListener("click", () => { active = c; paint(); });
+      catRow.appendChild(btn);
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      cats[0].days = [1, 4];
+      cats[1].days = [2];
+      cats[2].days = [3];
+      cats[3].days = [6];
+      active = cats[0];
+      paint();
+    });
+
+    paint();
+  </script>
+</body>
+</html>

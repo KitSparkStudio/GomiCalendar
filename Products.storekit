@@ -1,0 +1,49 @@
+{
+  "identifier" : "Products",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "480",
+      "familyShareable" : false,
+      "internalID" : "A1000000000480",
+      "localizations" : [
+        {
+          "description" : "One-time ¥480 unlock. Pro forever. No subscription.",
+          "displayName" : "ゴミログ Pro Lifetime",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "¥480 の買い切りで Pro を永久解放。追加課金なし。",
+          "displayName" : "ゴミログ Pro 買い切り",
+          "locale" : "ja"
+        },
+        {
+          "description" : "¥480 一次买断永久解锁 Pro，无后续扣费。",
+          "displayName" : "ゴミログ Pro 终身买断",
+          "locale" : "zh_CN"
+        }
+      ],
+      "productID" : "com.kitsparkstudio.gomicalendar.pro.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_developerTeamID" : "DPCXZAVSM7",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "ja",
+    "_storefront" : "JPN",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
