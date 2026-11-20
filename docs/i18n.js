@@ -3,6 +3,7 @@
  * URL: ?lang=en | 浏览器语言自动匹配 | 默认 ja
  */
 (function () {
+  /** 顶部切换栏顺序：日本語 | English | 简体中文 | 한국어 | Tiếng Việt */
   const SUPPORTED = ["ja", "en", "zh-Hans", "ko", "vi"];
   const LABELS = {
     ja: "日本語",
@@ -136,11 +137,11 @@
     },
     hero_title: { ja: "ゴミログ", en: "GomiLog", "zh-Hans": "ゴミログ", ko: "ゴミ로그", vi: "GomiLog" },
     hero_lead: {
-      ja: "KitSpark Studio が届ける、在日外国人にもわかりやすい日本のごみ収集カレンダー。全国 1,400 以上の市区町村に対応し、現在地からエリアを自動判定。収集日カスタムは無料。多地区・中／ロック画面ウィジェット・テーマ・ダイナミックアイランド Live Countdown は Pro（¥480 買い切り）で永久解放します。",
-      en: "KitSpark Studio’s Japan trash calendar—clear for residents and newcomers. 1,400+ municipalities, auto area detection from location. Custom collection days are free. Multi-area, medium & Lock Screen widgets, themes, and Dynamic Island Live Countdown unlock forever with Pro (¥480 one-time).",
-      "zh-Hans": "KitSpark Studio 打造的日本垃圾收集日历，在日外国人也能轻松使用。覆盖全国 1,400+ 市区町村，可按当前位置自动匹配。自定义收集日免费。多地区、中号/锁屏小组件、主题色与灵动岛 Live Countdown 由 Pro（¥480 一次买断）永久解锁。",
-      ko: "KitSpark Studio의 일본 쓰레기 수거 캘린더. 거주 외국인도 쉽게. 전국 1,400+ 시구정촌, 현재 위치로 자동 매칭. 맞춤 수거일은 무료. 다중 지역·중형/잠금화면 위젯·테마·다이나믹 아일랜드 Live Countdown은 Pro(¥480 일회)로 영구 해제.",
-      vi: "Lịch thu rác Nhật Bản từ KitSpark Studio—dễ hiểu cho người nước ngoài. 1.400+ đô thị, tự nhận khu vực theo vị trí. Ngày thu tùy chỉnh miễn phí. Đa khu vực, widget vừa/khóa, theme và Dynamic Island Live Countdown mở vĩnh viễn với Pro (¥480 một lần).",
+      ja: "KitSpark Studio が届ける、在日外国人にもわかりやすい日本のごみ収集カレンダー。全国 1,400 以上の市区町村に対応し、現在地からエリアを自動判定。収集日カスタムは無料。Pro（¥480 買い切り）で永久解放：① 多地区管理（自宅＋会社／実家）② 中サイズ／ロック画面ウィジェット（7日一覧＋ワンタップ打刻）③ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン。",
+      en: "KitSpark Studio’s Japan trash calendar—clear for residents and newcomers. 1,400+ municipalities, auto area detection from location. Custom collection days are free. Pro (¥480 one-time) forever unlocks: ① multi-district management (home + work / parents) ② medium & Lock Screen widgets (7-day overview + one-tap check-in) ③ Dynamic Island & Lock Screen live countdown.",
+      "zh-Hans": "KitSpark Studio 打造的日本垃圾收集日历，在日外国人也能轻松使用。覆盖全国 1,400+ 市区町村，可按当前位置自动匹配。自定义收集日免费。Pro（¥480 一次买断）永久解锁：① 多地区管理（自宅 + 公司 / 父母家）② 中号与锁屏小组件（7日全览 + 一键打卡）③ 灵动岛与锁屏实时倒计时。",
+      ko: "KitSpark Studio의 일본 쓰레기 수거 캘린더. 거주 외국인도 쉽게. 전국 1,400+ 시구정촌, 현재 위치로 자동 매칭. 맞춤 수거일은 무료. Pro(¥480 일회)로 영구 해제: ① 다중 지역 관리(자택+회사/본가) ② 중형·잠금화면 위젯(7일 전체 보기+원탭 체크인) ③ 다이나믹 아일랜드·잠금화면 실시간 카운트다운.",
+      vi: "Lịch thu rác Nhật Bản từ KitSpark Studio—dễ hiểu cho người nước ngoài. 1.400+ đô thị, tự nhận khu vực theo vị trí. Ngày thu tùy chỉnh miễn phí. Pro (¥480 một lần) mở vĩnh viễn: ① quản lý đa khu vực (nhà + công ty / nhà bố mẹ) ② widget vừa & khóa (tóm tắt 7 ngày + check-in một chạm) ③ đếm ngược Live trên Dynamic Island & màn hình khóa.",
     },
     cta_demo: { ja: "デモを見る", en: "See demo", "zh-Hans": "查看演示", ko: "데모 보기", vi: "Xem demo" },
     cta_support: { ja: "サポートとプライバシー", en: "Support & privacy", "zh-Hans": "支持与隐私", ko: "지원·개인정보", vi: "Hỗ trợ & quyền riêng tư" },
@@ -192,11 +193,11 @@
     },
     f4_t: { ja: "ウィジェット＆ライブアクティビティ", en: "Widgets & Live Activities", "zh-Hans": "小组件与实时活动", ko: "위젯·라이브 액티비티", vi: "Widget & Live Activity" },
     f4_p: {
-      ja: "ホーム画面の基本ウィジェットは無料。Pro（¥480 買い切り）で多地区管理、中サイズ／ロック画面ウィジェット、テーマ拡張、そしてダイナミックアイランド＆ロック画面のリアルタイム締切カウントダウン（Dynamic Island Live Countdown）を永久解放します。",
-      en: "Basic Home widgets are free. Pro (¥480 one-time) forever unlocks multi-area, medium & Lock Screen widgets, themes, and Dynamic Island Live Countdown on Lock Screen & Island.",
-      "zh-Hans": "主屏幕基础小组件免费。Pro（¥480 一次买断）永久解锁：多地区管理、中号与锁屏小组件、主题色，以及灵动岛与锁屏实时倒计时（Dynamic Island Live Countdown）。",
-      ko: "기본 홈 위젯은 무료. Pro(¥480 일회)로 다중 지역, 중형·잠금화면 위젯, 테마, 다이나믹 아일랜드·잠금화면 실시간 카운트다운(Dynamic Island Live Countdown)을 영구 해제.",
-      vi: "Widget Home cơ bản miễn phí. Pro (¥480 một lần) mở vĩnh viễn: đa khu vực, widget vừa/khóa, theme, và Dynamic Island Live Countdown trên Island & màn hình khóa.",
+      ja: "ホーム画面の基本ウィジェットは無料。Pro（¥480 買い切り）で次を永久解放：① 多地区管理（自宅＋会社／実家）② 中サイズ／ロック画面ウィジェット（7日一覧＋ワンタップ打刻）③ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン。サブスクリプションはありません。",
+      en: "Basic Home widgets are free. Pro (¥480 one-time) forever unlocks: ① multi-district management (home + work / parents) ② medium & Lock Screen widgets (7-day overview + one-tap check-in) ③ Dynamic Island & Lock Screen live countdown. No subscription.",
+      "zh-Hans": "主屏幕基础小组件免费。Pro（¥480 一次买断）永久解锁：① 多地区管理（自宅 + 公司 / 父母家）② 中号与锁屏小组件（7日全览 + 一键打卡）③ 灵动岛与锁屏实时倒计时。无订阅。",
+      ko: "기본 홈 위젯은 무료. Pro(¥480 일회)로 영구 해제: ① 다중 지역 관리(자택+회사/본가) ② 중형·잠금화면 위젯(7일 전체 보기+원탭 체크인) ③ 다이나믹 아일랜드·잠금화면 실시간 카운트다운. 구독 없음.",
+      vi: "Widget Home cơ bản miễn phí. Pro (¥480 một lần) mở vĩnh viễn: ① quản lý đa khu vực (nhà + công ty / nhà bố mẹ) ② widget vừa & khóa (tóm tắt 7 ngày + check-in một chạm) ③ đếm ngược Live trên Dynamic Island & màn hình khóa. Không đăng ký.",
     },
     price_tag: {
       ja: "無料ダウンロード ＋ Pro ¥480 買い切り",
@@ -238,11 +239,11 @@
       vi: "Pro mở rộng (¥480 một lần)",
     },
     g4_p: {
-      ja: "一度の購入で永久解放：① 多地区管理（自宅＋会社／家族）② 中サイズ／ロック画面ウィジェット ③ カスタムテーマカラー ④ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン（Dynamic Island Live Countdown）。サブスクリプションはありません。",
-      en: "One purchase, forever: ① Multi-area (home + work/family) ② Medium & Lock Screen widgets ③ Custom theme colors ④ Dynamic Island Live Countdown. No subscription.",
-      "zh-Hans": "一次买断永久解锁：① 多地区管理（自宅＋公司／家人）② 中号与锁屏小组件 ③ 自定义主题色 ④ 灵动岛与锁屏实时倒计时（Dynamic Island Live Countdown）。无订阅。",
-      ko: "한 번 구매로 영구: ① 다중 지역(자택+회사/가족) ② 중형·잠금화면 위젯 ③ 맞춤 테마 ④ 다이나믹 아일랜드·잠금화면 실시간 카운트다운(Dynamic Island Live Countdown). 구독 없음.",
-      vi: "Mua một lần, mãi mãi: ① Đa khu vực (nhà + công ty/gia đình) ② Widget vừa & khóa ③ Màu theme ④ Dynamic Island Live Countdown. Không đăng ký.",
+      ja: "一度の購入で永久解放：① 多地区管理（自宅＋会社／実家）② 中サイズ／ロック画面ウィジェット（7日一覧＋ワンタップ打刻）③ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン。サブスクリプションはありません。",
+      en: "One purchase, forever: ① Multi-district management (home + work / parents) ② Medium & Lock Screen widgets (7-day overview + one-tap check-in) ③ Dynamic Island & Lock Screen live countdown. No subscription.",
+      "zh-Hans": "一次买断永久解锁：① 多地区管理（自宅 + 公司 / 父母家）② 中号与锁屏小组件（7日全览 + 一键打卡）③ 灵动岛与锁屏实时倒计时。无订阅。",
+      ko: "한 번 구매로 영구: ① 다중 지역 관리(자택+회사/본가) ② 중형·잠금화면 위젯(7일 전체 보기+원탭 체크인) ③ 다이나믹 아일랜드·잠금화면 실시간 카운트다운. 구독 없음.",
+      vi: "Mua một lần, mãi mãi: ① Quản lý đa khu vực (nhà + công ty / nhà bố mẹ) ② Widget vừa & khóa (tóm tắt 7 ngày + check-in một chạm) ③ Đếm ngược Live trên Dynamic Island & màn hình khóa. Không đăng ký.",
     },
     support_h2: { ja: "サポートとよくある質問", en: "Support & FAQ", "zh-Hans": "支持与常见问题", ko: "지원·FAQ", vi: "Hỗ trợ & FAQ" },
     support_contact: {
@@ -274,11 +275,11 @@
       vi: "2. Miễn phí và Pro khác gì?",
     },
     faq2_a: {
-      ja: "収集カレンダー・収集日カスタム・粗大ごみツール・基本リマインダーは無料。Pro（¥480 買い切り）は次を永久解放します：多地区管理、中サイズ／ロック画面ウィジェット、カスタムテーマ、ダイナミックアイランド＆ロック画面のリアルタイム締切カウントダウン（Dynamic Island Live Countdown）。サブスクリプションはありません。",
-      en: "Calendar, custom schedules, bulky tools, and basic reminders are free. Pro (¥480 one-time) forever unlocks: multi-area, medium & Lock Screen widgets, custom themes, and Dynamic Island Live Countdown. No subscription.",
-      "zh-Hans": "收集日历、自定义收集日、粗大垃圾工具与基础提醒免费。Pro（¥480 一次买断）永久解锁：多地区管理、中号与锁屏小组件、自定义主题、灵动岛与锁屏实时倒计时（Dynamic Island Live Countdown）。无订阅。",
-      ko: "캘린더·맞춤 수거일·대형쓰레기 도구·기본 알림은 무료. Pro(¥480 일회)로 영구: 다중 지역, 중형·잠금화면 위젯, 맞춤 테마, 다이나믹 아일랜드·잠금화면 실시간 카운트다운(Dynamic Island Live Countdown). 구독 없음.",
-      vi: "Lịch, lịch tùy chỉnh, công cụ rác cồng kềnh và nhắc cơ bản miễn phí. Pro (¥480 một lần) mở vĩnh viễn: đa khu vực, widget vừa/khóa, theme, Dynamic Island Live Countdown. Không đăng ký.",
+      ja: "収集カレンダー・収集日カスタム・粗大ごみツール・基本リマインダーは無料。Pro（¥480 買い切り）は次を永久解放します：① 多地区管理（自宅＋会社／実家）② 中サイズ／ロック画面ウィジェット（7日一覧＋ワンタップ打刻）③ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン。サブスクリプションはありません。",
+      en: "Calendar, custom schedules, bulky tools, and basic reminders are free. Pro (¥480 one-time) forever unlocks: ① multi-district management (home + work / parents) ② medium & Lock Screen widgets (7-day overview + one-tap check-in) ③ Dynamic Island & Lock Screen live countdown. No subscription.",
+      "zh-Hans": "收集日历、自定义收集日、粗大垃圾工具与基础提醒免费。Pro（¥480 一次买断）永久解锁：① 多地区管理（自宅 + 公司 / 父母家）② 中号与锁屏小组件（7日全览 + 一键打卡）③ 灵动岛与锁屏实时倒计时。无订阅。",
+      ko: "캘린더·맞춤 수거일·대형쓰레기 도구·기본 알림은 무료. Pro(¥480 일회)로 영구: ① 다중 지역 관리(자택+회사/본가) ② 중형·잠금화면 위젯(7일 전체 보기+원탭 체크인) ③ 다이나믹 아일랜드·잠금화면 실시간 카운트다운. 구독 없음.",
+      vi: "Lịch, lịch tùy chỉnh, công cụ rác cồng kềnh và nhắc cơ bản miễn phí. Pro (¥480 một lần) mở vĩnh viễn: ① quản lý đa khu vực (nhà + công ty / nhà bố mẹ) ② widget vừa & khóa (tóm tắt 7 ngày + check-in một chạm) ③ đếm ngược Live trên Dynamic Island & màn hình khóa. Không đăng ký.",
     },
     faq3_q: {
       ja: "3. 購入を復元するには？",
@@ -491,11 +492,11 @@
     },
     s5_t: { ja: "5. アプリ内課金", en: "5. In-app purchases", "zh-Hans": "5. 应用内购买", ko: "5. 인앱 결제", vi: "5. Mua trong ứng dụng" },
     s5_p: {
-      ja: "ゴミログ Pro は ¥480 の買い切り（非消耗型）のみです。決済は Apple StoreKit が処理し、クレジットカード等の情報は Apple が管理します。当社は権利検証の結果のみを受け取り、支払明細を保管しません。自動更新サブスクリプションはありません。Pro には多地区管理、中／ロック画面ウィジェット、カスタムテーマ、ダイナミックアイランド Live Countdown が含まれます。",
-      en: "GomiLog Pro is a ¥480 non-consumable one-time unlock. Apple StoreKit processes payment; Apple holds card details. We only receive entitlement results and do not store payment records. No auto-renewing subscription. Pro includes multi-area, medium & Lock Screen widgets, themes, and Dynamic Island Live Countdown.",
-      "zh-Hans": "ゴミログ Pro 仅为 ¥480 非消耗型一次买断。支付由 Apple StoreKit 处理，卡片信息由 Apple 保管。我们只接收权益校验结果，不保存支付明细。无自动续费订阅。Pro 包含多地区、中号/锁屏小组件、主题色与灵动岛 Live Countdown。",
-      ko: "ゴミ로그 Pro는 ¥480 비소모성 일회 구매입니다. 결제는 Apple StoreKit, 카드 정보는 Apple이 관리합니다. 권한 결과만 받으며 결제 내역을 보관하지 않습니다. 자동 갱신 구독 없음. Pro에는 다중 지역, 중형·잠금화면 위젯, 테마, 다이나믹 아일랜드 Live Countdown이 포함됩니다.",
-      vi: "GomiLog Pro là mua một lần ¥480 (non-consumable). StoreKit xử lý thanh toán; Apple giữ thông tin thẻ. Chúng tôi chỉ nhận kết quả entitlement, không lưu biên lai. Không đăng ký tự gia hạn. Pro gồm đa khu vực, widget vừa/khóa, theme và Dynamic Island Live Countdown.",
+      ja: "ゴミログ Pro は ¥480 の買い切り（非消耗型）のみです。決済は Apple StoreKit が処理し、クレジットカード等の情報は Apple が管理します。当社は権利検証の結果のみを受け取り、支払明細を保管しません。自動更新サブスクリプションはありません。Pro の永久解放内容：① 多地区管理（自宅＋会社／実家）② 中サイズ／ロック画面ウィジェット（7日一覧＋ワンタップ打刻）③ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン。",
+      en: "GomiLog Pro is a ¥480 non-consumable one-time unlock. Apple StoreKit processes payment; Apple holds card details. We only receive entitlement results and do not store payment records. No auto-renewing subscription. Pro forever includes: ① multi-district management (home + work / parents) ② medium & Lock Screen widgets (7-day overview + one-tap check-in) ③ Dynamic Island & Lock Screen live countdown.",
+      "zh-Hans": "ゴミログ Pro 仅为 ¥480 非消耗型一次买断。支付由 Apple StoreKit 处理，卡片信息由 Apple 保管。我们只接收权益校验结果，不保存支付明细。无自动续费订阅。Pro 永久权益：① 多地区管理（自宅 + 公司 / 父母家）② 中号与锁屏小组件（7日全览 + 一键打卡）③ 灵动岛与锁屏实时倒计时。",
+      ko: "ゴミ로그 Pro는 ¥480 비소모성 일회 구매입니다. 결제는 Apple StoreKit, 카드 정보는 Apple이 관리합니다. 권한 결과만 받으며 결제 내역을 보관하지 않습니다. 자동 갱신 구독 없음. Pro 영구 혜택: ① 다중 지역 관리(자택+회사/본가) ② 중형·잠금화면 위젯(7일 전체 보기+원탭 체크인) ③ 다이나믹 아일랜드·잠금화면 실시간 카운트다운.",
+      vi: "GomiLog Pro là mua một lần ¥480 (non-consumable). StoreKit xử lý thanh toán; Apple giữ thông tin thẻ. Chúng tôi chỉ nhận kết quả entitlement, không lưu biên lai. Không đăng ký tự gia hạn. Quyền Pro vĩnh viễn: ① quản lý đa khu vực (nhà + công ty / nhà bố mẹ) ② widget vừa & khóa (tóm tắt 7 ngày + check-in một chạm) ③ đếm ngược Live trên Dynamic Island & màn hình khóa.",
     },
     s6_t: { ja: "6. 第三者サービス", en: "6. Third parties", "zh-Hans": "6. 第三方服务", ko: "6. 제3자 서비스", vi: "6. Bên thứ ba" },
     s6_p: {

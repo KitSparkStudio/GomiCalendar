@@ -162,9 +162,8 @@ final class ProStore {
         ProAccess.setPro(unlocked)
         isPro = unlocked
         WidgetCenter.shared.reloadAllTimelines()
-        // 退款撤销：回退 Pro 强调色 + 清理灵动岛
+        // 退款撤销 / 未付费：立即清理灵动岛，禁止残留
         if !unlocked {
-            AccentTheme.clampToEntitlement(isPro: false)
             await GomiLiveActivityManager.shared.endAll(markPreference: false)
         }
     }

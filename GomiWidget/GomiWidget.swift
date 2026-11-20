@@ -594,18 +594,18 @@ private struct MediumWidgetView: View {
                 Text(L10n.t("widget_marked_done"))
             }
             .font(.caption.weight(.bold))
-            .foregroundStyle(AccentTheme.current.color)
+            .foregroundStyle(Color(hex: 0x34C759))
             .frame(maxWidth: .infinity)
             .padding(.vertical, 6)
-            .background(AccentTheme.current.color.opacity(0.16), in: Capsule())
+            .background(Color(hex: 0x34C759).opacity(0.16), in: Capsule())
         } else if !entry.focusCategories.isEmpty, !entry.isSuspended {
             Button(intent: CompleteGomiDropIntent()) {
                 Text(L10n.t("widget_mark_done"))
                     .font(.caption.weight(.bold))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)
-                    .background(AccentTheme.current.color.opacity(0.22), in: Capsule())
-                    .foregroundStyle(AccentTheme.current.color)
+                    .background(Color(hex: 0x34C759).opacity(0.22), in: Capsule())
+                    .foregroundStyle(Color(hex: 0x34C759))
             }
             .buttonStyle(.plain)
         }
@@ -746,8 +746,8 @@ private struct ProLockedWidgetView: View {
                 .font(.caption.weight(.bold))
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)
-                .background(AccentTheme.current.color.opacity(0.2), in: Capsule())
-                .foregroundStyle(AccentTheme.current.color)
+                .background(Color(hex: 0x34C759).opacity(0.2), in: Capsule())
+                .foregroundStyle(Color(hex: 0x34C759))
             Text(message)
                 .font(.caption)
                 .foregroundStyle(.secondary)

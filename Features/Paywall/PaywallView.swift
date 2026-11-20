@@ -86,7 +86,6 @@ struct PaywallView: View {
             benefitRow(L10n.t("paywall_benefit_multi"))
             benefitRow(L10n.t("paywall_benefit_widgets"))
             benefitRow(L10n.t("paywall_benefit_live_activity"))
-            benefitRow(L10n.t("paywall_benefit_theme"))
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
