@@ -14,29 +14,24 @@ enum AppTheme {
     static let lightCard = Color.white
     static let danger = Color(hex: 0xFF3B30)
 
+    /// 当前全局强调色（跟随 `AccentTheme` / App Group）。
+    static var accent: Color { AccentTheme.current.color }
+
+    /// 精选强调色常量（与 `AccentTheme` 一一对应）。
+    static let accentEcoGreen = Color(hex: 0x34C759)
+    static let accentCoralOrange = Color(hex: 0xFF6B4A)
+    static let accentGlacierBlue = Color(hex: 0x00D2FF)
+    static let accentAmberGold = Color(hex: 0xF59E0B)
+
+    /// 可选强调色列表（设置页色块选择器）。
+    static var accentOptions: [AccentTheme] { AccentTheme.allCases }
+
     static func background(for scheme: ColorScheme) -> Color {
         scheme == .dark ? darkBackground : lightBackground
     }
 
     static func card(for scheme: ColorScheme) -> Color {
         scheme == .dark ? darkCard : lightCard
-    }
-}
-
-extension Color {
-    init(hex: UInt32, opacity: Double = 1) {
-        let r = Double((hex >> 16) & 0xFF) / 255
-        let g = Double((hex >> 8) & 0xFF) / 255
-        let b = Double(hex & 0xFF) / 255
-        self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)
-    }
-
-    init(hexString: String) {
-        var cleaned = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        if cleaned.hasPrefix("#") { cleaned.removeFirst() }
-        var value: UInt64 = 0
-        Scanner(string: cleaned).scanHexInt64(&value)
-        self.init(hex: UInt32(value))
     }
 }
 

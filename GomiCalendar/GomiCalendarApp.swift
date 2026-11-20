@@ -33,16 +33,25 @@ private struct LaunchRootView: View {
     @Bindable var appModel: AppModel
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.scenePhase) private var scenePhase
+    @State private var accentTheme = AccentTheme.current
 
     var body: some View {
         RootTabView()
             .environment(appModel)
+            .tint(accentTheme.color)
             .background(AppTheme.background(for: colorScheme).ignoresSafeArea())
             .task {
+                AccentTheme.clampToEntitlement(isPro: ProAccess.isPro)
+                accentTheme = AccentTheme.current
                 await StartupTasks.runAfterFirstFrame(appModel: appModel)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .accentThemeDidChange)) { _ in
+                accentTheme = AccentTheme.current
             }
             .onChange(of: scenePhase) { _, phase in
                 guard phase == .active else { return }
+                AccentTheme.clampToEntitlement(isPro: ProAccess.isPro)
+                accentTheme = AccentTheme.current
                 Task {
                     await appModel.checkRuleUpdates(userInitiated: false)
                     await GomiLiveActivityManager.shared.syncAutomatically {

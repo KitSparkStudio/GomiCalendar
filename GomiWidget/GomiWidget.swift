@@ -594,18 +594,18 @@ private struct MediumWidgetView: View {
                 Text(L10n.t("widget_marked_done"))
             }
             .font(.caption.weight(.bold))
-            .foregroundStyle(Color(hex: 0x34C759))
+            .foregroundStyle(AccentTheme.current.color)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 6)
-            .background(Color(hex: 0x34C759).opacity(0.16), in: Capsule())
+            .background(AccentTheme.current.color.opacity(0.16), in: Capsule())
         } else if !entry.focusCategories.isEmpty, !entry.isSuspended {
             Button(intent: CompleteGomiDropIntent()) {
                 Text(L10n.t("widget_mark_done"))
                     .font(.caption.weight(.bold))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)
-                    .background(Color(hex: 0x34C759).opacity(0.22), in: Capsule())
-                    .foregroundStyle(Color(hex: 0x34C759))
+                    .background(AccentTheme.current.color.opacity(0.22), in: Capsule())
+                    .foregroundStyle(AccentTheme.current.color)
             }
             .buttonStyle(.plain)
         }
@@ -746,8 +746,8 @@ private struct ProLockedWidgetView: View {
                 .font(.caption.weight(.bold))
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)
-                .background(Color(hex: 0x34C759).opacity(0.2), in: Capsule())
-                .foregroundStyle(Color(hex: 0x34C759))
+                .background(AccentTheme.current.color.opacity(0.2), in: Capsule())
+                .foregroundStyle(AccentTheme.current.color)
             Text(message)
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -806,23 +806,6 @@ private func bagChip(_ label: String, color: Color) -> some View {
         .padding(.vertical, 4)
         .background(color.opacity(0.18), in: Capsule())
         .foregroundStyle(color)
-}
-
-private extension Color {
-    init(hex: UInt32, opacity: Double = 1) {
-        let r = Double((hex >> 16) & 0xFF) / 255
-        let g = Double((hex >> 8) & 0xFF) / 255
-        let b = Double(hex & 0xFF) / 255
-        self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)
-    }
-
-    init(hexString: String) {
-        var cleaned = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        if cleaned.hasPrefix("#") { cleaned.removeFirst() }
-        var value: UInt64 = 0
-        Scanner(string: cleaned).scanHexInt64(&value)
-        self.init(hex: UInt32(value))
-    }
 }
 
 // MARK: - Widget

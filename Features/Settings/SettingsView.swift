@@ -26,6 +26,7 @@ struct SettingsView: View {
     @State private var store = ProStore.shared
     @State private var liveActivity = GomiLiveActivityManager.shared
     @State private var supportCopyHint: String?
+    @State private var selectedAccent = AccentTheme.current
 
     private static let supportEmail = "kitspark.support@gmail.com"
 
@@ -68,6 +69,15 @@ struct SettingsView: View {
                             AppLanguageCode(rawValue: newValue)?.persist()
                             WidgetCenter.shared.reloadAllTimelines()
                         }
+                    }
+
+                    Section {
+                        accentColorPicker
+                    } header: {
+                        Text(L10n.t("settings_appearance_section"))
+                    } footer: {
+                        Text(L10n.t("settings_accent_footer"))
+                            .font(.footnote)
                     }
 
                     Section(L10n.t("settings_region_info_section")) {
@@ -178,7 +188,7 @@ struct SettingsView: View {
                     Section(L10n.t("settings_pro_section")) {
                         if store.isPro {
                             Label(L10n.t("settings_pro_active"), systemImage: "checkmark.seal.fill")
-                                .foregroundStyle(Color(hex: 0x34C759))
+                                .foregroundStyle(AppTheme.accent)
                         } else {
                             Button {
                                 showPaywall = true
@@ -199,7 +209,7 @@ struct SettingsView: View {
                                             .padding(.horizontal, 7)
                                             .padding(.vertical, 3)
                                             .foregroundStyle(.white)
-                                            .background(Color(hex: 0x34C759), in: Capsule())
+                                            .background(AppTheme.accent, in: Capsule())
                                     }
                                 }
                             }
@@ -240,7 +250,7 @@ struct SettingsView: View {
                         if let supportCopyHint {
                             Text(supportCopyHint)
                                 .font(.caption)
-                                .foregroundStyle(Color(hex: 0x34C759))
+                                .foregroundStyle(AppTheme.accent)
                         }
 
                         LabeledContent("Bundle", value: "com.kitsparkstudio.GomiCalendar")
@@ -263,6 +273,7 @@ struct SettingsView: View {
                     .presentationDetents([.medium, .large])
             }
             .sheet(isPresented: $showPaywall, onDismiss: {
+                selectedAccent = AccentTheme.current
                 Task { await syncLiveActivityForProStatus() }
             }) {
                 PaywallView()
@@ -270,14 +281,74 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $showCustomSchedule) {
                 CustomScheduleOverrideView()
             }
+            .onAppear {
+                selectedAccent = AccentTheme.current
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .accentThemeDidChange)) { _ in
+                selectedAccent = AccentTheme.current
+            }
             .onChange(of: preferences) { _, newValue in
                 newValue.save()
                 Task { await reschedule() }
             }
-            .onChange(of: store.isPro) { _, _ in
+            .onChange(of: store.isPro) { _, isPro in
+                AccentTheme.clampToEntitlement(isPro: isPro)
+                selectedAccent = AccentTheme.current
                 Task { await syncLiveActivityForProStatus() }
             }
         }
+    }
+
+    /// 外观：横向圆形强调色选择器（选中光环；Pro 未解锁显示锁标）。
+    private var accentColorPicker: some View {
+        HStack(spacing: 18) {
+            ForEach(AppTheme.accentOptions) { theme in
+                Button {
+                    selectAccent(theme)
+                } label: {
+                    ZStack {
+                        Circle()
+                            .fill(theme.color)
+                            .frame(width: 36, height: 36)
+                            .shadow(color: theme.color.opacity(selectedAccent == theme ? 0.45 : 0), radius: 6, y: 1)
+
+                        if selectedAccent == theme {
+                            Circle()
+                                .strokeBorder(theme.color.opacity(0.95), lineWidth: 3)
+                                .frame(width: 48, height: 48)
+                        }
+
+                        if theme.requiresPro && !store.isPro {
+                            Image(systemName: "lock.fill")
+                                .font(.caption2.weight(.bold))
+                                .foregroundStyle(.white)
+                                .shadow(color: .black.opacity(0.35), radius: 1, y: 0.5)
+                        }
+                    }
+                    .frame(width: 52, height: 52)
+                    .contentShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text(L10n.t(theme.displayNameKey)))
+                .accessibilityAddTraits(selectedAccent == theme ? .isSelected : [])
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(.vertical, 2)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(Text(L10n.t("settings_accent_color")))
+    }
+
+    private func selectAccent(_ theme: AccentTheme) {
+        if theme.requiresPro, !store.isPro {
+            showPaywall = true
+            return
+        }
+        guard AccentTheme.select(theme, isPro: store.isPro) else {
+            showPaywall = true
+            return
+        }
+        selectedAccent = theme
     }
 
     private func placeRow(_ place: SavedPlace) -> some View {
@@ -289,7 +360,7 @@ struct SettingsView: View {
             } label: {
                 HStack(spacing: 10) {
                     Image(systemName: isActive ? "checkmark.circle.fill" : "circle")
-                        .foregroundStyle(isActive ? Color(hex: 0x34C759) : .secondary)
+                        .foregroundStyle(isActive ? AppTheme.accent : .secondary)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(place.displayTitle())
                             .font(.body.weight(isActive ? .semibold : .regular))
@@ -393,7 +464,7 @@ struct CustomWeekdaysView: View {
                             Spacer()
                             if days.contains(day) {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(Color(hex: 0x34C759))
+                                    .foregroundStyle(AppTheme.accent)
                             }
                         }
                     }

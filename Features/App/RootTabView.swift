@@ -30,7 +30,6 @@ struct RootTabView: View {
                 OnboardingView()
             }
         }
-        .tint(Color(hex: 0x34C759))
         .background(AppTheme.background(for: colorScheme).ignoresSafeArea())
         .environment(\.locale, appLocale)
         .id(selectedLanguage)
