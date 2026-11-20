@@ -7,13 +7,13 @@
   <meta name="description" content="ゴミログ — 日本全国のごみ収集カレンダー。市区町村の自動判定、カスタム収集日、ウィジェット＆ライブアクティビティ対応。" />
   <style>
     :root {
-      --bg: #0e0f12;
-      --surface: rgba(24, 26, 32, 0.78);
-      --surface-solid: #181a20;
+      --bg: #0B0E11;
+      --surface: rgba(22, 26, 30, 0.88);
+      --surface-solid: #161A1E;
       --text: #f4f6fa;
       --muted: #939cad;
-      --cyan: #00d2ff;
-      --orange: #ff6b4a;
+      --cyan: #00D2FF;
+      --orange: #FF6B4A;
       --border: rgba(255, 255, 255, 0.09);
       --ok: #34d399;
     }
@@ -57,19 +57,19 @@
 
     header {
       position: sticky; top: 0; z-index: 60;
-      background: rgba(14, 15, 18, 0.78);
+      background: rgba(11, 14, 17, 0.86);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
     }
     .nav {
       display: flex; align-items: center; justify-content: space-between;
-      height: 68px; gap: 16px;
+      min-height: 68px; gap: 12px; padding: 8px 0; flex-wrap: wrap;
     }
     .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; letter-spacing: 0.4px; color: var(--text); text-decoration: none; }
     .brand:hover { text-decoration: none; }
     .brand-logo-wrap {
       width: 34px; height: 34px; border-radius: 10px; overflow: hidden;
-      background: #202124; display: grid; place-items: center;
+      background: var(--surface-solid); display: grid; place-items: center;
       border: 1px solid rgba(255,255,255,0.12);
       flex-shrink: 0;
     }
@@ -79,14 +79,32 @@
       border-radius: 10px;
       display: block;
     }
-    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links { display: flex; align-items: center; gap: 16px; font-size: 14px; flex-wrap: wrap; justify-content: flex-end; }
     .nav-links a { color: var(--muted); transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .lang-switcher {
+      display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap;
+      padding: 4px 8px; border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent; border: none; cursor: pointer;
+      color: var(--muted); font-size: 11px; font-weight: 600;
+      padding: 3px 5px; border-radius: 6px; transition: 0.15s ease;
+    }
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active {
+      color: #0B0E11; background: linear-gradient(135deg, var(--cyan), #38b6ff);
+    }
+    .lang-sep { color: rgba(255,255,255,0.18); font-size: 10px; user-select: none; }
 
     .hero { padding: 72px 0 44px; text-align: center; }
     .hero-emblem {
       width: 82px; height: 82px; margin: 0 auto 22px;
-      border-radius: 22px; background: #202124;
+      border-radius: 22px; background: var(--surface-solid);
       display: grid; place-items: center;
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: 0 0 45px rgba(0, 210, 255, 0.16), 0 0 45px rgba(255, 107, 74, 0.14);
@@ -106,7 +124,7 @@
       line-height: 1.15;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
-      background: linear-gradient(120deg, #ffffff 30%, #00d2ff 75%, #ff6b4a 100%);
+      background: linear-gradient(120deg, #ffffff 30%, #00D2FF 75%, #FF6B4A 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -115,7 +133,7 @@
     .hero-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
     .btn-primary {
       background: linear-gradient(135deg, var(--cyan), #38b6ff);
-      color: #0b0d10; font-weight: 700; font-size: 14px;
+      color: #0B0E11; font-weight: 700; font-size: 14px;
       padding: 11px 22px; border-radius: 11px; border: none; cursor: pointer;
       transition: transform 0.15s, box-shadow 0.2s;
       text-decoration: none; display: inline-block;
@@ -140,7 +158,7 @@
     }
     .mac-menubar {
       height: 38px; padding: 0 16px;
-      background: rgba(10, 11, 14, 0.92);
+      background: rgba(11, 14, 17, 0.95);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
       font-size: 12px; color: var(--muted); gap: 12px;
@@ -161,9 +179,10 @@
       .demo-stage { grid-template-columns: 1fr; }
       .nav-links { gap: 12px; font-size: 13px; }
       .brand span.brand-text { display: none; }
+      .lang-btn { font-size: 10px; padding: 2px 4px; }
     }
     .cal-card, .ctrl-card {
-      background: rgba(18, 20, 26, 0.88);
+      background: rgba(22, 26, 30, 0.92);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 16px;
@@ -280,7 +299,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page="index" data-i18n-title="title" data-i18n-desc="desc">
   <div class="aura-left"></div>
   <div class="aura-right"></div>
 
@@ -290,25 +309,28 @@
         <span class="brand-logo-wrap"><img src="./studio-logo.jpg" alt="KitSpark Studio" /></span>
         <span class="brand-text">KitSpark Studio</span>
       </a>
-      <nav class="nav-links">
-        <a href="#demo">デモ</a>
-        <a href="#features">機能</a>
-        <a href="#guide">使い方</a>
-        <a href="#support">サポート</a>
-        <a href="privacy.html">プライバシー</a>
-      </nav>
+      <div class="nav-right">
+        <div id="lang-switcher-root"></div>
+        <nav class="nav-links">
+          <a href="#demo" data-i18n="nav_demo">デモ</a>
+          <a href="#features" data-i18n="nav_features">機能</a>
+          <a href="#guide" data-i18n="nav_guide">使い方</a>
+          <a href="#support" data-i18n="nav_support">サポート</a>
+          <a href="privacy.html" data-i18n="nav_privacy">プライバシー</a>
+        </nav>
+      </div>
     </div>
   </header>
 
   <main class="container" id="top">
     <section class="hero">
       <div class="hero-emblem"><img src="logo.png" alt="ゴミログ Logo" /></div>
-      <div class="pill">iOS · iPadOS · Widget · Live Activity</div>
-      <h1>ゴミログ</h1>
-      <p>KitSpark Studio が届ける、在日外国人にもわかりやすい日本のごみ収集カレンダー。全国 1,400 以上の市区町村に対応し、現在地からエリアを自動判定。収集日カスタムは無料。多地区・中／ロック画面ウィジェット・テーマ・ダイナミックアイランド Live Countdown は Pro（¥480 買い切り）で永久解放します。</p>
+      <div class="pill" data-i18n="pill">iOS · iPadOS · Widget · Live Activity</div>
+      <h1 data-i18n="hero_title">ゴミログ</h1>
+      <p data-i18n="hero_lead">KitSpark Studio が届ける、在日外国人にもわかりやすい日本のごみ収集カレンダー。</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="#demo">デモを見る</a>
-        <a class="btn-ghost" href="#support">サポートとプライバシー</a>
+        <a class="btn-primary" href="#demo" data-i18n="cta_demo">デモを見る</a>
+        <a class="btn-ghost" href="#support" data-i18n="cta_support">サポートとプライバシー</a>
       </div>
     </section>
 
@@ -316,137 +338,140 @@
       <div class="mac-frame">
         <div class="mac-menubar">
           <div class="mac-dots"><span></span><span></span><span></span></div>
-          <span>ゴミログ デモ — 曜日をタップして収集区分をプレビュー</span>
+          <span data-i18n="demo_menubar">ゴミログ デモ — 曜日をタップして収集区分をプレビュー</span>
           <span style="width:54px"></span>
         </div>
         <div class="demo-stage">
           <div class="cal-card">
             <div class="cal-head">
-              <h3 id="calMonthLabel">今週の収集</h3>
-              <span>タップで区分を切替</span>
+              <h3 id="calMonthLabel" data-i18n="demo_week_title">今週の収集</h3>
+              <span data-i18n="demo_tap_hint">タップで区分を切替</span>
             </div>
             <div class="weekday" id="weekdayRow"></div>
             <div class="cal-grid" id="calGrid"></div>
             <div class="stats-row">
               <div class="stat">
-                <div class="label">選択中</div>
+                <div class="label" data-i18n="demo_selected">選択中</div>
                 <div class="value orange" id="statCat">可燃ごみ</div>
               </div>
               <div class="stat">
-                <div class="label">指定袋</div>
+                <div class="label" data-i18n="demo_bag">指定袋</div>
                 <div class="value accent" id="statBag">黄色</div>
               </div>
               <div class="stat">
-                <div class="label">締切目安</div>
+                <div class="label" data-i18n="demo_deadline">締切目安</div>
                 <div class="value" id="statDeadline">08:00</div>
               </div>
             </div>
           </div>
           <div class="ctrl-card">
-            <h4>ごみの区分</h4>
+            <h4 data-i18n="demo_cats">ごみの区分</h4>
             <div class="chip-row" id="catRow"></div>
-            <button class="chip-btn" id="resetBtn">デモをリセット</button>
-            <p class="demo-note">デモはページ内のプレビューのみです。正式アプリでは端末と個人 iCloud にのみ保存され、位置情報は市区町村マッチング以外に使いません。</p>
+            <button class="chip-btn" id="resetBtn" data-i18n="demo_reset">デモをリセット</button>
+            <p class="demo-note" data-i18n="demo_note">デモはページ内のプレビューのみです。</p>
           </div>
         </div>
       </div>
     </div>
 
     <section id="features">
-      <h2><span class="dot-cyan"></span><span>コア機能</span></h2>
+      <h2><span class="dot-cyan"></span><span data-i18n="features_h2">コア機能</span></h2>
       <div class="grid">
         <div class="card">
-          <h3>全国 1,400+ 市区町村</h3>
-          <p>47 都道府県・全市区町村カタログから検索。主要都市は詳細カレンダー、その他は標準テンプレートで曜日を調整できます。</p>
+          <h3 data-i18n="f1_t">全国 1,400+ 市区町村</h3>
+          <p data-i18n="f1_p">47 都道府県・全市区町村カタログから検索。</p>
         </div>
         <div class="card">
-          <h3>現在地から即カレンダー</h3>
-          <p>GPS＋日本語住所解析（ja_JP）で都道府県・市区町村を自動マッチ。IP ずれに頼らない、ワンタップ設定。</p>
+          <h3 data-i18n="f2_t">現在地から即カレンダー</h3>
+          <p data-i18n="f2_p">GPS＋日本語住所解析で自動マッチ。</p>
         </div>
         <div class="card">
-          <h3>収集日カスタム</h3>
-          <p>町丁目やマンション規定と違う場合も、「収集日カスタム」で周期・臨時日を自由に上書き。ホームとウィジェットへ即反映。</p>
+          <h3 data-i18n="f3_t">収集日カスタム</h3>
+          <p data-i18n="f3_p">周期・臨時日を自由に上書き。</p>
         </div>
         <div class="card">
-          <h3>ウィジェット＆ライブアクティビティ</h3>
-          <p>ホーム画面の基本ウィジェットは無料。Pro（¥480 買い切り）で多地区管理、中サイズ／ロック画面ウィジェット、テーマ拡張、そしてダイナミックアイランド＆ロック画面のリアルタイム締切カウントダウン（Dynamic Island Live Countdown）を永久解放します。</p>
-          <span class="price-tag">無料ダウンロード ＋ Pro ¥480 買い切り</span>
+          <h3 data-i18n="f4_t">ウィジェット＆ライブアクティビティ</h3>
+          <p data-i18n="f4_p">Pro で多地区・中／ロック画面ウィジェット・テーマ・Dynamic Island Live Countdown を永久解放。</p>
+          <span class="price-tag" data-i18n="price_tag">無料ダウンロード ＋ Pro ¥480 買い切り</span>
         </div>
       </div>
     </section>
 
     <section id="guide">
-      <h2><span class="dot-orange"></span><span>使い方（かんたん 3 ステップ）</span></h2>
+      <h2><span class="dot-orange"></span><span data-i18n="guide_h2">使い方（かんたん 3 ステップ）</span></h2>
       <div class="grid">
         <div class="card">
-          <h3>1. 地区を決める</h3>
-          <p>「現在地から自動設定」を押すか、都道府県 → 市区町村を検索。見つからない場合は手動入力も可能です。</p>
+          <h3 data-i18n="g1_t">1. 地区を決める</h3>
+          <p data-i18n="g1_p">現在地または検索で設定。</p>
         </div>
         <div class="card">
-          <h3>2. 収集日を合わせる</h3>
-          <p>掲示板や自治体案内と違う日があれば「収集日カスタム」で修正。テンプレート地区は可燃曜日の調整も無料です。</p>
+          <h3 data-i18n="g2_t">2. 収集日を合わせる</h3>
+          <p data-i18n="g2_p">収集日カスタムで修正。</p>
         </div>
         <div class="card">
-          <h3>3. リマインドを置く</h3>
-          <p>通知と基本ウィジェットで出し忘れを防止。対応機種のダイナミックアイランド Live Countdown は Pro で利用可能。粗大ごみの予約メモも同梱。</p>
+          <h3 data-i18n="g3_t">3. リマインドを置く</h3>
+          <p data-i18n="g3_p">通知とウィジェットで出し忘れ防止。</p>
         </div>
         <div class="card">
-          <h3>Pro で広がる使い方（¥480 買い切り）</h3>
-          <p>一度の購入で永久解放：① 多地区管理（自宅＋会社／家族）② 中サイズ／ロック画面ウィジェット ③ カスタムテーマカラー ④ ダイナミックアイランド＆ロック画面のリアルタイムカウントダウン（Dynamic Island Live Countdown）。サブスクリプションはありません。</p>
+          <h3 data-i18n="g4_t">Pro で広がる使い方（¥480 買い切り）</h3>
+          <p data-i18n="g4_p">多地区・中／ロック画面ウィジェット・テーマ・Dynamic Island Live Countdown。</p>
         </div>
       </div>
     </section>
 
     <section id="support">
-      <h2><span class="dot-cyan"></span><span>サポートとよくある質問</span></h2>
+      <h2><span class="dot-cyan"></span><span data-i18n="support_h2">サポートとよくある質問</span></h2>
       <div class="card">
         <p style="margin-bottom:18px;">
-          <strong>お問い合わせ：</strong>
+          <strong data-i18n="support_contact">お問い合わせ：</strong>
           <a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a>
         </p>
         <div class="faq-item">
-          <h4>1. 位置情報はどのように使われますか？</h4>
-          <p>市区町村の収集ルールをその場でマッチするためだけに、現在地を一度取得します。位置の履歴保存・追跡・第三者提供はありません。</p>
+          <h4 data-i18n="faq1_q">1. 位置情報はどのように使われますか？</h4>
+          <p data-i18n="faq1_a">市区町村マッチングのため一度だけ取得します。</p>
         </div>
         <div class="faq-item">
-          <h4>2. 無料と Pro の違いは？</h4>
-          <p>収集カレンダー・収集日カスタム・粗大ごみツール・基本リマインダーは無料。Pro（¥480 買い切り）は次を永久解放します：多地区管理、中サイズ／ロック画面ウィジェット、カスタムテーマ、ダイナミックアイランド＆ロック画面のリアルタイム締切カウントダウン（Dynamic Island Live Countdown）。サブスクリプションはありません。</p>
+          <h4 data-i18n="faq2_q">2. 無料と Pro の違いは？</h4>
+          <p data-i18n="faq2_a">Pro は多地区・中／ロック画面ウィジェット・テーマ・Dynamic Island Live Countdown を永久解放。</p>
         </div>
         <div class="faq-item">
-          <h4>3. 購入を復元するには？</h4>
-          <p>アプリ内の Pro 画面で「購入を復元」をタップしてください。Apple StoreKit が Apple ID の権利を確認します。</p>
+          <h4 data-i18n="faq3_q">3. 購入を復元するには？</h4>
+          <p data-i18n="faq3_a">アプリ内 Pro 画面で「購入を復元」。</p>
         </div>
       </div>
     </section>
 
     <section id="privacy">
-      <h2><span class="dot-orange"></span><span>プライバシー（概要）</span></h2>
+      <h2><span class="dot-orange"></span><span data-i18n="privacy_h2">プライバシー（概要）</span></h2>
       <div class="privacy-box">
-        <p>ゴミログはローカルファースト（Local-First）です。地区設定・カスタム収集日・メモは端末と、お客様個人の iCloud 同期領域にのみ保存され、業務サーバーへのアップロードや個人身元の追跡はありません。</p>
+        <p data-i18n="privacy_lead">ゴミログはローカルファースト（Local-First）です。</p>
         <ul>
-          <li>位置情報は市区町村マッチングの一瞬のみ。保存・追跡しません。</li>
-          <li>広告・分析・トラッキング SDK は一切埋め込みません。個人識別データの収集はありません。</li>
-          <li>アプリ内課金は Apple StoreKit が処理し、決済情報は Apple が管理します。</li>
+          <li data-i18n="privacy_li1">位置情報は市区町村マッチングの一瞬のみ。</li>
+          <li data-i18n="privacy_li2">広告・分析・トラッキング SDK は埋め込みません。</li>
+          <li data-i18n="privacy_li3">アプリ内課金は Apple StoreKit が処理します。</li>
         </ul>
-        <p style="margin-top:14px;"><a href="privacy.html">プライバシーポリシー全文を見る →</a></p>
+        <p style="margin-top:14px;"><a href="privacy.html" data-i18n="privacy_link">プライバシーポリシー全文を見る →</a></p>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">© 2026 KitSpark Studio · ゴミログ · <a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a></div>
+    <div class="container">
+      <span data-i18n="footer">© 2026 KitSpark Studio · ゴミログ · </span>
+      <a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a>
+    </div>
   </footer>
 
+  <script src="./i18n.js"></script>
   <script>
     const cats = [
-      { id: "burn", name: "可燃ごみ", bag: "黄色指定袋", color: "#ff6b4a", days: [1, 4] },
-      { id: "plastic", name: "プラスチック", bag: "透明袋", color: "#00d2ff", days: [2] },
+      { id: "burn", name: "可燃ごみ", bag: "黄色指定袋", color: "#FF6B4A", days: [1, 4] },
+      { id: "plastic", name: "プラスチック", bag: "透明袋", color: "#00D2FF", days: [2] },
       { id: "resource", name: "資源ごみ", bag: "透明・紙類", color: "#34d399", days: [3] },
       { id: "nonburn", name: "不燃ごみ", bag: "透明袋", color: "#a78bfa", days: [6] }
     ];
     const weekdays = ["月", "火", "水", "木", "金", "土", "日"];
     let active = cats[0];
-    const map = {};
 
     function paint() {
       document.getElementById("statCat").textContent = active.name;
@@ -460,7 +485,6 @@
         const hit = active.days.includes(d);
         cell.classList.toggle("lit", hit);
         cell.style.setProperty("--cell-dot", active.color);
-        map[d] = hit ? active.id : map[d];
       });
     }
 
@@ -509,6 +533,17 @@
     });
 
     paint();
+
+    // 语言切换时保留 privacy 链接上的 ?lang=
+    document.querySelectorAll('a[href="privacy.html"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const lang = new URLSearchParams(location.search).get("lang")
+          || localStorage.getItem("gomilog_docs_lang")
+          || "ja";
+        e.preventDefault();
+        location.href = "privacy.html?lang=" + encodeURIComponent(lang);
+      });
+    });
   </script>
 </body>
 </html>
