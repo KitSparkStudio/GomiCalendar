@@ -6,23 +6,36 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// 免费：在自治体模板上覆盖收集周期、投放截止时间，并添加临时停收 / 临时收集日。
 struct CustomScheduleOverrideView: View {
     @Environment(AppModel.self) private var appModel
-    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dismiss) private var dismiss
     @AppStorage(AppLanguageCode.storageKey) private var selectedLanguage: String = AppLanguageCode.auto.rawValue
+
     @State private var draft: DistrictScheduleOverride
+    @State private var baselineDraft: DistrictScheduleOverride
     @State private var deadlineText = "08:00"
+    @State private var baselineDeadline = "08:00"
     @State private var showAddTemporary = false
     @State private var tempDate = Date()
     @State private var tempEffect: TemporaryDayEffect = .suspend
     @State private var tempCategory: WasteCategoryID? = nil
-    @State private var didSave = false
+    @State private var didSaveBanner = false
+    @State private var didLoad = false
 
     init() {
-        // 占位；onAppear 用真实 district 填充
-        _draft = State(initialValue: DistrictScheduleOverride(cityId: "", districtId: ""))
+        let empty = DistrictScheduleOverride(cityId: "", districtId: "")
+        _draft = State(initialValue: empty)
+        _baselineDraft = State(initialValue: empty)
+    }
+
+    private var isDirty: Bool {
+        guard didLoad else { return false }
+        return draft != baselineDraft || deadlineText != baselineDeadline
     }
 
     var body: some View {
@@ -34,9 +47,10 @@ struct CustomScheduleOverrideView: View {
             }
 
             Section(L10n.t("override_deadline_section")) {
-                TextField(L10n.t("override_deadline_hint"), text: $deadlineText)
-                    .keyboardType(.numbersAndPunctuation)
-                    .textInputAutocapitalization(.never)
+                HourMinutePicker(
+                    title: L10n.t("override_deadline_section"),
+                    hhmm: $deadlineText
+                )
             }
 
             Section(L10n.t("override_schedules_section")) {
@@ -44,7 +58,11 @@ struct CustomScheduleOverrideView: View {
                     NavigationLink {
                         CategoryScheduleEditor(
                             category: category,
-                            schedule: bindingSchedule(for: category.id)
+                            initial: draft.categorySchedules[category.id.rawValue]
+                                ?? defaultSchedule(for: category.id),
+                            onSave: { saved in
+                                commitCategorySchedule(saved, for: category.id)
+                            }
                         )
                     } label: {
                         HStack {
@@ -80,7 +98,9 @@ struct CustomScheduleOverrideView: View {
                         }
                     }
                     .onDelete { offsets in
-                        draft.temporaryDays.remove(atOffsets: offsets)
+                        var next = draft
+                        next.temporaryDays.remove(atOffsets: offsets)
+                        draft = next
                     }
                 }
                 Button {
@@ -91,17 +111,12 @@ struct CustomScheduleOverrideView: View {
             }
 
             Section {
-                Button(L10n.t("override_save")) {
-                    save()
-                }
-                .font(.headline)
-
                 Button(L10n.t("override_reset"), role: .destructive) {
                     reset()
                 }
             }
 
-            if didSave {
+            if didSaveBanner {
                 Section {
                     Text(L10n.t("override_saved"))
                         .font(.footnote)
@@ -112,6 +127,13 @@ struct CustomScheduleOverrideView: View {
         .navigationTitle(L10n.t("override_title"))
         .navigationBarTitleDisplayMode(.inline)
         .id(selectedLanguage)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                OverrideSaveToolbarButton(isDirty: isDirty) {
+                    persistAndSync(dismissAfter: false)
+                }
+            }
+        }
         .onAppear { loadDraft() }
         .sheet(isPresented: $showAddTemporary) {
             NavigationStack {
@@ -143,10 +165,12 @@ struct CustomScheduleOverrideView: View {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(L10n.t("override_add")) {
                             let ymd = JapanCalendar.ymdString(from: tempDate)
-                            draft.temporaryDays.append(
+                            var next = draft
+                            next.temporaryDays.append(
                                 TemporaryDayRule(ymd: ymd, effect: tempEffect, categoryId: tempCategory)
                             )
-                            draft.temporaryDays.sort { $0.ymd < $1.ymd }
+                            next.temporaryDays.sort { $0.ymd < $1.ymd }
+                            draft = next
                             showAddTemporary = false
                         }
                     }
@@ -165,10 +189,17 @@ struct CustomScheduleOverrideView: View {
         let districtId = appModel.settings.selectedDistrictId
             ?? appModel.config.districts.first?.id
             ?? "home"
-        let savedDeadline = appModel.settings.customDropoffDeadline.trimmingCharacters(in: .whitespacesAndNewlines)
-        deadlineText = savedDeadline.isEmpty ? appModel.config.defaultDropoffDeadline : savedDeadline
-        if let existing = ScheduleOverrideStore.override(cityId: cityId, districtId: districtId) {
-            draft = existing
+        let savedDeadline = appModel.settings.customDropoffDeadline
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let deadline = savedDeadline.isEmpty
+            ? appModel.config.defaultDropoffDeadline
+            : savedDeadline
+
+        let loaded: DistrictScheduleOverride
+        if var existing = ScheduleOverrideStore.override(cityId: cityId, districtId: districtId) {
+            existing.cityId = cityId
+            existing.districtId = districtId
+            loaded = existing
         } else {
             var schedules: [String: CollectionSchedule] = [:]
             if let district = appModel.effectiveConfig.districts.first(where: { $0.id == districtId }) {
@@ -176,32 +207,36 @@ struct CustomScheduleOverrideView: View {
                     schedules[schedule.categoryId.rawValue] = schedule
                 }
             }
-            draft = DistrictScheduleOverride(
+            loaded = DistrictScheduleOverride(
                 cityId: cityId,
                 districtId: districtId,
                 categorySchedules: schedules,
                 temporaryDays: []
             )
         }
+
+        draft = loaded
+        baselineDraft = loaded
+        deadlineText = deadline
+        baselineDeadline = deadline
+        didLoad = true
+        didSaveBanner = false
     }
 
-    private func bindingSchedule(for categoryId: WasteCategoryID) -> Binding<CollectionSchedule> {
-        Binding {
-            if let existing = draft.categorySchedules[categoryId.rawValue] {
-                return existing
-            }
-            return CollectionSchedule(
-                categoryId: categoryId,
-                kind: .weekly,
-                weekdays: [2, 5],
-                weekday: nil,
-                weeksOfMonth: nil,
-                biweeklyAnchor: nil,
-                biweeklyParity: nil
-            )
-        } set: { newValue in
-            draft.categorySchedules[categoryId.rawValue] = newValue
+    private func defaultSchedule(for categoryId: WasteCategoryID) -> CollectionSchedule {
+        if let district = appModel.effectiveConfig.districts.first(where: { $0.id == draft.districtId }),
+           let existing = district.schedules.first(where: { $0.categoryId == categoryId }) {
+            return existing
         }
+        return CollectionSchedule(
+            categoryId: categoryId,
+            kind: .weekly,
+            weekdays: [2, 5],
+            weekday: nil,
+            weeksOfMonth: nil,
+            biweeklyAnchor: nil,
+            biweeklyParity: nil
+        )
     }
 
     private func scheduleSummary(for categoryId: WasteCategoryID) -> String {
@@ -244,25 +279,97 @@ struct CustomScheduleOverrideView: View {
         }
     }
 
-    private func save() {
+    /// 分类编辑页点保存：写入 draft 并立即强制落盘 + 全局同步，再由子页 dismiss。
+    private func commitCategorySchedule(_ schedule: CollectionSchedule, for categoryId: WasteCategoryID) {
+        var next = draft
+        var saved = schedule
+        saved.categoryId = categoryId
+        next.categorySchedules[categoryId.rawValue] = saved
+        if next.cityId.isEmpty {
+            next.cityId = appModel.settings.selectedCityId
+        }
+        if next.districtId.isEmpty {
+            next.districtId = appModel.settings.selectedDistrictId
+                ?? appModel.config.districts.first?.id
+                ?? "home"
+        }
+        draft = next
+        persistAndSync(dismissAfter: false)
+    }
+
+    private func persistAndSync(dismissAfter: Bool) {
+        guard didLoad else { return }
+        var toSave = draft
+        if toSave.cityId.isEmpty {
+            toSave.cityId = appModel.settings.selectedCityId
+        }
+        if toSave.districtId.isEmpty {
+            toSave.districtId = appModel.settings.selectedDistrictId
+                ?? appModel.config.districts.first?.id
+                ?? "home"
+        }
+
         let trimmed = deadlineText.trimmingCharacters(in: .whitespacesAndNewlines)
-        appModel.settings.customDropoffDeadline = trimmed
-        appModel.saveScheduleOverride(draft)
-        didSave = true
+        if JapanCalendar.parseHourMinute(trimmed) != nil {
+            appModel.settings.customDropoffDeadline = trimmed
+            deadlineText = trimmed
+        }
+
+        // 1) App Group 强制写入
+        ScheduleOverrideStore.upsert(toSave)
+        // 2–3) 刷新日历 / 看板 / 通知 / 小组件
+        appModel.saveScheduleOverride(toSave, rescheduleNotifications: true)
+
+        draft = toSave
+        baselineDraft = toSave
+        baselineDeadline = deadlineText
+        didSaveBanner = true
+
+        // 4) 轻触觉
+        #if canImport(UIKit)
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        #endif
+
+        if dismissAfter {
+            dismiss()
+        }
     }
 
     private func reset() {
         appModel.settings.customDropoffDeadline = ""
         appModel.clearScheduleOverride(districtId: draft.districtId)
         loadDraft()
-        didSave = true
+        didSaveBanner = true
+        #if canImport(UIKit)
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        #endif
     }
 }
 
+// MARK: - 单分类收集周期编辑（本地草稿 + 显式保存）
+
 private struct CategoryScheduleEditor: View {
     let category: WasteCategory
-    @Binding var schedule: CollectionSchedule
-    @State private var selectedWeekdays: Set<Int> = []
+    let onSave: (CollectionSchedule) -> Void
+
+    @Environment(\.dismiss) private var dismiss
+    @State private var schedule: CollectionSchedule
+    @State private var baseline: CollectionSchedule
+
+    init(
+        category: WasteCategory,
+        initial: CollectionSchedule,
+        onSave: @escaping (CollectionSchedule) -> Void
+    ) {
+        self.category = category
+        self.onSave = onSave
+        _schedule = State(initialValue: initial)
+        _baseline = State(initialValue: initial)
+    }
+
+    private var isDirty: Bool {
+        schedule != baseline
+    }
 
     var body: some View {
         Form {
@@ -291,7 +398,12 @@ private struct CategoryScheduleEditor: View {
                 Section {
                     Picker(L10n.t("override_weekday"), selection: Binding(
                         get: { schedule.weekday ?? 2 },
-                        set: { schedule.weekday = $0 }
+                        set: {
+                            var next = schedule
+                            next.weekday = $0
+                            next.categoryId = category.id
+                            schedule = next
+                        }
                     )) {
                         ForEach(1...7, id: \.self) { day in
                             Text(weekdayLabel(day)).tag(day)
@@ -309,7 +421,12 @@ private struct CategoryScheduleEditor: View {
                 Section {
                     Picker(L10n.t("override_weekday"), selection: Binding(
                         get: { schedule.weekday ?? 3 },
-                        set: { schedule.weekday = $0 }
+                        set: {
+                            var next = schedule
+                            next.weekday = $0
+                            next.categoryId = category.id
+                            schedule = next
+                        }
                     )) {
                         ForEach(1...7, id: \.self) { day in
                             Text(weekdayLabel(day)).tag(day)
@@ -317,31 +434,75 @@ private struct CategoryScheduleEditor: View {
                     }
                     Picker(L10n.t("override_biweekly_parity"), selection: Binding(
                         get: { schedule.biweeklyParity ?? .odd },
-                        set: { schedule.biweeklyParity = $0 }
+                        set: {
+                            var next = schedule
+                            next.biweeklyParity = $0
+                            next.categoryId = category.id
+                            schedule = next
+                        }
                     )) {
                         Text(L10n.t("override_parity_odd")).tag(BiweeklyParity.odd)
                         Text(L10n.t("override_parity_even")).tag(BiweeklyParity.even)
                     }
-                    TextField(
-                        L10n.t("override_biweekly_anchor"),
-                        text: Binding(
-                            get: { schedule.biweeklyAnchor ?? JapanCalendar.ymdString(from: Date()) },
-                            set: { schedule.biweeklyAnchor = $0 }
+                    YMDDatePicker(
+                        title: L10n.t("override_biweekly_anchor"),
+                        ymd: Binding(
+                            get: {
+                                schedule.biweeklyAnchor
+                                    ?? JapanCalendar.ymdString(from: Date())
+                            },
+                            set: {
+                                var next = schedule
+                                next.biweeklyAnchor = $0
+                                next.categoryId = category.id
+                                schedule = next
+                            }
                         )
                     )
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.numbersAndPunctuation)
                 }
             }
         }
         .navigationTitle(category.names.resolved())
-        .onAppear {
-            selectedWeekdays = Set(schedule.weekdays ?? [])
-            if schedule.kind == .weekly, selectedWeekdays.isEmpty {
-                selectedWeekdays = [2, 5]
-                schedule.weekdays = [2, 5]
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                OverrideSaveToolbarButton(isDirty: isDirty) {
+                    commitSave()
+                }
             }
         }
+        .onAppear {
+            if schedule.kind == .weekly, (schedule.weekdays ?? []).isEmpty {
+                var next = schedule
+                next.weekdays = [2, 5]
+                next.categoryId = category.id
+                schedule = next
+                baseline = next
+            }
+        }
+    }
+
+    private func commitSave() {
+        var next = schedule
+        next.categoryId = category.id
+        // 规范化空数组，避免无效规则写入
+        switch next.kind {
+        case .weekly:
+            if (next.weekdays ?? []).isEmpty { next.weekdays = [2, 5] }
+        case .monthlyNthWeekday:
+            if next.weekday == nil { next.weekday = 2 }
+            if (next.weeksOfMonth ?? []).isEmpty { next.weeksOfMonth = [1, 3] }
+        case .biweekly:
+            if next.weekday == nil { next.weekday = 3 }
+            if next.biweeklyParity == nil { next.biweeklyParity = .odd }
+            if next.biweeklyAnchor == nil {
+                next.biweeklyAnchor = JapanCalendar.ymdString(from: Date())
+            }
+        }
+        schedule = next
+        baseline = next
+        onSave(next) // 父页强制写入 App Group + 刷新日历/通知/小组件 + 触觉
+        dismiss()
     }
 
     private func weekdayBinding(_ day: Int) -> Binding<Bool> {
@@ -351,8 +512,11 @@ private struct CategoryScheduleEditor: View {
                 var days = Set(schedule.weekdays ?? [])
                 if on { days.insert(day) } else { days.remove(day) }
                 if days.isEmpty { days = [day] }
-                schedule.weekdays = days.sorted()
-                schedule.categoryId = category.id
+                var next = schedule
+                next.weekdays = days.sorted()
+                next.categoryId = category.id
+                next.kind = .weekly
+                schedule = next
             }
         )
     }
@@ -364,34 +528,40 @@ private struct CategoryScheduleEditor: View {
                 var weeks = Set(schedule.weeksOfMonth ?? [])
                 if on { weeks.insert(nth) } else { weeks.remove(nth) }
                 if weeks.isEmpty { weeks = [nth] }
-                schedule.weeksOfMonth = weeks.sorted()
-                schedule.categoryId = category.id
+                var next = schedule
+                next.weeksOfMonth = weeks.sorted()
+                next.categoryId = category.id
+                next.kind = .monthlyNthWeekday
+                schedule = next
             }
         )
     }
 
     private func normalize(for kind: CollectionScheduleKind) {
-        schedule.categoryId = category.id
+        var next = schedule
+        next.categoryId = category.id
+        next.kind = kind
         switch kind {
         case .weekly:
-            schedule.weekdays = schedule.weekdays ?? [2, 5]
-            schedule.weekday = nil
-            schedule.weeksOfMonth = nil
-            schedule.biweeklyAnchor = nil
-            schedule.biweeklyParity = nil
+            next.weekdays = next.weekdays ?? [2, 5]
+            next.weekday = nil
+            next.weeksOfMonth = nil
+            next.biweeklyAnchor = nil
+            next.biweeklyParity = nil
         case .monthlyNthWeekday:
-            schedule.weekday = schedule.weekday ?? 2
-            schedule.weeksOfMonth = schedule.weeksOfMonth ?? [1, 3]
-            schedule.weekdays = nil
-            schedule.biweeklyAnchor = nil
-            schedule.biweeklyParity = nil
+            next.weekday = next.weekday ?? 2
+            next.weeksOfMonth = next.weeksOfMonth ?? [1, 3]
+            next.weekdays = nil
+            next.biweeklyAnchor = nil
+            next.biweeklyParity = nil
         case .biweekly:
-            schedule.weekday = schedule.weekday ?? 3
-            schedule.biweeklyParity = schedule.biweeklyParity ?? .odd
-            schedule.biweeklyAnchor = schedule.biweeklyAnchor ?? JapanCalendar.ymdString(from: Date())
-            schedule.weekdays = nil
-            schedule.weeksOfMonth = nil
+            next.weekday = next.weekday ?? 3
+            next.biweeklyParity = next.biweeklyParity ?? .odd
+            next.biweeklyAnchor = next.biweeklyAnchor ?? JapanCalendar.ymdString(from: Date())
+            next.weekdays = nil
+            next.weeksOfMonth = nil
         }
+        schedule = next
     }
 
     private func weekdayLabel(_ day: Int) -> String {
@@ -404,5 +574,35 @@ private struct CategoryScheduleEditor: View {
         case 6: return L10n.t("weekday_sat")
         default: return L10n.t("weekday_sun")
         }
+    }
+}
+
+// MARK: - 右上角唯一「保存」按钮
+
+private struct OverrideSaveToolbarButton: View {
+    let isDirty: Bool
+    let action: () -> Void
+
+    private let accent = Color(hex: 0x34C759)
+
+    var body: some View {
+        Button {
+            guard isDirty else { return }
+            action()
+        } label: {
+            Text(L10n.t("override_save"))
+                .font(.subheadline.weight(.semibold))
+                .padding(.horizontal, isDirty ? 12 : 4)
+                .padding(.vertical, isDirty ? 6 : 4)
+                .foregroundStyle(isDirty ? Color.white : accent)
+                .background {
+                    if isDirty {
+                        Capsule().fill(accent)
+                    }
+                }
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(L10n.t("override_save"))
+        .accessibilityAddTraits(isDirty ? .isButton : [.isButton, .isStaticText])
     }
 }

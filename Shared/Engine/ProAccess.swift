@@ -12,34 +12,18 @@ import Foundation
 enum ProAccess: Sendable {
     nonisolated static let appGroupID = "group.com.kitsparkstudio.gomicalendar"
     nonisolated static let isProKey = "isProUnlocked"
-    #if DEBUG
-    nonisolated static let debugUnlockKey = "debugProUnlock"
-    #endif
 
     nonisolated static var isPro: Bool {
         let defaults = UserDefaults(suiteName: appGroupID) ?? .standard
-        #if DEBUG
-        return defaults.bool(forKey: isProKey) || defaults.bool(forKey: debugUnlockKey)
-        #else
         return defaults.bool(forKey: isProKey)
-        #endif
     }
 
+    /// 写入 App Group，供主 App 与小组件读取。
     nonisolated static func setPro(_ value: Bool) {
         let defaults = UserDefaults(suiteName: appGroupID) ?? .standard
         defaults.set(value, forKey: isProKey)
+        defaults.synchronize()
     }
-
-    #if DEBUG
-    nonisolated static func setDebugUnlock(_ value: Bool) {
-        let defaults = UserDefaults(suiteName: appGroupID) ?? .standard
-        defaults.set(value, forKey: debugUnlockKey)
-    }
-
-    nonisolated static var isDebugUnlocked: Bool {
-        (UserDefaults(suiteName: appGroupID) ?? .standard).bool(forKey: debugUnlockKey)
-    }
-    #endif
 }
 
 enum ProductID {

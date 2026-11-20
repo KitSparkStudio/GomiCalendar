@@ -6,11 +6,8 @@
 //
 
 import SwiftUI
-#if canImport(UIKit)
-import UIKit
-#endif
 
-/// 粗大ごみ工具：随当前选中地区动态切换案内・电话；免费开放。
+/// 粗大ごみ工具：浏览器查询 + 处理券估算 + 预约备忘（免费开放）。
 struct BulkyWasteToolsView: View {
     @Environment(AppModel.self) private var appModel
     @Environment(\.colorScheme) private var colorScheme
@@ -24,7 +21,6 @@ struct BulkyWasteToolsView: View {
     @State private var weightKg = ""
     @State private var memoTitle = ""
     @State private var memoDate = Date()
-    @State private var copyHint: String?
 
     private var placeName: String {
         let city = settings.selectedCityLabel.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -38,10 +34,6 @@ struct BulkyWasteToolsView: View {
         return "\(pref) / \(placeName)"
     }
 
-    private var guideHeader: String {
-        String(format: L10n.t("bulky_guide_header_fmt"), placeName)
-    }
-
     private var estimatedFee: Int? {
         guard let l = Double(lengthCm), let w = Double(widthCm), let h = Double(heightCm) else {
             return nil
@@ -49,56 +41,13 @@ struct BulkyWasteToolsView: View {
         return Self.estimateFeeYen(sumCm: l + w + h, weightKg: Double(weightKg) ?? 0)
     }
 
-    private var phone: String {
-        appModel.config.bulkyWaste.phone.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-
-    private var hasRealPhone: Bool {
-        guard !phone.isEmpty, phone != "—" else { return false }
-        let lower = phone.lowercased()
-        if lower.contains("xxxx") || lower.contains("xxx") { return false }
-        return phone.contains(where: \.isNumber)
-    }
-
     var body: some View {
         Form {
             Section {
                 Text(regionTitle)
                     .font(.headline)
-                Text(guideHeader)
-                    .font(.subheadline.weight(.semibold))
-                Text(appModel.config.bulkyWaste.feeNotes.resolved())
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-
-                if hasRealPhone {
-                    LabeledContent(L10n.t("bulky_hours")) {
-                        Text(appModel.config.bulkyWaste.receptionHours.resolved())
-                            .multilineTextAlignment(.trailing)
-                    }
-                    LabeledContent(L10n.t("bulky_phone"), value: phone)
-                    HStack(spacing: 12) {
-                        Button {
-                            dial(phone)
-                        } label: {
-                            Label(L10n.t("bulky_call"), systemImage: "phone.fill")
-                        }
-                        Button {
-                            copyPhone(phone)
-                        } label: {
-                            Label(L10n.t("bulky_copy"), systemImage: "doc.on.doc")
-                        }
-                    }
-                    if let copyHint {
-                        Text(copyHint)
-                            .font(.caption)
-                            .foregroundStyle(Color(hex: 0x34C759))
-                    }
-                } else {
-                    Text(L10n.t("bulky_unknown_phone"))
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .multilineTextAlignment(.center)
 
                 Button {
                     openSafariSearch()
@@ -112,6 +61,7 @@ struct BulkyWasteToolsView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(Color(hex: 0x34C759))
+                .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
             } header: {
                 Text(L10n.t("bulky_section_info"))
             }
@@ -144,7 +94,7 @@ struct BulkyWasteToolsView: View {
                 DatePicker(
                     L10n.t("bulky_memo_date"),
                     selection: $memoDate,
-                    displayedComponents: [.date]
+                    displayedComponents: [.date, .hourAndMinute]
                 )
                 .environment(\.timeZone, JapanCalendar.timeZone)
                 Button(L10n.t("bulky_memo_save")) {
@@ -166,7 +116,7 @@ struct BulkyWasteToolsView: View {
                     ForEach(settings.bulkyMemos) { memo in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(memo.title).font(.headline)
-                            Text(memo.date.formatted(date: .abbreviated, time: .omitted))
+                            Text(memo.date.formatted(date: .abbreviated, time: .shortened))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                             if let fee = memo.estimatedFeeYen {
@@ -186,19 +136,6 @@ struct BulkyWasteToolsView: View {
         .background(AppTheme.background(for: colorScheme).ignoresSafeArea())
         .navigationTitle(L10n.t("bulky_title"))
         .id("\(selectedLanguage)-\(settings.selectedCityId)-\(settings.selectedCityLabel)")
-    }
-
-    private func dial(_ raw: String) {
-        let digits = raw.filter { $0.isNumber || $0 == "+" }
-        guard let url = URL(string: "tel://\(digits)") else { return }
-        openURL(url)
-    }
-
-    private func copyPhone(_ raw: String) {
-        #if canImport(UIKit)
-        UIPasteboard.general.string = raw
-        #endif
-        copyHint = L10n.t("bulky_copied")
     }
 
     private func openSafariSearch() {

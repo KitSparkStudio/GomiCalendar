@@ -13,7 +13,8 @@ struct HeroWasteCard: View {
     let categories: [WasteCategory]
     let isSuspended: Bool
     let suspensionNote: String?
-    let countdownText: String
+    /// `nil` 时隐藏右上角倒计时胶囊（无收集日等）
+    let countdownText: String?
     let deadline: String
 
     @Environment(\.colorScheme) private var colorScheme
@@ -29,11 +30,15 @@ struct HeroWasteCard: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 8)
-                Text(countdownText)
-                    .font(.headline.monospacedDigit().weight(.bold))
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(.ultraThinMaterial, in: Capsule())
+                if let countdownText, !countdownText.isEmpty {
+                    Text(countdownText)
+                        .font(.caption.weight(.bold))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(.ultraThinMaterial, in: Capsule())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                }
             }
 
             if isSuspended {

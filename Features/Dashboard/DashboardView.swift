@@ -138,6 +138,7 @@ struct DashboardView: View {
 
     private var heroSection: some View {
         let focus = focusDay
+        let hasPickup = !focus.result.categories.isEmpty && !focus.result.isSuspended
         return HeroWasteCard(
             title: focus.isTodayFocus
                 ? L10n.t("hero_title_today")
@@ -148,7 +149,9 @@ struct DashboardView: View {
             categories: focus.result.categories,
             isSuspended: focus.result.isSuspended,
             suspensionNote: focus.result.suspensionNotes?.resolved(),
-            countdownText: countdownText(for: focus.result.date, deadline: focus.result.dropoffDeadline),
+            countdownText: hasPickup
+                ? countdownText(for: focus.result.date, deadline: focus.result.dropoffDeadline)
+                : nil,
             deadline: focus.result.dropoffDeadline
         )
     }
@@ -224,21 +227,28 @@ struct DashboardView: View {
     }
 
     private func countdownText(for collectionDay: Date, deadline: String) -> String {
-        guard let hm = JapanCalendar.parseHourMinute(deadline) else { return "--:--" }
+        guard let hm = JapanCalendar.parseHourMinute(deadline) else { return L10n.t("countdown_passed") }
         var components = JapanCalendar.calendar.dateComponents([.year, .month, .day], from: collectionDay)
         components.hour = hm.hour
         components.minute = hm.minute
         components.second = 0
         components.timeZone = JapanCalendar.timeZone
-        guard let target = JapanCalendar.calendar.date(from: components) else { return "--:--" }
+        guard let target = JapanCalendar.calendar.date(from: components) else {
+            return L10n.t("countdown_passed")
+        }
 
         let remaining = target.timeIntervalSince(now)
         if remaining <= 0 {
             return L10n.t("countdown_passed")
         }
-        let hours = Int(remaining) / 3600
-        let minutes = (Int(remaining) % 3600) / 60
-        return String(format: "%02d:%02d", hours, minutes)
+        let totalSeconds = Int(remaining)
+        let days = totalSeconds / 86_400
+        let hours = (totalSeconds % 86_400) / 3_600
+        let minutes = (totalSeconds % 3_600) / 60
+        if days >= 1 {
+            return String(format: L10n.t("countdown_dh_left"), days, hours)
+        }
+        return String(format: L10n.t("countdown_hm_left"), hours, minutes)
     }
 
     private var nextInfos: [NextCollectionInfo] {

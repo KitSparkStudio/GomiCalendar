@@ -7,10 +7,14 @@
 
 import SwiftUI
 import WidgetKit
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct SettingsView: View {
     @Environment(AppModel.self) private var appModel
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.openURL) private var openURL
     @AppStorage(AppLanguageCode.storageKey) private var selectedLanguage: String = AppLanguageCode.auto.rawValue
     @State private var preferences = NotificationPreferences.load()
     @State private var showDistrictPicker = false
@@ -21,6 +25,32 @@ struct SettingsView: View {
     @State private var authorizationHint: String?
     @State private var store = ProStore.shared
     @State private var liveActivity = GomiLiveActivityManager.shared
+    @State private var supportCopyHint: String?
+
+    private static let supportEmail = "kitspark.support@gmail.com"
+
+    /// 未 Pro：开关恒为关，拨动时弹出付费墙；已 Pro：正常开关。
+    private var liveActivityToggleBinding: Binding<Bool> {
+        Binding(
+            get: { store.isPro && liveActivity.wantsLiveActivity },
+            set: { enabled in
+                guard store.isPro else {
+                    showPaywall = true
+                    return
+                }
+                liveActivity.wantsLiveActivity = enabled
+                Task {
+                    if enabled {
+                        await liveActivity.syncAutomatically {
+                            LiveActivityPayloadBuilder.make(from: appModel)
+                        }
+                    } else {
+                        await liveActivity.endAll(markPreference: true)
+                    }
+                }
+            }
+        )
+    }
 
     var body: some View {
         NavigationStack {
@@ -41,7 +71,6 @@ struct SettingsView: View {
                     }
 
                     Section(L10n.t("settings_region_info_section")) {
-                        LabeledContent(L10n.t("settings_city"), value: regionLabel)
                         LabeledContent(
                             L10n.t("settings_fiscal_year"),
                             value: appModel.config.displayFiscalYear
@@ -50,29 +79,6 @@ struct SettingsView: View {
                             L10n.t("settings_rules_version"),
                             value: appModel.config.displayVersion
                         )
-                        LabeledContent(
-                            L10n.t("settings_rules_updated_at"),
-                            value: appModel.config.displayLastUpdated
-                        )
-                        Button {
-                            Task {
-                                await appModel.checkRuleUpdates(userInitiated: true)
-                            }
-                        } label: {
-                            HStack {
-                                Label(L10n.t("settings_check_rules"), systemImage: "arrow.triangle.2.circlepath")
-                                Spacer()
-                                if appModel.isCheckingRules {
-                                    ProgressView()
-                                }
-                            }
-                        }
-                        .disabled(appModel.isCheckingRules)
-                        if let message = appModel.ruleUpdateMessage {
-                            Text(message)
-                                .font(.footnote)
-                                .foregroundStyle(.secondary)
-                        }
                     }
 
                     Section {
@@ -123,6 +129,29 @@ struct SettingsView: View {
                             CustomScheduleOverrideView()
                         }
 
+                        Toggle(L10n.t("settings_evening_reminder"), isOn: $preferences.eveningEnabled)
+                        if preferences.eveningEnabled {
+                            HourMinutePicker(
+                                title: L10n.t("settings_evening_time"),
+                                hhmm: $preferences.eveningTime
+                            )
+                        }
+                        Toggle(L10n.t("settings_morning_reminder"), isOn: $preferences.morningEnabled)
+                        if preferences.morningEnabled {
+                            HourMinutePicker(
+                                title: L10n.t("settings_morning_time"),
+                                hhmm: $preferences.morningTime
+                            )
+                        }
+                        Button(L10n.t("settings_reschedule_notifications")) {
+                            Task { await reschedule() }
+                        }
+                        if let authorizationHint {
+                            Text(authorizationHint)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+
                         ScheduleAccuracyBanner(
                             onDismiss: nil,
                             onOpenCustomSchedule: { showCustomSchedule = true }
@@ -157,58 +186,63 @@ struct SettingsView: View {
                                 Label(L10n.t("settings_upgrade_pro"), systemImage: "star.circle.fill")
                             }
                         }
-                        Text(L10n.t("settings_pro_includes"))
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
                     }
 
-                    Section(L10n.t("settings_notifications_section")) {
-                        Toggle(L10n.t("settings_evening_reminder"), isOn: $preferences.eveningEnabled)
-                        if preferences.eveningEnabled {
-                            TextField(L10n.t("settings_evening_time"), text: $preferences.eveningTime)
-                                .keyboardType(.numbersAndPunctuation)
-                                .textInputAutocapitalization(.never)
-                        }
-                        Toggle(L10n.t("settings_morning_reminder"), isOn: $preferences.morningEnabled)
-                        if preferences.morningEnabled {
-                            TextField(L10n.t("settings_morning_time"), text: $preferences.morningTime)
-                                .keyboardType(.numbersAndPunctuation)
-                                .textInputAutocapitalization(.never)
-                        }
-                        if DeviceCapability.hasDynamicIsland {
-                            Toggle(
-                                L10n.t("settings_live_activity"),
-                                isOn: Binding(
-                                    get: { liveActivity.wantsLiveActivity },
-                                    set: { enabled in
-                                        liveActivity.wantsLiveActivity = enabled
-                                        Task {
-                                            if enabled {
-                                                await liveActivity.syncAutomatically {
-                                                    LiveActivityPayloadBuilder.make(from: appModel)
-                                                }
-                                            } else {
-                                                await liveActivity.endAll(markPreference: true)
-                                            }
-                                        }
+                    if DeviceCapability.hasDynamicIsland {
+                        Section(L10n.t("settings_notifications_section")) {
+                            Toggle(isOn: liveActivityToggleBinding) {
+                                HStack(spacing: 8) {
+                                    Text(L10n.t("settings_live_activity"))
+                                    if !store.isPro {
+                                        Text("PRO")
+                                            .font(.caption2.weight(.bold))
+                                            .padding(.horizontal, 7)
+                                            .padding(.vertical, 3)
+                                            .foregroundStyle(.white)
+                                            .background(Color(hex: 0x34C759), in: Capsule())
                                     }
-                                )
-                            )
-                        }
-                        Button(L10n.t("settings_reschedule_notifications")) {
-                            Task { await reschedule() }
-                        }
-                        if let authorizationHint {
-                            Text(authorizationHint)
-                                .font(.footnote)
-                                .foregroundStyle(.secondary)
+                                }
+                            }
                         }
                     }
 
                     Section(L10n.t("settings_about_section")) {
-                        LabeledContent(L10n.t("settings_studio"), value: "KitSpark Studio")
-                        LabeledContent(L10n.t("settings_city"), value: appModel.settings.selectedCityLabel)
-                        LabeledContent("App", value: "ゴミログ")
+                        LabeledContent("App", value: appVersionLabel)
+
+                        Button {
+                            openSupportEmail()
+                        } label: {
+                            HStack {
+                                Text(L10n.t("settings_support"))
+                                    .foregroundStyle(.primary)
+                                Spacer()
+                                Text(Self.supportEmail)
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.trailing)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.75)
+                            }
+                        }
+                        .buttonStyle(.plain)
+                        .contextMenu {
+                            Button {
+                                openSupportEmail()
+                            } label: {
+                                Label(L10n.t("settings_support_mail"), systemImage: "envelope")
+                            }
+                            Button {
+                                copySupportEmail()
+                            } label: {
+                                Label(L10n.t("settings_support_copy"), systemImage: "doc.on.doc")
+                            }
+                        }
+                        if let supportCopyHint {
+                            Text(supportCopyHint)
+                                .font(.caption)
+                                .foregroundStyle(Color(hex: 0x34C759))
+                        }
+
                         LabeledContent("Bundle", value: "com.kitsparkstudio.GomiCalendar")
                     }
                 }
@@ -228,7 +262,9 @@ struct SettingsView: View {
                 RegionPickerSheet()
                     .presentationDetents([.medium, .large])
             }
-            .sheet(isPresented: $showPaywall) {
+            .sheet(isPresented: $showPaywall, onDismiss: {
+                Task { await syncLiveActivityForProStatus() }
+            }) {
                 PaywallView()
             }
             .navigationDestination(isPresented: $showCustomSchedule) {
@@ -237,6 +273,9 @@ struct SettingsView: View {
             .onChange(of: preferences) { _, newValue in
                 newValue.save()
                 Task { await reschedule() }
+            }
+            .onChange(of: store.isPro) { _, _ in
+                Task { await syncLiveActivityForProStatus() }
             }
         }
     }
@@ -284,6 +323,31 @@ struct SettingsView: View {
         return "\(pref) / \(city)"
     }
 
+    private var appVersionLabel: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        if let build, !build.isEmpty, build != version {
+            return "ゴミログ \(version) (\(build))"
+        }
+        return "ゴミログ \(version)"
+    }
+
+    private func openSupportEmail() {
+        var components = URLComponents()
+        components.scheme = "mailto"
+        components.path = Self.supportEmail
+        if let url = components.url {
+            openURL(url)
+        }
+    }
+
+    private func copySupportEmail() {
+        #if canImport(UIKit)
+        UIPasteboard.general.string = Self.supportEmail
+        #endif
+        supportCopyHint = L10n.t("bulky_copied")
+    }
+
     private func reschedule() async {
         guard let districtId = appModel.settings.selectedDistrictId else { return }
         let ok = await NotificationScheduler.shared.requestAuthorizationIfNeeded()
@@ -294,6 +358,16 @@ struct SettingsView: View {
             preferences: preferences,
             temporaryRules: appModel.activeTemporaryRules
         )
+    }
+
+    private func syncLiveActivityForProStatus() async {
+        if store.isPro {
+            await liveActivity.syncAutomatically {
+                LiveActivityPayloadBuilder.make(from: appModel)
+            }
+        } else {
+            await liveActivity.endAll(markPreference: false)
+        }
     }
 }
 
@@ -455,7 +529,8 @@ struct RegionPickerSheet: View {
                 NavigationStack {
                     CustomScheduleOverrideView()
                         .toolbar {
-                            ToolbarItem(placement: .confirmationAction) {
+                            // Sheet 无系统返回键：关闭放 leading，避免与右上角「保存」抢 confirmation 位
+                            ToolbarItem(placement: .cancellationAction) {
                                 Button(L10n.t("close")) { showSchedule = false }
                             }
                         }

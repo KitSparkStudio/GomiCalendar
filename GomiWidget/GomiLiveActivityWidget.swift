@@ -15,33 +15,36 @@ struct GomiLiveActivityWidget: Widget {
         ActivityConfiguration(for: GomiActivityAttributes.self) { context in
             LockScreenLiveActivityView(context: context)
         } dynamicIsland: { context in
-            DynamicIsland {
+            let tint = Color(hexString: context.attributes.themeColorHex)
+            let deadline = context.state.deadline
+            return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    glowingIcon(
-                        symbol: context.attributes.symbolName,
-                        hex: context.attributes.themeColorHex,
-                        size: 30
-                    )
-                    .padding(.leading, 6)
+                    Image(systemName: context.attributes.symbolName)
+                        .font(.title3.weight(.bold))
+                        .foregroundStyle(tint)
+                        .padding(.leading, 4)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    countdownText(deadline: context.attributes.deadlineDate)
-                        .font(.title2.monospacedDigit().weight(.bold))
-                        .foregroundStyle(.white)
-                        .padding(.trailing, 8)
+                    // 给 H:MM:SS 足够宽度，避免秒位变成 `--`
+                    DualTimeStack(
+                        deadline: deadline,
+                        style: .expanded
+                    )
+                    .frame(minWidth: 88, alignment: .trailing)
+                    .padding(.trailing, 4)
                 }
                 DynamicIslandExpandedRegion(.center) {
-                    VStack(spacing: 3) {
+                    VStack(spacing: 2) {
                         Text(context.attributes.categoryName)
                             .font(.headline.weight(.bold))
                             .foregroundStyle(.white)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.8)
+                            .minimumScaleFactor(0.75)
                         Text(context.attributes.bagTypeLabel)
                             .font(.caption2.weight(.semibold))
-                            .foregroundStyle(Color(hexString: context.attributes.themeColorHex))
+                            .foregroundStyle(tint)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.8)
+                            .minimumScaleFactor(0.75)
                     }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
@@ -49,69 +52,100 @@ struct GomiLiveActivityWidget: Widget {
                         .padding(.top, 4)
                 }
             } compactLeading: {
-                glowingIcon(
-                    symbol: context.attributes.symbolName,
-                    hex: context.attributes.themeColorHex,
-                    size: 16
-                )
+                HStack(spacing: 3) {
+                    Image(systemName: context.attributes.symbolName)
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundStyle(tint)
+                    Text(context.attributes.compactCategoryLabel)
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
             } compactTrailing: {
-                countdownText(deadline: context.attributes.deadlineDate)
-                    .font(.caption.monospacedDigit().weight(.bold))
-                    .foregroundStyle(.white)
-                    .frame(minWidth: 44)
-                    .padding(.trailing, 2)
-            } minimal: {
-                Circle()
-                    .fill(Color(hexString: context.attributes.themeColorHex))
-                    .frame(width: 14, height: 14)
-                    .overlay(
-                        Image(systemName: context.attributes.symbolName)
-                            .font(.system(size: 7, weight: .bold))
-                            .foregroundStyle(.white)
-                    )
-                    .shadow(color: Color(hexString: context.attributes.themeColorHex).opacity(0.85), radius: 3)
-            }
-            .keylineTint(Color(hexString: context.attributes.themeColorHex))
-        }
-    }
-
-    @ViewBuilder
-    private func countdownText(deadline: Date) -> some View {
-        if deadline > Date() {
-            Text(timerInterval: Date.now...deadline, countsDown: true)
-                .multilineTextAlignment(.trailing)
-                .monospacedDigit()
-        } else {
-            Text("0:00")
-                .monospacedDigit()
-        }
-    }
-
-    private func glowingIcon(symbol: String, hex: String, size: CGFloat) -> some View {
-        let color = Color(hexString: hex)
-        return ZStack {
-            Circle()
-                .fill(color.opacity(0.4))
-                .frame(width: size + 10, height: size + 10)
-                .blur(radius: 4)
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [color.opacity(0.95), color.opacity(0.55)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
+                DualTimeStack(
+                    deadline: deadline,
+                    style: .compact
                 )
-                .frame(width: size + 4, height: size + 4)
-                .shadow(color: color.opacity(0.9), radius: 5, y: 1)
-            Image(systemName: symbol)
-                .font(.system(size: size * 0.55, weight: .bold))
-                .foregroundStyle(.white)
+                .frame(width: 48, alignment: .trailing)
+            } minimal: {
+                Image(systemName: context.attributes.symbolName)
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(tint)
+            }
+            .keylineTint(tint)
         }
     }
 }
 
-// MARK: - Lock screen / banner (expanded-style card)
+// MARK: - 倒计时 +「08:00 前」双层时间
+
+private enum DualTimeStyle {
+    case expanded
+    case compact
+    case lockScreen
+}
+
+private struct DualTimeStack: View {
+    let deadline: Date
+    let style: DualTimeStyle
+
+    var body: some View {
+        let byLabel = String(
+            format: L10n.t("live_activity_by_time"),
+            LiveActivityTimeFormat.hhmm(deadline)
+        )
+        VStack(alignment: .trailing, spacing: style == .compact ? 0 : 2) {
+            // 主：实时倒计时
+            Group {
+                if deadline > Date.now {
+                    Text(timerInterval: Date.now...deadline, countsDown: true)
+                        .monospacedDigit()
+                        .lineLimit(1)
+                        .minimumScaleFactor(style == .compact ? 0.7 : 0.75)
+                        .multilineTextAlignment(.trailing)
+                } else {
+                    Text(L10n.t("countdown_passed"))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                }
+            }
+            .font(primaryFont)
+            .fontWeight(.bold)
+            .foregroundStyle(.white)
+
+            // 副：具体截止「08:00 前」
+            Text(byLabel)
+                .font(secondaryFont)
+                .foregroundStyle(style == .compact ? Color.white.opacity(0.55) : Color.white.opacity(0.65))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
+        .environment(\.timeZone, JapanCalendar.timeZone)
+    }
+
+    private var primaryFont: Font {
+        switch style {
+        case .compact:
+            return .system(size: 11, weight: .bold)
+        case .expanded:
+            return .title3
+        case .lockScreen:
+            return .title2
+        }
+    }
+
+    private var secondaryFont: Font {
+        switch style {
+        case .compact:
+            return .system(size: 8, weight: .medium)
+        case .expanded, .lockScreen:
+            return .caption2.weight(.semibold)
+        }
+    }
+}
+
+// MARK: - Lock screen / banner
 
 private struct LockScreenLiveActivityView: View {
     let context: ActivityViewContext<GomiActivityAttributes>
@@ -121,25 +155,14 @@ private struct LockScreenLiveActivityView: View {
         HStack(spacing: 14) {
             ZStack {
                 Circle()
-                    .fill(color.opacity(0.3))
-                    .frame(width: 52, height: 52)
-                    .blur(radius: 3)
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [color, color.opacity(0.6)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 44, height: 44)
-                    .shadow(color: color.opacity(0.7), radius: 8, y: 2)
+                    .fill(color.opacity(0.85))
+                    .frame(width: 40, height: 40)
                 Image(systemName: context.attributes.symbolName)
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundStyle(.white)
             }
 
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(context.attributes.categoryName)
                     .font(.headline.weight(.bold))
                     .foregroundStyle(.white)
@@ -160,21 +183,11 @@ private struct LockScreenLiveActivityView: View {
 
             Spacer(minLength: 8)
 
-            VStack(alignment: .trailing, spacing: 2) {
-                Text(L10n.t("live_activity_until"))
-                    .font(.caption2)
-                    .foregroundStyle(.white.opacity(0.5))
-                if context.attributes.deadlineDate > Date() {
-                    Text(timerInterval: Date.now...context.attributes.deadlineDate, countsDown: true)
-                        .font(.title2.monospacedDigit().weight(.bold))
-                        .foregroundStyle(.white)
-                        .multilineTextAlignment(.trailing)
-                } else {
-                    Text("0:00")
-                        .font(.title2.monospacedDigit().weight(.bold))
-                        .foregroundStyle(.white)
-                }
-            }
+            DualTimeStack(
+                deadline: context.state.deadline,
+                style: .lockScreen
+            )
+            .frame(minWidth: 96, alignment: .trailing)
         }
         .padding(16)
         .background {
@@ -194,7 +207,7 @@ private struct LockScreenLiveActivityView: View {
     }
 }
 
-// MARK: - Expanded bottom
+// MARK: - Expanded bottom（唯一打卡控件）
 
 private struct ExpandedBottomBar: View {
     let attributes: GomiActivityAttributes
@@ -202,14 +215,15 @@ private struct ExpandedBottomBar: View {
 
     var body: some View {
         let color = Color(hexString: attributes.themeColorHex)
-        VStack(spacing: 8) {
+        Group {
             if state.isCompleted {
-                Text(L10n.t("live_activity_status_done"))
+                Label(L10n.t("live_activity_status_done"), systemImage: "checkmark.circle.fill")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
                     .background(color.opacity(0.28), in: Capsule())
+                    .labelStyle(.titleAndIcon)
             } else {
                 Button(intent: CompleteGomiDropIntent()) {
                     Label(L10n.t("live_activity_mark_done"), systemImage: "checkmark.circle.fill")
@@ -225,12 +239,20 @@ private struct ExpandedBottomBar: View {
                             in: Capsule()
                         )
                         .foregroundStyle(.white)
+                        .labelStyle(.titleAndIcon)
                 }
                 .buttonStyle(.plain)
             }
         }
         .padding(.horizontal, 4)
         .padding(.bottom, 4)
+    }
+}
+
+private enum LiveActivityTimeFormat {
+    static func hhmm(_ date: Date) -> String {
+        let parts = JapanCalendar.calendar.dateComponents([.hour, .minute], from: date)
+        return String(format: "%02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
     }
 }
 

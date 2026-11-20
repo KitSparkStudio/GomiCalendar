@@ -56,20 +56,22 @@ final class GomiLiveActivityManager {
     }
 
     /// 静默同步：有待投放则启动/刷新；无收集则结束；不改动用户偏好。
+    /// Live Activity 为 Pro 权益：未付费绝不自动启动；退款后清理运行中的活动。
     func syncAutomatically(payloadProvider: () -> LiveActivityLaunchPayload?) async {
         lastError = nil
-        guard DeviceCapability.hasDynamicIsland else {
-            await endAll(markPreference: false)
+        // 先清僵尸活动，避免黑岛叠层
+        await endAll(markPreference: false)
+
+        guard DeviceCapability.hasDynamicIsland else { return }
+        guard ProAccess.isPro else {
+            // 免费版 / 退款撤销：保持已结束，不启新岛
             return
         }
-        guard wantsLiveActivity else {
-            await endAll(markPreference: false)
-            return
-        }
+        guard wantsLiveActivity else { return }
 
         let now = Date()
         guard let payload = payloadProvider(), payload.deadlineDate > now else {
-            await endAll(markPreference: false)
+            // 今日/明日无收集：保持已结束，不启新岛
             return
         }
 
@@ -81,10 +83,14 @@ final class GomiLiveActivityManager {
         await syncAutomatically(payloadProvider: payloadProvider)
     }
 
-    /// 开启或刷新灵动岛倒计时。
+    /// 开启或刷新灵动岛倒计时（仅 Pro）。
     @discardableResult
     func start(payload: LiveActivityLaunchPayload, preservePreference: Bool = true) async -> Bool {
         lastError = nil
+        guard ProAccess.isPro else {
+            await endAll(markPreference: false)
+            return false
+        }
         guard areActivitiesEnabled else {
             lastError = L10n.t("live_activity_disabled")
             await endAll(markPreference: false)
@@ -96,10 +102,12 @@ final class GomiLiveActivityManager {
             return false
         }
 
+        // 启动前再次清掉残留（含 sync 之外的直接 start 调用）
         await endAll(markPreference: false)
 
         let attributes = GomiActivityAttributes(
             categoryName: payload.categoryName,
+            compactCategoryLabel: GomiActivityAttributes.compactLabel(for: payload.categoryId),
             themeColorHex: payload.themeColorHex,
             bagTypeLabel: payload.bagTypeLabel,
             districtName: payload.districtName,
@@ -108,15 +116,17 @@ final class GomiLiveActivityManager {
         )
         let state = GomiActivityAttributes.ContentState(
             isCompleted: false,
-            statusCaption: L10n.t("live_activity_status_counting")
+            statusCaption: L10n.t("live_activity_status_counting"),
+            deadline: payload.deadlineDate
         )
 
         do {
-            _ = try Activity.request(
+            let activity = try Activity.request(
                 attributes: attributes,
                 content: ActivityContent(state: state, staleDate: payload.deadlineDate),
                 pushType: nil
             )
+            _ = activity.id
             if !preservePreference {
                 wantsLiveActivity = true
             }
@@ -133,7 +143,8 @@ final class GomiLiveActivityManager {
         for activity in Activity<GomiActivityAttributes>.activities {
             let done = GomiActivityAttributes.ContentState(
                 isCompleted: true,
-                statusCaption: L10n.t("live_activity_status_done")
+                statusCaption: L10n.t("live_activity_status_done"),
+                deadline: activity.attributes.deadlineDate
             )
             await activity.end(
                 ActivityContent(state: done, staleDate: Date()),

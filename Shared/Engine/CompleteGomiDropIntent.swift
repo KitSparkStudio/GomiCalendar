@@ -48,7 +48,8 @@ struct CompleteGomiDropIntent: LiveActivityIntent {
         for activity in Activity<GomiActivityAttributes>.activities {
             let done = GomiActivityAttributes.ContentState(
                 isCompleted: true,
-                statusCaption: "Done"
+                statusCaption: L10n.t("live_activity_status_done"),
+                deadline: activity.attributes.deadlineDate
             )
             await activity.end(
                 ActivityContent(state: done, staleDate: .now),

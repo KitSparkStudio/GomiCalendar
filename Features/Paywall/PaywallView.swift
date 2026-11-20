@@ -16,6 +16,15 @@ struct PaywallView: View {
     @Environment(\.colorScheme) private var colorScheme
     @AppStorage(AppLanguageCode.storageKey) private var selectedLanguage: String = AppLanguageCode.auto.rawValue
     @State private var store = ProStore.shared
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
+    @State private var showAlert = false
+    @State private var dismissAfterAlert = false
+
+    /// 仅在商品列表为空且未加载中时显示重新加载。
+    private var shouldShowReloadButton: Bool {
+        !store.isLoading && store.lifetime == nil
+    }
 
     var body: some View {
         NavigationStack {
@@ -27,9 +36,6 @@ struct PaywallView: View {
                         header
                         benefits
                         lifetimeCard
-                        #if DEBUG
-                        debugUnlock
-                        #endif
                         legal
                         restoreButton
                     }
@@ -47,6 +53,15 @@ struct PaywallView: View {
             .task {
                 store.startIfNeeded()
                 await store.refresh()
+            }
+            .alert(alertTitle, isPresented: $showAlert) {
+                Button(L10n.t("close")) {
+                    if dismissAfterAlert {
+                        dismiss()
+                    }
+                }
+            } message: {
+                Text(alertMessage)
             }
         }
     }
@@ -70,6 +85,7 @@ struct PaywallView: View {
         VStack(alignment: .leading, spacing: 10) {
             benefitRow(L10n.t("paywall_benefit_multi"))
             benefitRow(L10n.t("paywall_benefit_widgets"))
+            benefitRow(L10n.t("paywall_benefit_live_activity"))
             benefitRow(L10n.t("paywall_benefit_theme"))
         }
         .padding(16)
@@ -97,50 +113,43 @@ struct PaywallView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(16)
-            }
-
-            Button {
-                haptic()
-                Task {
-                    let ok = await store.purchaseLifetime()
-                    if ok {
-                        hapticSuccess()
-                        dismiss()
-                    }
-                }
-            } label: {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(L10n.t("paywall_lifetime_badge"))
-                            .font(.headline)
-                        Text(L10n.t("paywall_lifetime_detail"))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        if let product = store.lifetime {
+                .background(AppTheme.card(for: colorScheme), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            } else if let product = store.lifetime {
+                Button {
+                    haptic()
+                    Task { await purchase(product) }
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(L10n.t("paywall_lifetime_badge"))
+                                .font(.headline)
+                            Text(L10n.t("paywall_lifetime_detail"))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                             Text(product.displayName)
                                 .font(.caption2)
                                 .foregroundStyle(.tertiary)
                         }
+                        Spacer()
+                        if store.purchasingProductID == ProductID.lifetime {
+                            ProgressView()
+                        } else {
+                            Text(product.displayPrice)
+                                .font(.title2.weight(.bold))
+                        }
                     }
-                    Spacer()
-                    if store.purchasingProductID == ProductID.lifetime || store.isLoading {
-                        ProgressView()
-                    } else {
-                        Text(store.lifetime?.displayPrice ?? "¥480")
-                            .font(.title2.weight(.bold))
-                    }
+                    .padding(18)
+                    .background(AppTheme.card(for: colorScheme), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .strokeBorder(Color(hex: 0x34C759).opacity(0.5), lineWidth: 2)
+                    )
                 }
-                .padding(18)
-                .background(AppTheme.card(for: colorScheme), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .strokeBorder(Color(hex: 0x34C759).opacity(0.5), lineWidth: 2)
-                )
+                .buttonStyle(.plain)
+                .disabled(store.isPro || store.purchasingProductID != nil)
             }
-            .buttonStyle(.plain)
-            .disabled(store.isPro || store.purchasingProductID != nil)
 
-            if store.lifetime == nil && !store.isLoading {
+            if shouldShowReloadButton {
                 Button {
                     haptic()
                     Task { await store.refresh() }
@@ -161,31 +170,6 @@ struct PaywallView: View {
         }
     }
 
-    #if DEBUG
-    private var debugUnlock: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(L10n.t("paywall_debug_section"))
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-            Button {
-                haptic()
-                store.unlockForDebugTesting()
-                hapticSuccess()
-                dismiss()
-            } label: {
-                Label(L10n.t("paywall_debug_unlock"), systemImage: "hammer.fill")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding(14)
-                    .background(Color.orange.opacity(0.2), in: RoundedRectangle(cornerRadius: 12))
-                    .foregroundStyle(.orange)
-            }
-            .buttonStyle(.plain)
-        }
-        .padding(.top, 4)
-    }
-    #endif
-
     private var legal: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(L10n.t("paywall_legal_title"))
@@ -203,13 +187,64 @@ struct PaywallView: View {
     }
 
     private var restoreButton: some View {
-        Button(L10n.t("paywall_restore")) {
+        Button {
             haptic()
-            Task { await store.restore() }
+            Task { await restorePurchases() }
+        } label: {
+            HStack {
+                if store.isLoading && store.purchasingProductID == nil && store.lifetime != nil {
+                    ProgressView()
+                }
+                Text(L10n.t("paywall_restore"))
+                    .font(.headline)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
         }
-        .font(.headline)
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 12)
+        .disabled(store.isLoading && store.purchasingProductID != nil)
+    }
+
+    private func purchase(_ product: Product) async {
+        let ok = await store.purchase(product)
+        if ok {
+            hapticSuccess()
+            presentAlert(
+                title: L10n.t("paywall_purchase_success_title"),
+                message: store.lastSuccessMessage ?? L10n.t("paywall_purchase_success"),
+                dismissAfter: true
+            )
+        } else if let error = store.lastErrorMessage {
+            presentAlert(
+                title: L10n.t("paywall_title"),
+                message: error,
+                dismissAfter: false
+            )
+        }
+    }
+
+    private func restorePurchases() async {
+        let ok = await store.restore()
+        if ok {
+            hapticSuccess()
+            presentAlert(
+                title: L10n.t("paywall_restore_success_title"),
+                message: store.lastSuccessMessage ?? L10n.t("paywall_restore_success"),
+                dismissAfter: true
+            )
+        } else {
+            presentAlert(
+                title: L10n.t("paywall_restore"),
+                message: store.lastErrorMessage ?? L10n.t("paywall_restore_empty"),
+                dismissAfter: false
+            )
+        }
+    }
+
+    private func presentAlert(title: String, message: String, dismissAfter: Bool) {
+        alertTitle = title
+        alertMessage = message
+        dismissAfterAlert = dismissAfter
+        showAlert = true
     }
 
     private func haptic() {

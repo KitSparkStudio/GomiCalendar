@@ -3874,6 +3874,9 @@
         }
       }
     },
+    "PRO" : {
+
+    },
     "select_district" : {
       "extractionState" : "stale",
       "localizations" : {

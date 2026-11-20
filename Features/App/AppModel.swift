@@ -302,10 +302,12 @@ final class AppModel {
         reloadCity(settings.selectedCityId, displayNameJa: settings.selectedCityLabel)
     }
 
-    func saveScheduleOverride(_ override: DistrictScheduleOverride) {
+    func saveScheduleOverride(_ override: DistrictScheduleOverride, rescheduleNotifications: Bool = true) {
         ScheduleOverrideStore.upsert(override)
         bumpSchedule()
-        Task { await rescheduleNotifications() }
+        if rescheduleNotifications {
+            Task { await self.rescheduleNotifications() }
+        }
     }
 
     func clearScheduleOverride(districtId: String) {

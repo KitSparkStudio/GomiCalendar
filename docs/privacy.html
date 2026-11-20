@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>プライバシーポリシー · ゴミログ · KitSpark Studio</title>
-  <meta name="description" content="ゴミログのプライバシーポリシー — ローカルファースト。位置情報は市区町村マッチングのみに使用し、保存・追跡しません。" />
+  <meta name="description" content="ゴミログのプライバシーポリシー — Local-First。端末と個人 iCloud のみに保存。個人識別・追跡データは収集しません。" />
   <style>
     :root {
       --bg: #0e0f12;
@@ -112,10 +112,10 @@
 
   <main class="container">
     <h1>ゴミログ プライバシーポリシー</h1>
-    <p class="updated">最終更新：2026-11-20 · 対象：iOS / iPadOS（ウィジェット・ライブアクティビティを含む）</p>
+    <p class="updated">最終更新：2026-11-21 · 対象：iOS / iPadOS（ウィジェット・ライブアクティビティを含む）</p>
     <div class="privacy-box">
-      <h2>1. 概要</h2>
-      <p>ゴミログ（GomiLog）は KitSpark Studio が開発するローカルファーストのごみ収集カレンダーです。地区設定・カスタム収集日・粗大ごみメモなどのデータは、お客様の端末および個人の iCloud 私有領域にのみ保存されます。当社は外部の業務サーバーを運営せず、個人データを収集・送信・分析しません。</p>
+      <h2>1. 概要（Local-First）</h2>
+      <p>ゴミログ（GomiLog）は KitSpark Studio が開発する<strong>ローカルファースト（Local-First）</strong>のごみ収集カレンダーです。地区設定・カスタム収集日・通知設定・粗大ごみメモなどのデータは、お客様の端末（および App Group）と、<strong>お客様個人の Apple ID に紐づく iCloud 私有領域</strong>（NSUbiquitousKeyValueStore による軽量同期）にのみ保存されます。当社は外部の業務サーバーを運営せず、<strong>個人を識別・追跡するためのデータを一切収集・送信・分析しません</strong>。</p>
 
       <h2>2. 位置情報の取り扱い</h2>
       <p>「現在地から自動設定」機能では、お住まいの都道府県・市区町村の収集ルールをその場でマッチするために、端末の位置情報を一度だけ取得し、日本語ロケール（ja_JP）で行政区画名を解決します。</p>
@@ -126,12 +126,12 @@
         <li>位置情報へのアクセスはいつでも iOS の設定から拒否できます（手動で地区を選ぶことも可能です）。</li>
       </ul>
 
-      <h2>3. 収集しないデータ</h2>
-      <p>当社は次の情報を収集しません。</p>
+      <h2>3. 収集しないデータ（個人識別・追跡なし）</h2>
+      <p>当社は次の情報を収集・保管しません。本アプリは個人の身元追跡（Identity Tracking）を行いません。</p>
       <ul>
-        <li>氏名、メールアドレス、電話番号などの個人識別情報（サポートメールへの任意連絡を除く）</li>
-        <li>位置座標のログ、広告 ID、端末横断トラッキング</li>
-        <li>第三者広告・分析 SDK による行動データ</li>
+        <li>氏名、メールアドレス、電話番号などの個人識別情報（サポート用メールへの任意連絡を除く）</li>
+        <li>位置座標のログ、広告 ID（IDFA）、端末横断トラッキング、プロファイリング</li>
+        <li>第三者広告・分析・行動計測 SDK による利用データ</li>
       </ul>
 
       <h2>4. 端末と個人 iCloud に保存されるデータ</h2>
@@ -157,7 +157,7 @@
   </main>
 
   <footer>
-    <div class="container">© 2026 KitSpark Studio · ゴミログ · <a href="index.html">Home</a></div>
+    <div class="container">© 2026 KitSpark Studio · ゴミログ · <a href="mailto:kitspark.support@gmail.com">kitspark.support@gmail.com</a> · <a href="index.html">Home</a></div>
   </footer>
 </body>
 </html>

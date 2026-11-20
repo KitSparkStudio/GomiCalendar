@@ -10,7 +10,8 @@ import Observation
 import StoreKit
 import WidgetKit
 
-/// StoreKit 2：仅终身买断 `pro.lifetime`（¥480）。默认未解锁。
+/// StoreKit 2：唯一终身买断 `com.kitsparkstudio.gomicalendar.pro.lifetime`（¥480）。
+/// 本地测试：Scheme → StoreKit Configuration → `GomiCalendar/GomiCalendar.storekit`。
 @Observable
 @MainActor
 final class ProStore {
@@ -22,12 +23,14 @@ final class ProStore {
     private(set) var isLoading = false
     private(set) var purchasingProductID: String?
     private(set) var didStart = false
+    /// 最近一次购买 / 恢复结果提示（付费墙展示后可清空）
     var lastErrorMessage: String?
+    var lastSuccessMessage: String?
 
     nonisolated(unsafe) private var updatesTask: Task<Void, Never>?
 
     private init() {
-        isPro = false
+        isPro = ProAccess.isPro
     }
 
     deinit {
@@ -41,6 +44,7 @@ final class ProStore {
         didStart = true
         isPro = ProAccess.isPro
         updatesTask = Task { await listenForTransactions() }
+        Task { await refresh() }
     }
 
     func refresh() async {
@@ -48,17 +52,26 @@ final class ProStore {
         defer { isLoading = false }
         do {
             products = try await Product.products(for: ProductID.all)
+            if lifetime != nil {
+                lastErrorMessage = nil
+            } else {
+                lastErrorMessage = L10n.t("paywall_products_unavailable")
+            }
             await updateEntitlements()
         } catch {
+            products = []
             lastErrorMessage = error.localizedDescription
             await updateEntitlements()
         }
     }
 
+    /// 唤起系统内购弹窗；验证成功后写入 App Group 并刷新小组件。
     @discardableResult
     func purchase(_ product: Product) async -> Bool {
         purchasingProductID = product.id
         isLoading = true
+        lastErrorMessage = nil
+        lastSuccessMessage = nil
         defer {
             isLoading = false
             purchasingProductID = nil
@@ -70,8 +83,16 @@ final class ProStore {
                 let transaction = try checkVerified(verification)
                 await transaction.finish()
                 await updateEntitlements()
-                return isPro
-            case .userCancelled, .pending:
+                if isPro {
+                    lastSuccessMessage = L10n.t("paywall_purchase_success")
+                    return true
+                }
+                lastErrorMessage = L10n.t("paywall_products_unavailable")
+                return false
+            case .userCancelled:
+                return false
+            case .pending:
+                lastErrorMessage = L10n.t("paywall_purchase_pending")
                 return false
             @unknown default:
                 return false
@@ -82,7 +103,6 @@ final class ProStore {
         }
     }
 
-    /// 购买终身买断；商品未加载时先 refresh，仍失败则 Debug/模拟器解锁。
     @discardableResult
     func purchaseLifetime() async -> Bool {
         if let product = lifetime {
@@ -96,28 +116,25 @@ final class ProStore {
         return false
     }
 
-    #if DEBUG
-    func unlockForDebugTesting() {
-        ProAccess.setDebugUnlock(true)
-        isPro = true
-        WidgetCenter.shared.reloadAllTimelines()
-        lastErrorMessage = nil
-    }
-
-    func clearDebugUnlock() {
-        ProAccess.setDebugUnlock(false)
-        Task { await updateEntitlements() }
-    }
-    #endif
-
-    func restore() async {
+    /// `AppStore.sync()` + `Transaction.currentEntitlements`：支持重装恢复与退款撤销。
+    @discardableResult
+    func restore() async -> Bool {
         isLoading = true
+        lastErrorMessage = nil
+        lastSuccessMessage = nil
         defer { isLoading = false }
         do {
             try await AppStore.sync()
             await updateEntitlements()
+            if isPro {
+                lastSuccessMessage = L10n.t("paywall_restore_success")
+                return true
+            }
+            lastErrorMessage = L10n.t("paywall_restore_empty")
+            return false
         } catch {
             lastErrorMessage = error.localizedDescription
+            return false
         }
     }
 
@@ -130,6 +147,7 @@ final class ProStore {
         }
     }
 
+    /// 以 `Transaction.currentEntitlements` 为准（含退款 `revocationDate`）。
     private func updateEntitlements() async {
         var valid: Set<String> = []
         for await result in Transaction.currentEntitlements {
@@ -140,20 +158,14 @@ final class ProStore {
             }
         }
         purchasedProductIDs = valid
-        let storeUnlocked = !valid.isEmpty
-        #if DEBUG
-        let unlocked = storeUnlocked || ProAccess.isDebugUnlocked
-        if storeUnlocked {
-            ProAccess.setPro(true)
-        } else if !ProAccess.isDebugUnlocked {
-            ProAccess.setPro(false)
-        }
-        #else
-        let unlocked = storeUnlocked
-        ProAccess.setPro(storeUnlocked)
-        #endif
+        let unlocked = !valid.isEmpty
+        ProAccess.setPro(unlocked)
         isPro = unlocked
         WidgetCenter.shared.reloadAllTimelines()
+        // 退款撤销 / 未付费：立即清理灵动岛，禁止残留
+        if !unlocked {
+            await GomiLiveActivityManager.shared.endAll(markPreference: false)
+        }
     }
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {

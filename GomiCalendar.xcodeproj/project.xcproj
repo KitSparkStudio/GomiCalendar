@@ -34,6 +34,7 @@
     },
     { "kind": "folder", "path": "Shared", "target-membership": [ "GomiCalendar", "GomiWidgetExtension" ] },
     { "kind": "folder", "path": "Features", "target-membership": [ "GomiCalendar" ] },
+    { "path": "GomiCalendar/GomiCalendar.storekit" },
     { "path": "Products.storekit" },
     {
       "kind": "group",
@@ -126,6 +127,7 @@
         "INFOPLIST_FILE": "GomiWidget/Info.plist",
         "INFOPLIST_KEY_CFBundleDisplayName": "ゴミログ",
         "INFOPLIST_KEY_NSHumanReadableCopyright": "",
+        "IPHONEOS_DEPLOYMENT_TARGET": "18.6",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/Frameworks",

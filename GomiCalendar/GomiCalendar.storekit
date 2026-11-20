@@ -1,0 +1,50 @@
+{
+  "identifier" : "GomiCalendar",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "480",
+      "familyShareable" : false,
+      "internalID" : "A1000000000480",
+      "localizations" : [
+        {
+          "description" : "One-time unlock for GomiCalendar Pro. Lifetime access, no subscription.",
+          "displayName" : "GomiCalendar Pro Lifetime",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "ゴミログ Pro を一度の購入で永久に解放。サブスクリプションはありません。",
+          "displayName" : "ゴミログ Pro 買い切り",
+          "locale" : "ja"
+        },
+        {
+          "description" : "一次买断永久解锁 ゴミログ Pro，无订阅、无后续扣费。",
+          "displayName" : "ゴミログ Pro 永久买断",
+          "locale" : "zh_CN"
+        }
+      ],
+      "productID" : "com.kitsparkstudio.gomicalendar.pro.lifetime",
+      "referenceName" : "GomiCalendar Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "0",
+    "_developerTeamID" : "DPCXZAVSM7",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "ja_JP",
+    "_storefront" : "JPN",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

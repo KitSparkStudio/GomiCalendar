@@ -4,9 +4,6 @@
     "%lld" : {
 
     },
-    "0:00" : {
-
-    },
     "live_activity_mark_done" : {
       "extractionState" : "stale",
       "localizations" : {
