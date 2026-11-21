@@ -5,6 +5,7 @@
 //  Created by KitSpark.Studio on 2026/11/20.
 //
 
+import StoreKit
 import SwiftUI
 import WidgetKit
 #if canImport(UIKit)
@@ -183,9 +184,22 @@ struct SettingsView: View {
                             Button {
                                 showPaywall = true
                             } label: {
-                                Label(L10n.t("settings_upgrade_pro"), systemImage: "star.circle.fill")
+                                HStack {
+                                    Label(L10n.t("settings_upgrade_pro"), systemImage: "star.circle.fill")
+                                    Spacer()
+                                    // 仅展示 StoreKit 动态价；未加载时不写死金额
+                                    if let price = store.lifetime?.displayPrice {
+                                        Text(price)
+                                            .font(.subheadline.weight(.semibold))
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
                             }
                         }
+                    }
+                    .task {
+                        store.startIfNeeded()
+                        await store.refresh()
                     }
 
                     if DeviceCapability.hasDynamicIsland {

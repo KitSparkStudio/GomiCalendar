@@ -10,7 +10,7 @@ import Observation
 import StoreKit
 import WidgetKit
 
-/// StoreKit 2：唯一终身买断 `com.kitsparkstudio.gomicalendar.pro.lifetime`（¥480）。
+/// StoreKit 2：唯一终身买断 `com.kitsparkstudio.gomicalendar.pro.lifetime`（价格以 App Store `displayPrice` 为准）。
 /// 本地测试：Scheme → StoreKit Configuration → `GomiCalendar/GomiCalendar.storekit`。
 @Observable
 @MainActor

@@ -27,7 +27,7 @@ enum ProAccess: Sendable {
 }
 
 enum ProductID {
-    /// 唯一付费商品：¥480 终身买断
+    /// 唯一付费商品：终身买断（价格由 StoreKit / App Store 动态提供）
     nonisolated static let lifetime = "com.kitsparkstudio.gomicalendar.pro.lifetime"
     nonisolated static let all: [String] = [lifetime]
 }

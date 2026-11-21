@@ -118,24 +118,36 @@ struct PaywallView: View {
                     haptic()
                     Task { await purchase(product) }
                 } label: {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(L10n.t("paywall_lifetime_badge"))
-                                .font(.headline)
-                            Text(L10n.t("paywall_lifetime_detail"))
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Text(product.displayName)
-                                .font(.caption2)
-                                .foregroundStyle(.tertiary)
-                        }
-                        Spacer()
-                        if store.purchasingProductID == ProductID.lifetime {
-                            ProgressView()
-                        } else {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(alignment: .firstTextBaseline) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(L10n.t("paywall_lifetime_badge"))
+                                    .font(.headline)
+                                Text(L10n.t("paywall_lifetime_detail"))
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer(minLength: 8)
+                            // 价格仅来自 StoreKit，禁止任何硬编码金额兜底
                             Text(product.displayPrice)
                                 .font(.title2.weight(.bold))
+                                .foregroundStyle(Color(hex: 0x34C759))
                         }
+
+                        HStack {
+                            if store.purchasingProductID == ProductID.lifetime {
+                                ProgressView()
+                                Spacer()
+                            } else {
+                                Text(String(format: L10n.t("paywall_buy_with_price"), product.displayPrice))
+                                    .font(.headline.weight(.semibold))
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 14)
+                        .background(Color(hex: 0x34C759), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .foregroundStyle(.white)
                     }
                     .padding(18)
                     .background(AppTheme.card(for: colorScheme), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
